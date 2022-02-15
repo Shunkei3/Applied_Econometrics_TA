@@ -1,2 +1,2 @@
-# Applied_Econometrics_TA
+# Applied Econometrics-TA
 Materials for TA sesseions
