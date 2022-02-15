@@ -1,2 +1,2 @@
 # Applied Econometrics-TA
-Materials for TA sesseions
+Materials for TA sessions
