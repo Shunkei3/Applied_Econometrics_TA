@@ -71,7 +71,7 @@ library(gt)
 + Feel free to reach out if you want me to explain how to use a specific function. I will add more explanation accordingly. 
 
 
-# Basic Operation of R `feols`
+# Basic Operations of `feols`
 
 ```{r}
 # === Preparation === #
@@ -84,12 +84,16 @@ library(dplyr)
 library(wooldridge)
 # --- data "wage1" is loaded from R package "wooldridge" --- #
 data("wage1") 
+```
 
+```{r}
 #/*----------------------------------*/
 #' ## Run simple regression
 #/*----------------------------------*/
 log_wage_model <- feols(lwage ~ educ + exper + tenure, data = wage1)
+```
 
+```{r}
 #/*----------------------------------*/
 #' ## Results
 #/*----------------------------------*/
@@ -110,7 +114,6 @@ newdata  <-
 	)
 
 predict(log_wage_model,  newdata  =  newdata)
-
 
 # === access the  coefficient values === #
 log_wage_model$coefficients

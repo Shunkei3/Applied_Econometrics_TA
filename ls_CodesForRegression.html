@@ -1761,8 +1761,8 @@ div.tocify {
 <li><p>Feel free to reach out if you want me to explain how to use a specific function. I will add more explanation accordingly.</p></li>
 </ul>
 </div>
-<div id="basic-operation-of-r-feols" class="section level1" number="2">
-<h1><span class="header-section-number">2</span> Basic Operation of R <code>feols</code></h1>
+<div id="basic-operations-of-feols" class="section level1" number="2">
+<h1><span class="header-section-number">2</span> Basic Operations of <code>feols</code></h1>
 <pre class="r"><code># === Preparation === #
 library(modelsummary)
 library(fixest)
@@ -1772,14 +1772,12 @@ library(dplyr)
 # install.packages(&quot;wooldridge&quot;) # if you have not installed yet
 library(wooldridge)
 # --- data &quot;wage1&quot; is loaded from R package &quot;wooldridge&quot; --- #
-data(&quot;wage1&quot;) 
-
-#/*----------------------------------*/
+data(&quot;wage1&quot;) </code></pre>
+<pre class="r"><code>#/*----------------------------------*/
 #&#39; ## Run simple regression
 #/*----------------------------------*/
-log_wage_model &lt;- feols(lwage ~ educ + exper + tenure, data = wage1)
-
-#/*----------------------------------*/
+log_wage_model &lt;- feols(lwage ~ educ + exper + tenure, data = wage1)</code></pre>
+<pre class="r"><code>#/*----------------------------------*/
 #&#39; ## Results
 #/*----------------------------------*/
 # === Quick summary === #
