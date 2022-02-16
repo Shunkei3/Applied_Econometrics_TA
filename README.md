@@ -1,11 +1,11 @@
 # TA session of Applied Econometrics (AECN 396/AECN896-002)
 
-This is the repository for TA session of AECN896-002. I upload the materials used in each TA session to here. Please feel free to reach out to me if you have any questions or have any idea about the contents of this repository. 
+This is the repository for TA session of AECN896-002. I upload the materials used in the TA sessions to here. Please feel free to reach out to me if you have any questions or have any ideas about the contents of this repository. 
 
 ## For your studying
 
 ### Overview
-+ Sometimes, it is good to look at the big picture, review what we have learnt so far. I listed main topics of each lectures. You can use this to check your understanding of the materials or you can know which lecture note to be referred when you review the course materials. 
++ Sometimes, it is good to look at the big picture, review what we have learnt so far. I listed main topics of each lectures. You can use this to check your understanding of the materials or you can know which lecture note to be referred when you review the course materials. ([html](https://github.com/Shunkei3/Applied_Econometrics_TA/blob/main/Overview.html))
 + *NOTE*: I'm going to update this material as we progress through the class.
 
 ### R Exercise
