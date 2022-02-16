@@ -1,0 +1,58 @@
+---
+title: "A list of function you might want to know at least"
+author: "Shunkei Kakimoto"
+date: ""
+output: html_document
+---
+
+```{r echo = F, results='hide', message=FALSE}
+library(knitr)
+library(here)
+
+# === set wd ===#
+# Notes: not really necessary to set the working directory as long as this Rmd file is part of an R project and the evaluation directory was set to "Project".
+
+opts_knit$set(root.dir = here())
+# setwd(here())
+
+options(htmltools.dir.version = FALSE)
+options(knitr.duplicate.label = "allow")
+
+opts_chunk$set(
+  fig.align = "center", 
+  fig.retina = 5,
+  warning = F, 
+  message = F,
+  cache = FALSE, # <-- T
+  cache.lazy = FALSE,
+  echo = T,
+  eval = F
+  )
+```
+
+```{r, echo=FALSE}
+# === packages ===#
+library(tidyverse)
+```
+
+```{r klippy, echo=FALSE, include=TRUE}
+klippy::klippy('')
+```
+
+
++ filter()
++ mutate()
++ select()
++ rename()
++ arrange()
++ relocate()
++ mean(): common error: if there is any NA value in the data, then it returns NA. If you disregard the NA values in the data, then set `na.rm = TRUE` (The default is na.rm = FALSE)
++ paste0()
+
+
+```{r}
+setwd()
+```
+
+
+

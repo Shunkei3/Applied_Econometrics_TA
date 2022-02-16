@@ -1,0 +1,423 @@
+---
+title: "Data wrangling with `tidyverse`"
+author: "Shunkei Kakimoto"
+output:
+  html_document:
+    number_sections: true
+    theme: flatly
+    toc_float: true
+    toc: true
+    toc_depth: 2
+  pdf_document:
+    highlight: zenburn
+    number_sections: true
+    toc: true
+geometry: margin=0.75in
+---
+
+
+```{r klippy, echo=FALSE, include=TRUE}
+klippy::klippy('')
+```
+
+```{r echo = F, results='hide', message=FALSE}
+library(knitr)
+library(here)
+
+# library(tidyverse)
+# library(data.table)
+
+
+opts_knit$set(root.dir = here())
+# setwd(here())
+
+options(htmltools.dir.version = FALSE)
+options(knitr.duplicate.label = "allow")
+
+opts_chunk$set(
+  fig.align = "center", 
+  fig.retina = 5,
+  warning = F, 
+  message = F,
+  cache = FALSE, # <-- T
+  cache.lazy = FALSE,
+  echo = T,
+  class.source='klippy'
+  )
+```
+
+```{r, echo=FALSE}
+# === packages ===#
+library(tidyverse)
+```
+
+# Before you start
+
+## Learning objectives
+
+The objectives of this chapter is to get to used to the functions of **`tidyverse`** pacakge through working on exercises. Specifically, we focus on the following functions;
+
++ manipulate data (`filter()`, `rename()`, `select()`, `mutate()`, `summarise()`)
++ merge multiple datasets (`left_join()`)
++ write codes with the pipe operator (`%>%`)
++ reshape a data set (`spread()`, `gather()`)
+
+These functions are highly useful in data manipulations and it is not too much to say that most of the data manipulations involve these functions. In addition, I think playing around with these functions would be good introduction to get to use to R and would be helpful to get the some picture about what we can do with R. 
+
+In this chapter, we'll practice the usage of each of the functions independently. Then, in the next chapter we will go through more complicated and comprehensive exercises by piecing together the R knowledge we will learn in this chapter.
+
+The `tidyverse` is a package of a collection of packages developed mainly by Hadley Wickham. The tidyverse package include the following packages:
+
++ readr
++ ggplot2
++ dplyr
++ tidyr
++ purrr
++ tibble
+
+Here, we learn how to use `dplyr` to manipulate and merge multiple datasets, and `tidyr` to reshape datasets. Later, we will learn data visualization using the `ggplot2` package. These packages are by no means the only ways to do the operations we learn in this chapter. However, we learn these packages because they are easy to use. They are also easy to learn and get help as they are very well-documented. Go to the tidyverse website, and click on the icon of the package you would like to learn, then you will have a nice documentation of the packages. You could also google the package name, and you will see bunch of introductions/tutorials as they are quite popular in the R community.
+
+Let's get familiarize yourself to functions of `tidyverse` package through the following exercises.
+
+
+## Preparation
+
+### Load the package {-}
+```{r, eval=FALSE, class.source='klippy'}
+library(tidyverse)
+```
+
+## {- .toc-ignore .tabset}
+
+Trough this exercise, we use a dataset called `HousePrices` from the `AER` package. The data contains sales prices of houses sold in the city of Windsor, Canada, during July, August and September, 1987. Let’s load the package and the dataset. For the detail description about the dataset, evaluate `?HousePrices` on your R console.
+
+### Load the data {-}
+
+```{r, eval=FALSE}
+#--- install the package (if you haven’t) ---#
+install.packages("AER")
+```
+
+```{r}
+#--- load the package ---#
+library(AER)
+#--- load the flight data set ---#
+data("HousePrices")
+```
+
+### Output {-}
+```{r}
+#--- take a look ---#
+head(HousePrices)
+```
+
+## {- .toc-ignore}
+
+
+
+# Basic data manipulation using the `dplyr` package
+
+<!-- ####==== filter ====#### -->
+## Subset (filter) a dat a set
+
+### Exercise 1 {-}
+<!-- filter  -->
+
+## {- .toc-ignore .tabset}
+
+### Exercise {-}
++ Find the observations which has multiple bedrooms and bathrooms.
+
+
+### Solution {-}
+
+```{r}
+ex1 <- filter(HousePrices, bedrooms >= 2 & bathrooms >= 2)
+#--- equivalently ---# 
+# ex1 <- filter(HousePrices, bedrooms >= 2, bathrooms >= 2)
+
+#--- take a look ---#
+head(ex1)
+```
+## {- .toc-ignore}
+
+### Exercise 2 {-}
+<!-- filter  -->
+
+## {- .toc-ignore .tabset}
+
+### Exercise {-}
++ Find the average value of `price` for the houses that have 1, 3 or 4 bedrooms.  
+
+
+### Solution {-}
+
+```{r}
+ex2 <- filter(HousePrices, bedrooms %in% c(1, 3, 4))
+#--- equivalently ---# 
+# ex2 <- filter(HousePrices, bedrooms==1 | bedrooms==3 | bedrooms==4)
+
+mean(ex2$price)
+```
+## {- .toc-ignore}
+
+
+### Exercise 3 {-}
+<!-- filter  -->
+
+## {- .toc-ignore .tabset}
+
+### Exercise {-}
++ Find the number of houses that have a driveway and have more than 2 garages. 
+
+
+### Solution {-}
+
+```{r}
+ex3 <- filter(HousePrices, driveway == "yes" & garage > 2)
+
+nrow(ex3)
+```
+## {- .toc-ignore}
+
+<br>
+<br>
+
+<!-- ####==== select ====#### -->
+## Extract some of the variables
+
+### Exercise 1 {-}
+<!-- filter  -->
+
+## {- .toc-ignore .tabset}
+
+### Exercise {-}
++ Select `price` and `bathrooms`
+
+### Solution {-}
+
+```{r}
+ex4 <- select(HousePrices, price, bathrooms)
+
+#--- take a look ---#
+head(ex4)
+```
+
+## {- .toc-ignore}
+
+
+### Exercise 2 {-}
+
+## {- .toc-ignore .tabset}
+
+### Exercise {-}
++ Select all the columns except `bedrooms` and `bathrooms`.
+
+### Solution {-}
+
+```{r}
+ex5 <- select(HousePrices, - bedrooms, - bathrooms)
+
+#--- take a look ---#
+head(ex5)
+```
+## {- .toc-ignore}
+
+<br>
+<br>
+
+<!-- ####==== rename ====#### -->
+## Rename variables
+
+### Exercise 1 {-}
+<!-- filter  -->
+
+## {- .toc-ignore .tabset}
+
+### Exercise {-}
++ Change variable name `price` and `lotsize` to `Price` and `Lotsize`, respectively.
+
+### Solution {-}
+
+```{r}
+ex6 <- rename(HousePrices, "Price" = "price", "Lotsize" = "lotsize")
+
+#--- take a look ---#
+head(ex6)
+```
+## {- .toc-ignore}
+
+<br>
+<br>
+
+<!-- ####==== mutate ====#### -->
+## Defining news variables
+
+### Exercise 1 {-}
+## {- .toc-ignore .tabset}
+
+### Exercise {-}
++ Creating a new column related to `prefer` which contains binary indexes (1 when `prefer` is yes, otherwise 0)
+
+### Solution {-}
+
+```{r}
+ex7 <- mutate(HousePrices, 
+  index_prefer = ifelse(prefer == "yes", 1, 0))
+
+#--- take a look ---#
+head(ex7)
+```
+## {- .toc-ignore}
+
+
+### Exercise 2 {-}
+## {- .toc-ignore .tabset}
+
+### Exercise {-}
++ Suppose that we want to make a plot figure to visualize the relationship between `price` and `lotsize`. To make it easily interpretative, we want to change the color of the plots according to the value of `lotsize`. 
+Let's create a new column that indicates any of three categorical groups  based on `lotsize`. For the observations whose `lotsize` is smaller than 25th percentile cut-point of its distribution, labeled as "small". Similarly, for the observations whose `lotsize` is greater than equal 25th percentile and less than equal 75th percentile cut-points of the distribution, label "medium". Finally, label "large" to the rest of the observations. 
+
+<span style="color: red;">Hint</span>: Let's try to use **`case_when()`** function. 
+
+### Solution {-}
+
+```{r}
+ex8 <- mutate(HousePrices, 
+  lotsize_groups = case_when(
+    lotsize < quantile(lotsize, probs = 0.25) ~ "small",
+    lotsize >= quantile(lotsize, probs = 0.25) & lotsize <= quantile(lotsize, probs = 0.75)  ~ "medium", 
+    lotsize > quantile(lotsize, probs = 0.75) ~ "large"
+    )
+  )
+
+#--- take a look ---#
+head(ex8)
+
+#--- make a scatter plot ---#
+#--NOTE: you don't need to make this figure. --#
+ggplot(ex8)+
+  geom_point(aes(x=lotsize, y=price, color=lotsize_groups))
+
+```
+## {- .toc-ignore}
+
+<br>
+<br>
+
+## Grouped operations
+
+### Exercise 1 {-}
+## {- .toc-ignore .tabset}
+
+### Exercise {-}
++ Find the average `price` for houses with and without driveways and with and without recreation rooms. (i.e., house with driveway and recreation room, house without driveway but with recreation room,...etc.)
+
+
+### Solution {-}
+
+```{r}
+#-- step1: specify which variables to be used for grouping --#
+ex9 <- group_by(HousePrices, driveway, recreation)
+
+#-- step2: calculate mean values of price by the specified groups --# 
+summarise(ex9, mean_price = mean(price))
+```
+## {- .toc-ignore}
+
+
+### Exercise 2 {-}
+## {- .toc-ignore .tabset}
+
+### Exercise {-}
++ Find the number of houses by `prefer` using `n()` function.  
+
+<span style="color: red;">Hint</span>: **`n()`** function counts the number of observation
+
+### Solution {-}
+
+```{r}
+#-- step1: specify which variables to be used for grouping --#
+ex10 <- group_by(HousePrices, prefer)
+#-- step2: count the number of houses by the specified groups --# 
+summarise(ex10, count = n())
+```
+## {- .toc-ignore}
+
+<br>
+<br>
+
+## Piping with `%>%`
+
+### Exercise 1 {-}
+## {- .toc-ignore .tabset}
+
+### Exercise {-}
++ Using `%>%`, rewrite the following code without using intermediate objects (e.g., a1 and a2)
+
+
+```{r}
+a1 <- filter(HousePrices, lotsize>median(lotsize))
+a2 <- group_by(a1, prefer)
+a3 <- summarise(a2, 
+  mean_bedrooms = mean(bedrooms),
+  mean_price = mean(price)
+  )
+
+```
+
+### Solution {-}
+
+```{r}
+HousePrices %>%
+  filter(lotsize > median(lotsize)) %>%
+  group_by(prefer) %>%
+  summarise(
+    mean_bedrooms = mean(bedrooms),
+    mean_price = mean(price)
+    )
+```
+
+## {- .toc-ignore}
+
+### Exercise 2 {-}
+## {- .toc-ignore .tabset}
+
+### Exercise {-}
++ Using `%>%`, let's rewrite the code you just wrote in Problem 2.5. 
+
+
+### Solution for Exercise 1 {-}
+
+```{r}
+HousePrices %>%
+  group_by(driveway, recreation) %>%
+  summarise(mean_price = mean(price))
+```
+
+
+### Solution for Exercise 2 {-}
+
+```{r}
+HousePrices %>%
+  group_by(prefer) %>%
+  summarise(count = n())
+```
+
+## {- .toc-ignore}
+
+<!-- ### Exercise 3 {-}
+## {- .toc-ignore .tabset} -->
+
+
+<!-- # Merging multiple datsets into one
+
+
+# Reshaping the data
+
+## Long to wide
+
+## Wide to long -->
+
+
+

@@ -1,0 +1,136 @@
+---
+title: "A List of Codes for Econometric Analysis"
+author: "Shunkei Kakimoto"
+output:
+  html_document:
+    number_sections: yes
+    theme: flatly
+    toc_float: yes
+    toc: yes
+    toc_depth: 3
+geometry: margin=1in
+---
+
+```{r setup, include=FALSE}
+library(knitr)
+# opts_knit$set(root.dir = "")
+
+# library(here)
+# opts_knit$set(root.dir = here())
+
+knitr::opts_chunk$set(
+  echo = TRUE,
+  cache = FALSE,
+  comment = NA,
+  message = FALSE,
+  warning = FALSE,
+  tidy = FALSE,
+  cache.lazy = FALSE,
+  #--- figure ---#
+  dpi = 400,
+  fig.width = 7.5,
+  fig.height = 5,
+  out.width = "750px",
+  out.height = "500px"
+)
+
+# /*===== Basic Packages  =====*/
+# /*---- Data Wrangling ----*/
+library(data.table)
+library(tidyverse)
+library(DescTools)
+library(maps)
+
+# /*---- Visualization ----*/
+library(RColorBrewer)
+library(patchwork)
+library(ggplot2)
+library(ggthemes)
+library(ggpubr)
+library(viridis)
+library(grid)
+library(gridExtra)
+library(GGally)
+
+# --- OLS --- #
+library(fixest)
+
+# /*---- Model Summary ----*/
+library(stats)
+library(modelsummary)
+library(flextable)
+library(officer)
+library(officedown)
+library(gt)
+```
+
+# Motivation
++ Through the courses, we will go through many R functions for practical econometric analysis (e.g. R functions for hypothesis testing, cluster-robust standard error estimation, panel data estimation methods, IV estimation method, ...). I thought it would be helpful to put all R functions introduced in this class in the same file so you don't need to search for these functions by yourself every time. This will be helpful especially when you conduct econometric analysis for your final report.
+
++ I'm going to update this material as we progress through the class.
++ Feel free to reach out if you want me to explain how to use a specific function. I will add more explanation accordingly. 
+
+
+# Basic Operation of R `feols`
+
+```{r}
+# === Preparation === #
+library(modelsummary)
+library(fixest)
+library(dplyr)
+
+# === Data === #
+# install.packages("wooldridge") # if you have not installed yet
+library(wooldridge)
+# --- data "wage1" is loaded from R package "wooldridge" --- #
+data("wage1") 
+
+#/*----------------------------------*/
+#' ## Run simple regression
+#/*----------------------------------*/
+log_wage_model <- feols(lwage ~ educ + exper + tenure, data = wage1)
+
+#/*----------------------------------*/
+#' ## Results
+#/*----------------------------------*/
+# === Quick summary === #
+log_wage_model
+
+# === Extract fitted values for sample points === #
+# NOTE: show only the first five values
+log_wage_model$fitted.values[1:5]
+
+# === Prediction for new data points === #
+# NOTE: Change only the variable of educ. Fix the other variables using mean values.
+newdata  <-  
+	data.frame(
+		educ = c(5, 10, 15),
+		exper = mean(wage1$exper),
+		tenure = mean(wage1$tenure)
+	)
+
+predict(log_wage_model,  newdata  =  newdata)
+
+
+# === access the  coefficient values === #
+log_wage_model$coefficients
+
+# NOTE: if you want to access to the specific coefficient, you can do:
+log_wage_model$coefficients[["educ"]]
+```
+
+## Result Presentation
++ use `msummary` function from the `modelsummary` package
+
+```{r}
+# === Preparation === #
+library(modelsummary) 
+
+# === report the summary=== #
+msummary(
+	log_wage_model, 
+	#  keep  these  options  as  they  are
+	stars  =  TRUE, 
+	gof_omit  =  "IC|Log|Adj|F|Pseudo|Within" 
+	)
+```

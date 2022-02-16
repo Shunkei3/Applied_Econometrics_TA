@@ -1,0 +1,96 @@
+---
+title: "Overview"
+author: "Shunkei Kakimoto"
+output:
+  html_document:
+    number_sections: yes
+    theme: flatly
+    toc_float: yes
+    toc: yes
+    toc_depth: 3
+geometry: margin=1in
+---
+
+```{r setup, include=FALSE}
+library(knitr)
+# opts_knit$set(root.dir = "")
+
+# library(here)
+# opts_knit$set(root.dir = here())
+
+knitr::opts_chunk$set(
+  echo = TRUE,
+  cache = FALSE,
+  comment = NA,
+  message = FALSE,
+  warning = FALSE,
+  tidy = FALSE,
+  cache.lazy = FALSE,
+  #--- figure ---#
+  dpi = 400,
+  fig.width = 7.5,
+  fig.height = 5,
+  out.width = "750px",
+  out.height = "500px"
+)
+
+# /*===== Basic Packages  =====*/
+# /*---- Data Wrangling ----*/
+# library(data.table)
+# library(tidyverse)
+# library(DescTools)
+# library(maps)
+
+# /*---- Visualization ----*/
+# library(RColorBrewer)
+# library(patchwork)
+# library(ggplot2)
+# library(ggthemes)
+# library(ggpubr)
+# library(viridis)
+# library(grid)
+# library(gridExtra)
+# library(GGally)
+
+# /*---- Model Summary ----*/
+# library(stats)
+# library(modelsummary)
+# library(flextable)
+# library(officer)
+# library(officedown)
+# library(gt)
+```
+
++ Sometimes, it is good to look at the big picture, review what we have learnt so far.
+
+# Lecture 1: Univariate Regression
++ The meaning of ceteris paribus ceteris paribus causal impact
++ The crucial condition to identify the ceteris paribus impact
++ What are small sample properties?
++ How can we estimate the error variance?
+
++ Practical OLS analysis with `feols()` from `fixext` package
+
+<br>
+
+# Lecture 2: Multivariate Regression
++ What does Frisch–Waugh–Lovell Theorem (FWL theorem) mean?
+	* Understand the role of control variables
++ Conditions to ensure OLS estimators to the best linear unbiased estimators?
+	* Among those conditions, which ones are related to unbiasedness of OLS?
++ How can we estimate the variance of the OLS estimators?
+
++ Presentation of the summary of regression results with `msummary` function from the `modelsummary` package.
+
+<br>
+
+# Lecture 3: Monte Carlo Simulation
++ **Advice**: It is a good practice to run all the codes by yourself and understand what each code does. These codes would give you a great opportunity to play around with R. 
+
+<br>
+
+# Lecture 4: Omitted Variable Bias and Multicollinearity
+
+
+
+
