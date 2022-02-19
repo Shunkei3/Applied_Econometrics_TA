@@ -1,8 +1,9 @@
-/Data/*
-/Assignments/*
 /Labs/*
 /*/*_cache/*
 /*/cache/*
+/*/*files/*
+/*/*libs/*
+# /*/*libs/*
 /*/figure/*
 *.csv
 *.rds

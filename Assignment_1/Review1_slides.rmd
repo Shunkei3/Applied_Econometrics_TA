@@ -1,0 +1,607 @@
+---
+title: "Review Assignment1"
+author: "Shunkei Kakimoto, University of Nebraska Lincoln"
+output:
+  xaringan::moon_reader:
+    # css: [default, metropolis, metropolis-fonts] 
+    css: xaringan-themer.css 
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+class: middle
+
+```{r, child = '../setup.Rmd'}
+```
+
+```{r, include = F}
+#--- load packages ---#
+suppressMessages(library(here))
+
+# /*---- Data Wrangling ----*/
+suppressMessages(library(data.table))
+suppressMessages(library(tidyverse))
+
+# --- regression --- #
+library(fixest)
+library(readstata13)
+library(readr)
+
+# /*---- Visualization ----*/
+library(RColorBrewer)
+library(patchwork)
+library(ggplot2)
+library(ggthemes)
+library(ggpubr)
+library(viridis)
+library(grid)
+library(gridExtra)
+library(GGally)
+
+# /*---- Model Summary ----*/
+library(stats)
+library(modelsummary)
+library(flextable)
+library(officer)
+library(officedown)
+library(gt)
+```
+
+# About Myself
+
++ Shunkei Kakimoto (from Japan)
++ M.S. student
++ My interests
++ **My goal as a TA**:
+  * make sure you will be capable of writing a good final paper
+  * make you feel comfortable with R as much as possible (I hope you keep using R for your thesis)
+---
+
+# R
+
++ I started to learn R for the first time in this class almost two years ago, and I understand it's a stressful process to learn. 
+
++ **Advice for becoming used to R**: 
+  * Imitate quality codes (Dr. Taro's code)
+  * Understand how R processes data 
+    - ex1) vector:`c()`, matrix:`matrix()`, list:`list()`, data.frame:`data.frame()`
+    - ex2) to aggregate variables by group, you first specify group with `gourp_by()`, then apply `summarise()`
+  * You **do not** need to memorize each function 
+    - You can always google those functions
+
++ Besides this class, feel free to ask me technical R problems for your research projects. Maybe I can be helpful(?).
+---
+
+
+# Matrials
+
++ Like Dr. Taro does, I will upload my materials on my Github repository. 
++ In addition to the materials for this review session, I am planning to upload
+  * Overview of the courses
+  * a list of functions for regression analysis with examples
+  * R exercise problems
+  
++ This is my first attempt to create a repository for course material, so let me know if you have any ideas about how the repository could be better for your learning.
+
+---
+
+
+# Assignment Review (Overview)
+
++ **Endogeneity Problem** 
+  * Problem 1, Problem 4, Problem 6 
+  
++ **Regression Analysis and Data management with dplyr**
+  * Problem C1, Problem C2, Problem C7, Problem C8
+
++ **Attenuation Bias due to Measurement Error**
+  * Monte Carlo Simulation
+
+---
+
+# Problem C1
+**Main Variables**
++ *prate*: the percentage of eligible workers with an active account (unit: %)
++ *mrate*: the average amount the firm contributes to each worker’s plan for each $1 contribution by the worker (unit: $)
+
+**Data**
+```{r}
+# --- Load the Data--- #
+pension_dt <- read_csv(here('Data/Assignment_1/401K.csv'))
+# --- Take a Quick Look --- #
+head(pension_dt) %>% print
+```
+
+---
+
+<span style='color:blue'>(i) Find the average participation rate and the average match rate in the sample of plans.</span>
+
+```{r}
+# --- The Average Participation Rate --- #
+mean(pension_dt$prate)
+# --- The Average Match Rate --- #
+mean(pension_dt$mrate)
+```
+
+or, you could use `summarize` (or `summarise`)function
+
+```{r, eval=F}
+summarize(pension_dt, 
+  mean_prate = mean(prate),
+  mean_mrate = mean(mrate)
+  )
+# summarize(pension_dt, mean(prate), mean(mrate)) #this is the same
+```
+
+---
+
+<span style='color:blue'>
+(ii) Now, estimate the simple regression equation $\hat{prate}=\hat{\beta}_0+\hat{\beta}_1\cdot mrate$ and report the results along with the sample size and R-squared.
+</span>
+
+```{r}
+reg_pension <- feols(prate ~ mrate, data = pension_dt)
+
+msummary(
+  reg_pension, 
+  stars  =  TRUE,
+  gof_omit  =  "IC|Log|Adj|F|Pseudo|Within" 
+  )
+```
+
+---
+
+<span style='color:blue'>
+(iii) Interpret the intercept in your equation. Interpret the coefficient on mrate.
+</span>
+
+```{r, echo=T}
+msummary(
+  reg_pension, 
+  stars  =  TRUE, 
+  gof_omit  =  "IC|Log|Adj|F|Pseudo|Within" 
+  )
+```
+
++ Interception ( $\hat{\beta}_0$ ) indicates the value when $mrate=0$. $83.5\%$ of participation rate is expected on average if $mrate=0$.  
++ The coefficient ( $\hat{\beta}_1$ ) suggests that if $mrate$ is increased by $ $1$, $prate$ is expected to increase by `r round(reg_pension$coefficients[2],digits=3)` on average, **cetris paribus**.
+
+---
+
+<span style='color:blue'>
+(iv) Find the predicted prate when $mrate=3.5$. Is this a reasonable prediction? Explain what is happening here.
+</span>
+
+```{r, echo=T}
+reg_pension$coefficients[1]+reg_pension$coefficients[2]*3.5
+```
+
++ $103.5892$ % ???
++ Since the model assumes linear relationship between $prate$ and $mrate$, $prate$ goes up as $mrate$ increases, despite $prate$ is bounded.
+
+```{r, echo=F, out.width = "45%"}
+ggplot(data=pension_dt) +
+    geom_point(aes(y=prate,x=mrate),size=0.7) +
+    geom_smooth(aes(y=prate,x=mrate),method='lm',se=FALSE) +
+    labs(title="Actual observations vs predicted values") +
+    theme_bw()
+
+plot(pension_dt$mrate, pension_dt$prate)
+
+```
+
+---
+
+<span style='color:blue'>
+(iv)How much of the variation in prate is explained by $mrate$? Is this a lot in your opinion?
+</span>
+
++ Check $R^2$ from the regression summary results, $0.075$. 
++ $7.5\%$ of total variation is explained. Is this a lot?
+
+---
+
+# Problem C2
+**Main Variables**
++ *salary*: nnual compensation (unit: $ in thousands)
++ *ceoten*: prior number of years as company CEO. (unit: year)
+
+**Data**
+
+```{r}
+library(readstata13)
+# --- Load the Data--- #
+ceo_dt <- read.dta13(here('Data/Assignment_1/CEOSAL2.dta'))
+# --- Take a Quick Look --- #
+head(ceo_dt) %>% print
+```
+
+---
+
+<span style='color:blue'>
+(i)Find the average salary and the average tenure in the sample. ?
+</span>
+
+```{r}
+ceo_dt %>%
+summarize(
+  mean_salary = mean(salary),
+  mean_ceoten =mean(ceoten)
+  )
+```
+
+```{r, echo=F}
+ceo_dt %>%
+summarize(
+  mean_salary = mean(salary),
+  mean_ceoten =mean(ceoten)
+  ) %>% print()
+```
+
+---
+
+<span style='color:blue'>
+(ii) How many CEOs are in their first year as CEO (that is, ceoten=0)? What is the longest tenure as a CEO? 
+</span>
+
+```{r}
+# --- the number of CEOs in their first year --- #
+ceo_dt %>%
+  filter(ceoten==0) %>% 
+  nrow()
+
+# --- the longest tenure as a CEO --- #
+ceo_dt$ceoten %>% max()
+```
+
+---
+
+<span style='color:blue'>
+(iii) Estimate the simple regression model $log(salary)=\beta_0+\beta_1\cdot ceoten +u$ and report your results in the usual form. What is the (approximate) predicted percentage increase in salary given one more year as a CEO?
+</span>
+
+```{r}
+reg_ceo <- feols(log(salary) ~ ceoten, data = ceo_dt)
+
+msummary(
+  reg_ceo, 
+  stars  =  TRUE,
+  gof_omit  =  "IC|Log|Adj|F|Pseudo|Within" 
+  )
+```
+
+---
+
+# Problem C7
+**Main Variables**
++ *salary*: nnual compensation (unit: $ in thousands)
++ *ceoten*: prior number of years as company CEO. (unit: year)
+
+
+**Data**
+
+```{r, out.width = "50%"}
+# --- Load the Data--- #
+charity_dt <- readRDS(here('Data/Assignment_1/charity.rds'))
+# --- Take a Quick Look --- #
+head(charity_dt) %>% print
+```
+
+---
+
+<span style='color:blue'>
+(i) What is the average gift? What percentage of people gave no gift?
+</span>
+
+```{r}
+# === The average gift in the sample is === #
+mean(charity_dt$gift)
+# === percentage of people gave no gift === #
+#--- # of people with no gift ---#
+num_no_gift <- filter(charity_dt,gift==0) %>% nrow()
+#--- # of total observations  ---#
+num_total <- nrow(charity_dt)
+#--- percentage  ---#
+num_no_gift/num_total*100
+```
+
+---
+
+<span style='color:blue'>
+(ii) What is the average mailings per year? What are the minimum and maximum values?
+</span>
+
+```{r, eval=F}
+summarize(charity_dt, 
+  mean_mailsyear = mean(mailsyear),
+  min_mailsyear = min(mailsyear),
+  max_mailsyear = max(mailsyear)
+)
+```
+
+```{r, echo=F}
+summarize(charity_dt, 
+  mean_mailsyear = mean(mailsyear),
+  min_mailsyear = min(mailsyear),
+  max_mailsyear = max(mailsyear)
+) %>% print
+```
+
+---
+
+<span style="color:blue">
+(iii) Estimate the model $gift=\beta_0+\beta_1 \cdot mailsyear + u$ by OLS and report the results in the usual way, including the sample size and R-squared.
+</span>
+(iv)
+
+```{r}
+reg_charity <- feols(gift ~ mailsyear, data = charity_dt)
+
+msummary(
+  reg_charity, 
+  stars  =  TRUE,
+  gof_omit  =  "IC|Log|Adj|F|Pseudo|Within" 
+  )
+```
+
+---
+
+<span style="color:blue"> 
+(iv) Interpret the slope coefficient. If each mailing costs one guilder, is the charity expected to make a net gain on each mailing? Does this mean the charity makes a net gain on every mailing? Explain.
+</span>
+
+```{r, echo=F}
+msummary(
+  reg_charity, 
+  stars  =  TRUE,
+  gof_omit  =  "IC|Log|Adj|F|Pseudo|Within" 
+  )
+```
+
++ The slope coefficient means it is expected that one mail per year can increase gift by `r round(reg_charity$coefficient[2], 4)` guilders **on average**, ceteris paribus. 
++ The coefficient value tells you just an expected number of revenue. So, even though 2.65 guilders (gain) - 1 guilder (cost) > 0, it does not necessary mean that the charity makes a net gain on every mailing.
+
+---
+
+```{r, out.width = "50%", echo=F}
+ggplot(data=charity_dt) +
+  geom_histogram(aes(x=gift))+
+  labs(title = "Histogram of the number of gift")+
+    theme_bw()
+  
+```
+
++ Most of of the time, $gifts$ is 0.
++ Some times, $gifts$ is large. 
+
+---
+
+<span style="color:blue"> (v) What is the smallest predicted charitable contribution in the sample? Using this simple regression analysis, can you ever predict zero for $gift$?</span>
+
+```{r}
+# --- Find minimum value of mailsyear in the sample--- #
+min_mailsyear <- min(charity_dt$mailsyear)
+
+# --- Predict charitable contribution at min_mailsyear--- #
+reg_charity$coefficient[1] + reg_charity$coefficient[2]*min_mailsyear
+```
+
+---
+
+# Problem C8
+<span style="color:blue">(i) Start by generating $500$ observations $x_i$ – the explanatory variable – from the uniform distribution with range $[0,10]$. What are the sample mean and sample standard deviation of the $x_i$?</span>
+
+```{r}
+x <- runif(500, min = 0, max = 10)
+# --- mean --- #
+mean(x)
+# --- sd --- #
+sd(x)
+```
+
+---
+
+<span style="color:blue">(ii) Randomly generate $500$ errors, $u_i$, from the Normal[0,36] distribution. Is the sample average of the $u_i$ exactly zero? Why or why not? What is the sample standard deviation of the $u_i$?</span>
+
+```{r}
+u <- rnorm(500, mean = 0, sd = 6)
+# --- mean --- #
+mean(u)
+# --- sd --- #
+sd(u)
+```
++ The sample average of the $u$ is not exactly zero. $E[u_i]=0$ does not guarantee $\sum_{i=1}^{n}u_i=0$ for a particular sample. 
++ population mean ( $\mu$ ) and mean of sample ( $\bar{u}$ ) taking from the population are not necessarily the same. But, if you chose a sufficiently large sample, $\bar{u}$ gets close to $\mu$ arbitrary.
+
+---
+
+<span style="color:blue"> 
+(iii) Now generate the $y_i$ as $y_i=1+2x_i+u_i$ that is, the population intercept is one and the population slope is two. Use the data to run the regression of $y_i$ on $x_i$. What are your estimates of the intercept and slope? Are they equal to the population values in the above equation? Explain.
+</span>
+
+```{r, echo=F}
+# --- observation y--- #
+y = 1 + 2*x + u
+
+#--- create a data set ---#
+data = data.frame(y=y,x=x)
+
+#--- run regression ---#
+reg_c8 <- feols(y~x,data=data)
+
+msummary(
+  reg_c8, 
+  stars  =  TRUE,
+  gof_omit  =  "IC|Log|Adj|F|Pseudo|Within" 
+  )
+```
+
+---
+
+```{r, echo=F}
+#--- present the regression results ---#
+msummary(
+  reg_c8, 
+  stars  =  TRUE,
+  gof_omit  =  "IC|Log|Adj|F|Pseudo|Within" 
+  )
+```
+
++ They are not equal. 
++ *NOTE*: The OLS estimator is unbiased.
++ **Unbiasedness does not mean that your estimates ( $\hat{\beta}$ ) for a particular sample is always the true parameters $\beta$**. Indeed, estimates would be different sample by sample.**
+  * This is why we need to a statistical hypothesis testing of the coefficients.
+
+---
+
+<span style="color:blue"> 
+(iv) Obtain the OLS residuals, $\hat{u}_i$, and verify that equation (2.60)  hold (subject to rounding error).
+</span>
+$\sum_{i=1}^n \hat{u}_i=0$ ?:
+
+```{r}
+sum(reg_c8$residuals)
+```
+$\sum_{i=1}^n x_i\hat{u}_i=0$?:
+
+```{r}
+sum(reg_c8$residuals*x)
+```
++ These are always true, because OLS use these conditions to find estimates.
+
+---
+
+<span style="color:blue"> 
+(v) Compute the same quantities in equation (2.60) but use the errors $u_i$ in place of the residuals. Now what do you conclude?</span>
+
+$\sum_{i=1}^n u_i=0$ ?:
+
+```{r}
+sum(u)
+```
+$\sum_{i=1}^n x_i u_i=0$?:
+
+```{r}
+sum(u*x)
+```
++ Equation $\sum_{i=1}^n \hat{u}_i=0$ and $\sum_{i=1}^n x_i\hat{u}_i=0$ hold only for residuals, not error.
+
+---
+
+# Monte Carlo simulation: Attenuation Bias
+
++ True data generation process: 
+$$
+\begin{aligned}
+  y_i & = 1 + 2\times x_i + u_i, \;\;\mbox{where}\\
+  x_i & \sim N(0,1) \\
+  u_i & \sim N(0,1)
+\end{aligned}
+$$
+
+Instead of having the accurate data for $x_i$, now you have data for $s_i$ including a random measurement error for $x_i$ by $\mu_i$:
+
+$$
+s_i = x_i + \mu_i
+$$
+
++ $\mu_i$ is a random measurement error. 
++ Example: $x_i$ could be actual income, and $s_i$ could be reported income. 
+
++ Question: Is the OLS estimator an unbiased estimator of the coefficient on $x_i$?
+
+---
+
+<span style="color:blue"> OLS estimator of $\beta_2$ is unbiased? </span>
+
+```{r}
+#--- prep ---#
+B <- 1000 # the number of iterations
+N <- 1000 # the number of observations
+beta_store <- rep(0,B) # empty storage
+
+for (i in 1:B){
+  #--- generate data  ---#
+  x <- rnorm(N) # correctly observed x
+  s <- x + rnorm(N) # incorrectly observed x
+  u <- rnorm(N) # error term
+  y <- 1 + 2*x +u # dependent variable
+  #--- define a data set  ---#
+  # you only observe y and s (not x and u)
+  data <- data.frame(y=y,s=s)
+  #--- regression ---#
+  reg_temp <- lm(y~s,data=data)
+  #--- store the coef estimate for i th iteration ---#
+  beta_store[i] <- reg_temp$coef[2]
+}
+
+mean(beta_store)
+```
+
+---
+
+# Compare with the model using true x value
+```{r}
+#--- preparation ---#
+B <- 1000 # the number of iterations
+N <- 1000 # the number of observations
+beta_store <- matrix(0,B,2) # empty storage 
+
+for (i in 1:B){
+  # ex)i=2
+  #--- generate data  ---#
+  x <- rnorm(N) # correctly observed x
+  s <- x + rnorm(N) # incorrectly observed x
+  u <- rnorm(N) # error term
+  y <- 1 + 2*x +u # dependent variable
+  #--- define a data set  ---#
+  data <- data.frame(y=y,x=x, s=s)
+  #--- regression ---#
+  reg_temp <- feols(y~s,data=data)
+  reg_temp_true <- feols(y~x,data=data)
+  #--- store the coef estimate for i th iteration ---#
+  beta_store[i,1] <- reg_temp$coefficient[2]
+  beta_store[i,2] <- reg_temp_true$coefficient[2]
+}
+```
+
+---
+
+```{r}
+# --- model including measurement error---
+mean(beta_store[,1])
+# --- true model---
+mean(beta_store[,2])
+```
+
+---
+
+# Visually Check the Difference between the Two Results
+
+```{r, echo=F, out.width = "70%"}
+dt <-
+  beta_store %>%
+  data.table() %>%
+  setnames(names(.), c("false", "true")) %>%
+  .[,sim := seq_len(nrow(.))] %>%
+  melt(id.vars = "sim")
+
+ggplot(dt)+
+  geom_density(aes(x=value, fill=variable), alpha=0.6) +
+  geom_vline(xintercept = 2, color="red")
+```
+
+---
+
+# Attenuation Bias:
++ If the variables of interest include measurement error,  the maginitude of　the coefficients is always towards zero.
++ The degree of the attenuation effect depends on the size of the measurement error. 
++ You'll study about this soon.
+  * For more mathematical explanations, please refer p319 in Wooldridge's textbook (4th edition)
+
+---
+
+# References
++ Wooldridge, Jeffrey M. Introductory Econometrics: A Modern Approach. 4th ed., international student ed. [Mason (OH)]: South-Western, Cengage Learning, 2009.

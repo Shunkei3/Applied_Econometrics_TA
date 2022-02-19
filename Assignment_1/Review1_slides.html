@@ -1,0 +1,1422 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Review Assignment1</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Shunkei Kakimoto, University of Nebraska Lincoln" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link href="libs/tile-view/tile-view.css" rel="stylesheet" />
+    <script src="libs/tile-view/tile-view.js"></script>
+    <link href="libs/animate.css/animate.xaringan.css" rel="stylesheet" />
+    <link href="libs/tachyons/tachyons.min.css" rel="stylesheet" />
+    <link href="libs/panelset/panelset.css" rel="stylesheet" />
+    <script src="libs/panelset/panelset.js"></script>
+    <script src="libs/clipboard/clipboard.min.js"></script>
+    <link href="libs/xaringanExtra-clipboard/xaringanExtra-clipboard.css" rel="stylesheet" />
+    <script src="libs/xaringanExtra-clipboard/xaringanExtra-clipboard.js"></script>
+    <script>window.xaringanExtraClipboard(null, {"button":"Copy Code","success":"Copied!","error":"Press Ctrl+C to Copy"})</script>
+    <script src="libs/kePrint/kePrint.js"></script>
+    <link href="libs/lightable/lightable.css" rel="stylesheet" />
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Review Assignment1
+### Shunkei Kakimoto, University of Nebraska Lincoln
+
+---
+
+class: middle
+
+
+
+
+
+
+
+
+
+
+&lt;style type="text/css"&gt;
+
+.remark-slide-content.hljs-github h1 {
+  margin-top: 5px;  
+  margin-bottom: 25px;  
+}
+
+.remark-slide-content.hljs-github {
+  padding-top: 10px;  
+  padding-left: 30px;  
+  padding-right: 30px;  
+}
+
+.panel-tabs {
+  &lt;!-- color: #062A00; --&gt;
+  color: #841F27;
+  margin-top: 0px;  
+  margin-bottom: 0px;  
+  margin-left: 0px;  
+  padding-bottom: 0px;  
+}
+
+.panel-tab {
+  margin-top: 0px;  
+  margin-bottom: 0px;  
+  margin-left: 3px;  
+  margin-right: 3px;  
+  padding-top: 0px;  
+  padding-bottom: 0px;  
+}
+
+.panelset .panel-tabs .panel-tab {
+  min-height: 40px;
+}
+
+.remark-slide th {
+  border-bottom: 1px solid #ddd;
+}
+
+.remark-slide thead {
+  border-bottom: 0px;
+}
+
+.gt_footnote {
+  padding: 2px;  
+}
+
+.remark-slide table {
+  border-collapse: collapse;
+}
+
+.remark-slide tbody {
+  border-bottom: 2px solid #666;
+}
+
+
+.important {
+  background-color: lightpink;
+  border: 2px solid blue;
+  font-weight: bold;
+} 
+
+.remark-code {
+  display: block;
+  overflow-x: auto;
+  padding: .5em;
+  background: #ffe7e7;
+} 
+
+.hljs-github .hljs {
+  background: #f2f2fd;
+}
+
+.remark-inline-code {
+  padding-top: 0px;
+  padding-bottom: 0px;
+  background-color: #e6e6e6;
+}
+
+.r.hljs.remark-code.remark-inline-code{
+  font-size: 0.9em
+}
+
+.left-full {
+  width: 80%;
+  float: left;
+}
+
+.left-code {
+  width: 38%;
+  height: 92%;
+  float: left;
+}
+
+.right-plot {
+  width: 60%;
+  float: right;
+  padding-left: 1%;
+}
+
+.left6 {
+  width: 60%;
+  height: 92%;
+  float: left;
+}
+
+.left5 {
+  width: 49%;
+  &lt;!-- height: 92%; --&gt;
+  float: left;
+}
+
+.right5 {
+  width: 49%;
+  float: right;
+  padding-left: 1%;
+}
+
+.right4 {
+  width: 39%;
+  float: right;
+  padding-left: 1%;
+}
+
+.left3 {
+  width: 29%;
+  height: 92%;
+  float: left;
+}
+
+.right7 {
+  width: 69%;
+  float: right;
+  padding-left: 1%;
+}
+
+.left4 {
+  width: 38%;
+  float: left;
+}
+
+.right6 {
+  width: 60%;
+  float: right;
+  padding-left: 1%;
+}
+
+ul li{
+  margin: 7px;
+}
+
+ul, li{
+  margin-left: 15px; 
+  padding-left: 0px; 
+}
+
+ol li{
+  margin: 7px;
+}
+
+ol, li{
+  margin-left: 15px; 
+  padding-left: 0px; 
+}
+
+&lt;/style&gt;
+
+&lt;style type="text/css"&gt;
+.content-box { 
+    box-sizing: border-box;
+    background-color: #e2e2e2;
+}
+.content-box-blue,
+.content-box-gray,
+.content-box-grey,
+.content-box-army,
+.content-box-green,
+.content-box-purple,
+.content-box-red,
+.content-box-yellow {
+  box-sizing: border-box;
+  border-radius: 5px;
+  margin: 0 0 10px;
+  overflow: hidden;
+  padding: 0px 5px 0px 5px;
+  width: 100%;
+}
+.content-box-blue { background-color: #F0F8FF; }
+.content-box-gray { background-color: #e2e2e2; }
+.content-box-grey { background-color: #F5F5F5; }
+.content-box-army { background-color: #737a36; }
+.content-box-green { background-color: #d9edc2; }
+.content-box-purple { background-color: #e2e2f9; }
+.content-box-red { background-color: #ffcccc; }
+.content-box-yellow { background-color: #fef5c4; }
+.content-box-blue .remark-inline-code,
+.content-box-blue .remark-inline-code,
+.content-box-gray .remark-inline-code,
+.content-box-grey .remark-inline-code,
+.content-box-army .remark-inline-code,
+.content-box-green .remark-inline-code,
+.content-box-purple .remark-inline-code,
+.content-box-red .remark-inline-code,
+.content-box-yellow .remark-inline-code { 
+  background: none;
+}
+
+.full-width {
+    display: flex;
+    width: 100%;
+    flex: 1 1 auto;
+}
+&lt;/style&gt;
+
+
+&lt;style type="text/css"&gt;
+blockquote, .blockquote {
+  display: block;
+  margin-top: 0.1em;
+  margin-bottom: 0.2em;
+  margin-left: 5px;
+  margin-right: 5px;
+  border-left: solid 10px #0148A4;
+  border-top: solid 2px #0148A4;
+  border-bottom: solid 2px #0148A4;
+  border-right: solid 2px #0148A4;
+  box-shadow: 0 0 6px rgba(0,0,0,0.5);
+  /* background-color: #e64626; */
+  color: #e64626;
+  padding: 0.5em;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+}
+
+.blockquote p {
+  margin-top: 0px;
+  margin-bottom: 5px;
+}
+.blockquote &gt; h1:first-of-type {
+  margin-top: 0px;
+  margin-bottom: 5px;
+}
+.blockquote &gt; h2:first-of-type {
+  margin-top: 0px;
+  margin-bottom: 5px;
+}
+.blockquote &gt; h3:first-of-type {
+  margin-top: 0px;
+  margin-bottom: 5px;
+}
+.blockquote &gt; h4:first-of-type {
+  margin-top: 0px;
+  margin-bottom: 5px;
+}
+
+.text-shadow {
+  text-shadow: 0 0 4px #424242;
+}
+&lt;/style&gt;
+
+&lt;style type="text/css"&gt;
+/******************
+ * Slide scrolling
+ * (non-functional)
+ * not sure if it is a good idea anyway
+slides &gt; slide {
+  overflow: scroll;
+ padding: 5px 40px;
+}
+.scrollable-slide .remark-slide {
+  height: 400px;
+  overflow: scroll !important;
+}
+ ******************/
+
+.scroll-box-8 {
+  height:8em;
+  overflow-y: scroll;
+}
+.scroll-box-10 {
+  height:10em;
+  overflow-y: scroll;
+}
+.scroll-box-12 {
+  height:12em;
+  overflow-y: scroll;
+}
+.scroll-box-14 {
+  height:14em;
+  overflow-y: scroll;
+}
+.scroll-box-16 {
+  height:16em;
+  overflow-y: scroll;
+}
+.scroll-box-18 {
+  height:18em;
+  overflow-y: scroll;
+}
+.scroll-box-20 {
+  height:20em;
+  overflow-y: scroll;
+}
+.scroll-box-24 {
+  height:24em;
+  overflow-y: scroll;
+}
+.scroll-box-30 {
+  height:30em;
+  overflow-y: scroll;
+}
+.scroll-output {
+  height: 90%;
+  overflow-y: scroll;
+}
+
+ 
+&lt;/style&gt;
+
+
+
+# About Myself
+
++ Shunkei Kakimoto (from Japan)
++ M.S. student
++ My interests
++ **My goal as a TA**:
+  * make sure you will be capable of writing a good final paper
+  * make you feel comfortable with R as much as possible (I hope you keep using R for your thesis)
+---
+
+# R
+
++ I started to learn R for the first time in this class almost two years ago, and I understand it's a stressful process to learn. 
+
++ **Advice for becoming used to R**: 
+  * Imitate quality codes (Dr. Taro's code)
+  * Understand how R processes data 
+    - ex1) vector:`c()`, matrix:`matrix()`, list:`list()`, data.frame:`data.frame()`
+    - ex2) to aggregate variables by group, you first specify group with `gourp_by()`, then apply `summarise()`
+  * You **do not** need to memorize each function 
+    - You can always google those functions
+
++ Besides this class, feel free to ask me technical R problems for your research projects. Maybe I can be helpful(?).
+---
+
+
+# Matrials
+
++ Like Dr. Taro does, I will upload my materials on my Github repository. 
++ In addition to the materials for this review session, I am planning to upload
+  * Overview of the courses
+  * a list of functions for regression analysis with examples
+  * R exercise problems
+  
++ This is my first attempt to create a repository for course material, so let me know if you have any ideas about how the repository could be better for your learning.
+
+---
+
+
+# Assignment Review (Overview)
+
++ **Endogeneity Problem** 
+  * Problem 1, Problem 4, Problem 6 
+  
++ **Regression Analysis and Data management with dplyr**
+  * Problem C1, Problem C2, Problem C7, Problem C8
+
++ **Attenuation Bias due to Measurement Error**
+  * Monte Carlo Simulation
+
+---
+
+# Problem C1
+**Main Variables**
++ *prate*: the percentage of eligible workers with an active account (unit: %)
++ *mrate*: the average amount the firm contributes to each worker’s plan for each $1 contribution by the worker (unit: $)
+
+**Data**
+
+```r
+# --- Load the Data--- #
+pension_dt &lt;- read_csv(here('Data/Assignment_1/401K.csv'))
+# --- Take a Quick Look --- #
+head(pension_dt) %&gt;% print
+```
+
+```
+## # A tibble: 6 × 3
+##    ...1 prate mrate
+##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1     1  26.1 0.210
+## 2     2 100   1.42 
+## 3     3  97.6 0.910
+## 4     4 100   0.420
+## 5     5  82.5 0.530
+## 6     6 100   1.82
+```
+
+---
+
+&lt;span style='color:blue'&gt;(i) Find the average participation rate and the average match rate in the sample of plans.&lt;/span&gt;
+
+
+```r
+# --- The Average Participation Rate --- #
+mean(pension_dt$prate)
+```
+
+```
+## [1] 87.36291
+```
+
+```r
+# --- The Average Match Rate --- #
+mean(pension_dt$mrate)
+```
+
+```
+## [1] 0.7315124
+```
+
+or, you could use `summarize` (or `summarise`)function
+
+
+```r
+summarize(pension_dt, 
+  mean_prate = mean(prate),
+  mean_mrate = mean(mrate)
+  )
+# summarize(pension_dt, mean(prate), mean(mrate)) #this is the same
+```
+
+---
+
+&lt;span style='color:blue'&gt;
+(ii) Now, estimate the simple regression equation `\(\hat{prate}=\hat{\beta}_0+\hat{\beta}_1\cdot mrate\)` and report the results along with the sample size and R-squared.
+&lt;/span&gt;
+
+
+```r
+reg_pension &lt;- feols(prate ~ mrate, data = pension_dt)
+
+msummary(
+  reg_pension, 
+  stars  =  TRUE,
+  gof_omit  =  "IC|Log|Adj|F|Pseudo|Within" 
+  )
+```
+
+&lt;table style="NAborder-bottom: 0; width: auto !important; margin-left: auto; margin-right: auto;" class="table"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt;   &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; Model 1 &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; (Intercept) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 83.075*** &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; (0.563) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; mrate &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 5.861*** &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;box-shadow: 0px 1px"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;box-shadow: 0px 1px"&gt; (0.527) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Num.Obs. &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1534 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; R2 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.075 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Std.Errors &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; IID &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;tfoot&gt;&lt;tr&gt;&lt;td style="padding: 0; " colspan="100%"&gt;
+&lt;sup&gt;&lt;/sup&gt; + p &amp;lt; 0.1, * p &amp;lt; 0.05, ** p &amp;lt; 0.01, *** p &amp;lt; 0.001&lt;/td&gt;&lt;/tr&gt;&lt;/tfoot&gt;
+&lt;/table&gt;
+
+---
+
+&lt;span style='color:blue'&gt;
+(iii) Interpret the intercept in your equation. Interpret the coefficient on mrate.
+&lt;/span&gt;
+
+
+```r
+msummary(
+  reg_pension, 
+  stars  =  TRUE, 
+  gof_omit  =  "IC|Log|Adj|F|Pseudo|Within" 
+  )
+```
+
+&lt;table style="NAborder-bottom: 0; width: auto !important; margin-left: auto; margin-right: auto;" class="table"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt;   &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; Model 1 &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; (Intercept) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 83.075*** &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; (0.563) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; mrate &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 5.861*** &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;box-shadow: 0px 1px"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;box-shadow: 0px 1px"&gt; (0.527) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Num.Obs. &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1534 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; R2 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.075 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Std.Errors &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; IID &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;tfoot&gt;&lt;tr&gt;&lt;td style="padding: 0; " colspan="100%"&gt;
+&lt;sup&gt;&lt;/sup&gt; + p &amp;lt; 0.1, * p &amp;lt; 0.05, ** p &amp;lt; 0.01, *** p &amp;lt; 0.001&lt;/td&gt;&lt;/tr&gt;&lt;/tfoot&gt;
+&lt;/table&gt;
+
++ Interception ( `\(\hat{\beta}_0\)` ) indicates the value when `\(mrate=0\)`. `\(83.5\%\)` of participation rate is expected on average if `\(mrate=0\)`.  
++ The coefficient ( `\(\hat{\beta}_1\)` ) suggests that if `\(mrate\)` is increased by $ `\(1\)`, `\(prate\)` is expected to increase by 5.861 on average, **cetris paribus**.
+
+---
+
+&lt;span style='color:blue'&gt;
+(iv) Find the predicted prate when `\(mrate=3.5\)`. Is this a reasonable prediction? Explain what is happening here.
+&lt;/span&gt;
+
+
+```r
+reg_pension$coefficients[1]+reg_pension$coefficients[2]*3.5
+```
+
+```
+## (Intercept) 
+##    103.5892
+```
+
++ `\(103.5892\)` % ???
++ Since the model assumes linear relationship between `\(prate\)` and `\(mrate\)`, `\(prate\)` goes up as `\(mrate\)` increases, despite `\(prate\)` is bounded.
+
+&lt;img src="Review1_slides_files/figure-html/unnamed-chunk-9-1.png" width="45%" style="display: block; margin: auto;" /&gt;&lt;img src="Review1_slides_files/figure-html/unnamed-chunk-9-2.png" width="45%" style="display: block; margin: auto;" /&gt;
+
+---
+
+&lt;span style='color:blue'&gt;
+(iv)How much of the variation in prate is explained by `\(mrate\)`? Is this a lot in your opinion?
+&lt;/span&gt;
+
++ Check `\(R^2\)` from the regression summary results, `\(0.075\)`. 
++ `\(7.5\%\)` of total variation is explained. Is this a lot?
+
+---
+
+# Problem C2
+**Main Variables**
++ *salary*: nnual compensation (unit: $ in thousands)
++ *ceoten*: prior number of years as company CEO. (unit: year)
+
+**Data**
+
+
+```r
+library(readstata13)
+# --- Load the Data--- #
+ceo_dt &lt;- read.dta13(here('Data/Assignment_1/CEOSAL2.dta'))
+# --- Take a Quick Look --- #
+head(ceo_dt) %&gt;% print
+```
+
+```
+##   salary age college grad comten ceoten sales profits mktval  lsalary   lsales   lmktval
+## 1   1161  49       1    1      9      2  6200     966  23200 7.057037 8.732305 10.051908
+## 2    600  43       1    1     10     10   283      48   1100 6.396930 5.645447  7.003066
+## 3    379  51       1    1      9      3   169      40   1100 5.937536 5.129899  7.003066
+## 4    651  55       1    0     22     22  1100     -54   1000 6.478509 7.003066  6.907755
+## 5    497  44       1    1      8      6   351      28    387 6.208590 5.860786  5.958425
+## 6   1067  64       1    1      7      7 19000     614   3900 6.972606 9.852194  8.268732
+##   comtensq ceotensq  profmarg
+## 1       81        4 15.580646
+## 2      100      100 16.961130
+## 3       81        9 23.668638
+## 4      484      484 -4.909091
+## 5       64       36  7.977208
+## 6       49       49  3.231579
+```
+
+---
+
+&lt;span style='color:blue'&gt;
+(i)Find the average salary and the average tenure in the sample. ?
+&lt;/span&gt;
+
+
+```r
+ceo_dt %&gt;%
+summarize(
+  mean_salary = mean(salary),
+  mean_ceoten =mean(ceoten)
+  )
+```
+
+
+```
+##   mean_salary mean_ceoten
+## 1    865.8644    7.954802
+```
+
+---
+
+&lt;span style='color:blue'&gt;
+(ii) How many CEOs are in their first year as CEO (that is, ceoten=0)? What is the longest tenure as a CEO? 
+&lt;/span&gt;
+
+
+```r
+# --- the number of CEOs in their first year --- #
+ceo_dt %&gt;%
+  filter(ceoten==0) %&gt;% 
+  nrow()
+```
+
+```
+## [1] 5
+```
+
+```r
+# --- the longest tenure as a CEO --- #
+ceo_dt$ceoten %&gt;% max()
+```
+
+```
+## [1] 37
+```
+
+---
+
+&lt;span style='color:blue'&gt;
+(iii) Estimate the simple regression model `\(log(salary)=\beta_0+\beta_1\cdot ceoten +u\)` and report your results in the usual form. What is the (approximate) predicted percentage increase in salary given one more year as a CEO?
+&lt;/span&gt;
+
+
+```r
+reg_ceo &lt;- feols(log(salary) ~ ceoten, data = ceo_dt)
+
+msummary(
+  reg_ceo, 
+  stars  =  TRUE,
+  gof_omit  =  "IC|Log|Adj|F|Pseudo|Within" 
+  )
+```
+
+&lt;table style="NAborder-bottom: 0; width: auto !important; margin-left: auto; margin-right: auto;" class="table"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt;   &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; Model 1 &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; (Intercept) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 6.505*** &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; (0.068) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; ceoten &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.010 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;box-shadow: 0px 1px"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;box-shadow: 0px 1px"&gt; (0.006) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Num.Obs. &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 177 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; R2 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.013 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Std.Errors &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; IID &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;tfoot&gt;&lt;tr&gt;&lt;td style="padding: 0; " colspan="100%"&gt;
+&lt;sup&gt;&lt;/sup&gt; + p &amp;lt; 0.1, * p &amp;lt; 0.05, ** p &amp;lt; 0.01, *** p &amp;lt; 0.001&lt;/td&gt;&lt;/tr&gt;&lt;/tfoot&gt;
+&lt;/table&gt;
+
+---
+
+# Problem C7
+**Main Variables**
++ *salary*: nnual compensation (unit: $ in thousands)
++ *ceoten*: prior number of years as company CEO. (unit: year)
+
+
+**Data**
+
+
+```r
+# --- Load the Data--- #
+charity_dt &lt;- readRDS(here('Data/Assignment_1/charity.rds'))
+# --- Take a Quick Look --- #
+head(charity_dt) %&gt;% print
+```
+
+```
+##   respond gift resplast weekslast propresp mailsyear giftlast avggift
+## 1       0    0        0 143.00000      0.3       2.5       10      10
+## 2       0    0        0  65.42857      0.3       2.5       10      10
+## 3       0    0        1  13.14286      0.3       2.5       10      10
+## 4       0    0        0 120.14286      0.3       2.5       10      10
+## 5       1   10        0 103.85714      0.2       2.5       10      10
+## 6       0    0        0 129.14285      0.3       2.5       10      10
+```
+
+---
+
+&lt;span style='color:blue'&gt;
+(i) What is the average gift? What percentage of people gave no gift?
+&lt;/span&gt;
+
+
+```r
+# === The average gift in the sample is === #
+mean(charity_dt$gift)
+```
+
+```
+## [1] 7.44447
+```
+
+```r
+# === percentage of people gave no gift === #
+#--- # of people with no gift ---#
+num_no_gift &lt;- filter(charity_dt,gift==0) %&gt;% nrow()
+#--- # of total observations  ---#
+num_total &lt;- nrow(charity_dt)
+#--- percentage  ---#
+num_no_gift/num_total*100
+```
+
+```
+## [1] 60.00469
+```
+
+---
+
+&lt;span style='color:blue'&gt;
+(ii) What is the average mailings per year? What are the minimum and maximum values?
+&lt;/span&gt;
+
+
+```r
+summarize(charity_dt, 
+  mean_mailsyear = mean(mailsyear),
+  min_mailsyear = min(mailsyear),
+  max_mailsyear = max(mailsyear)
+)
+```
+
+
+```
+##   mean_mailsyear min_mailsyear max_mailsyear
+## 1       2.049555          0.25           3.5
+```
+
+---
+
+&lt;span style="color:blue"&gt;
+(iii) Estimate the model `\(gift=\beta_0+\beta_1 \cdot mailsyear + u\)` by OLS and report the results in the usual way, including the sample size and R-squared.
+&lt;/span&gt;
+(iv)
+
+
+```r
+reg_charity &lt;- feols(gift ~ mailsyear, data = charity_dt)
+
+msummary(
+  reg_charity, 
+  stars  =  TRUE,
+  gof_omit  =  "IC|Log|Adj|F|Pseudo|Within" 
+  )
+```
+
+&lt;table style="NAborder-bottom: 0; width: auto !important; margin-left: auto; margin-right: auto;" class="table"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt;   &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; Model 1 &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; (Intercept) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 2.014** &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; (0.739) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; mailsyear &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 2.650*** &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;box-shadow: 0px 1px"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;box-shadow: 0px 1px"&gt; (0.343) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Num.Obs. &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 4268 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; R2 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.014 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Std.Errors &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; IID &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;tfoot&gt;&lt;tr&gt;&lt;td style="padding: 0; " colspan="100%"&gt;
+&lt;sup&gt;&lt;/sup&gt; + p &amp;lt; 0.1, * p &amp;lt; 0.05, ** p &amp;lt; 0.01, *** p &amp;lt; 0.001&lt;/td&gt;&lt;/tr&gt;&lt;/tfoot&gt;
+&lt;/table&gt;
+
+---
+
+&lt;span style="color:blue"&gt; 
+(iv) Interpret the slope coefficient. If each mailing costs one guilder, is the charity expected to make a net gain on each mailing? Does this mean the charity makes a net gain on every mailing? Explain.
+&lt;/span&gt;
+
+&lt;table style="NAborder-bottom: 0; width: auto !important; margin-left: auto; margin-right: auto;" class="table"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt;   &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; Model 1 &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; (Intercept) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 2.014** &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; (0.739) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; mailsyear &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 2.650*** &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;box-shadow: 0px 1px"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;box-shadow: 0px 1px"&gt; (0.343) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Num.Obs. &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 4268 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; R2 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.014 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Std.Errors &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; IID &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;tfoot&gt;&lt;tr&gt;&lt;td style="padding: 0; " colspan="100%"&gt;
+&lt;sup&gt;&lt;/sup&gt; + p &amp;lt; 0.1, * p &amp;lt; 0.05, ** p &amp;lt; 0.01, *** p &amp;lt; 0.001&lt;/td&gt;&lt;/tr&gt;&lt;/tfoot&gt;
+&lt;/table&gt;
+
++ The slope coefficient means it is expected that one mail per year can increase gift by 2.6495 guilders **on average**, ceteris paribus. 
++ The coefficient value tells you just an expected number of revenue. So, even though 2.65 guilders (gain) - 1 guilder (cost) &gt; 0, it does not necessary mean that the charity makes a net gain on every mailing.
+
+---
+
+&lt;img src="Review1_slides_files/figure-html/unnamed-chunk-21-1.png" width="50%" style="display: block; margin: auto;" /&gt;
+
++ Most of of the time, `\(gifts\)` is 0.
++ Some times, `\(gifts\)` is large. 
+
+---
+
+&lt;span style="color:blue"&gt; (v) What is the smallest predicted charitable contribution in the sample? Using this simple regression analysis, can you ever predict zero for `\(gift\)`?&lt;/span&gt;
+
+
+```r
+# --- Find minimum value of mailsyear in the sample--- #
+min_mailsyear &lt;- min(charity_dt$mailsyear)
+
+# --- Predict charitable contribution at min_mailsyear--- #
+reg_charity$coefficient[1] + reg_charity$coefficient[2]*min_mailsyear
+```
+
+```
+## (Intercept) 
+##    2.676466
+```
+
+---
+
+# Problem C8
+&lt;span style="color:blue"&gt;(i) Start by generating `\(500\)` observations `\(x_i\)` – the explanatory variable – from the uniform distribution with range `\([0,10]\)`. What are the sample mean and sample standard deviation of the `\(x_i\)`?&lt;/span&gt;
+
+
+```r
+x &lt;- runif(500, min = 0, max = 10)
+# --- mean --- #
+mean(x)
+```
+
+```
+## [1] 4.834395
+```
+
+```r
+# --- sd --- #
+sd(x)
+```
+
+```
+## [1] 2.909554
+```
+
+---
+
+&lt;span style="color:blue"&gt;(ii) Randomly generate `\(500\)` errors, `\(u_i\)`, from the Normal[0,36] distribution. Is the sample average of the `\(u_i\)` exactly zero? Why or why not? What is the sample standard deviation of the `\(u_i\)`?&lt;/span&gt;
+
+
+```r
+u &lt;- rnorm(500, mean = 0, sd = 6)
+# --- mean --- #
+mean(u)
+```
+
+```
+## [1] 0.2871777
+```
+
+```r
+# --- sd --- #
+sd(u)
+```
+
+```
+## [1] 5.648705
+```
++ The sample average of the `\(u\)` is not exactly zero. `\(E[u_i]=0\)` does not guarantee `\(\sum_{i=1}^{n}u_i=0\)` for a particular sample. 
++ population mean ( `\(\mu\)` ) and mean of sample ( `\(\bar{u}\)` ) taking from the population are not necessarily the same. But, if you chose a sufficiently large sample, `\(\bar{u}\)` gets close to `\(\mu\)` arbitrary.
+
+---
+
+&lt;span style="color:blue"&gt; 
+(iii) Now generate the `\(y_i\)` as `\(y_i=1+2x_i+u_i\)` that is, the population intercept is one and the population slope is two. Use the data to run the regression of `\(y_i\)` on `\(x_i\)`. What are your estimates of the intercept and slope? Are they equal to the population values in the above equation? Explain.
+&lt;/span&gt;
+
+&lt;table style="NAborder-bottom: 0; width: auto !important; margin-left: auto; margin-right: auto;" class="table"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt;   &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; Model 1 &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; (Intercept) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1.157* &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; (0.491) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; x &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 2.027*** &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;box-shadow: 0px 1px"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;box-shadow: 0px 1px"&gt; (0.087) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Num.Obs. &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 500 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; R2 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.522 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Std.Errors &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; IID &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;tfoot&gt;&lt;tr&gt;&lt;td style="padding: 0; " colspan="100%"&gt;
+&lt;sup&gt;&lt;/sup&gt; + p &amp;lt; 0.1, * p &amp;lt; 0.05, ** p &amp;lt; 0.01, *** p &amp;lt; 0.001&lt;/td&gt;&lt;/tr&gt;&lt;/tfoot&gt;
+&lt;/table&gt;
+
+---
+
+&lt;table style="NAborder-bottom: 0; width: auto !important; margin-left: auto; margin-right: auto;" class="table"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt;   &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; Model 1 &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; (Intercept) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1.157* &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; (0.491) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; x &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 2.027*** &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;box-shadow: 0px 1px"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;box-shadow: 0px 1px"&gt; (0.087) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Num.Obs. &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 500 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; R2 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.522 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Std.Errors &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; IID &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;tfoot&gt;&lt;tr&gt;&lt;td style="padding: 0; " colspan="100%"&gt;
+&lt;sup&gt;&lt;/sup&gt; + p &amp;lt; 0.1, * p &amp;lt; 0.05, ** p &amp;lt; 0.01, *** p &amp;lt; 0.001&lt;/td&gt;&lt;/tr&gt;&lt;/tfoot&gt;
+&lt;/table&gt;
+
++ They are not equal. 
++ *NOTE*: The OLS estimator is unbiased.
++ **Unbiasedness does not mean that your estimates ( `\(\hat{\beta}\)` ) for a particular sample is always the true parameters `\(\beta\)`**. Indeed, estimates would be different sample by sample.**
+  * This is why we need to a statistical hypothesis testing of the coefficients.
+
+---
+
+&lt;span style="color:blue"&gt; 
+(iv) Obtain the OLS residuals, `\(\hat{u}_i\)`, and verify that equation (2.60)  hold (subject to rounding error).
+&lt;/span&gt;
+`\(\sum_{i=1}^n \hat{u}_i=0\)` ?:
+
+
+```r
+sum(reg_c8$residuals)
+```
+
+```
+## [1] 2.628342e-12
+```
+`\(\sum_{i=1}^n x_i\hat{u}_i=0\)`?:
+
+
+```r
+sum(reg_c8$residuals*x)
+```
+
+```
+## [1] 4.80902e-11
+```
++ These are always true, because OLS use these conditions to find estimates.
+
+---
+
+&lt;span style="color:blue"&gt; 
+(v) Compute the same quantities in equation (2.60) but use the errors `\(u_i\)` in place of the residuals. Now what do you conclude?&lt;/span&gt;
+
+`\(\sum_{i=1}^n u_i=0\)` ?:
+
+
+```r
+sum(u)
+```
+
+```
+## [1] 143.5888
+```
+`\(\sum_{i=1}^n x_i u_i=0\)`?:
+
+
+```r
+sum(u*x)
+```
+
+```
+## [1] 807.8961
+```
++ Equation `\(\sum_{i=1}^n \hat{u}_i=0\)` and `\(\sum_{i=1}^n x_i\hat{u}_i=0\)` hold only for residuals, not error.
+
+---
+
+# Monte Carlo simulation: Attenuation Bias
+
++ True data generation process: 
+$$
+`\begin{aligned}
+  y_i &amp; = 1 + 2\times x_i + u_i, \;\;\mbox{where}\\
+  x_i &amp; \sim N(0,1) \\
+  u_i &amp; \sim N(0,1)
+\end{aligned}`
+$$
+
+Instead of having the accurate data for `\(x_i\)`, now you have data for `\(s_i\)` including a random measurement error for `\(x_i\)` by `\(\mu_i\)`:
+
+$$
+s_i = x_i + \mu_i
+$$
+
++ `\(\mu_i\)` is a random measurement error. 
++ Example: `\(x_i\)` could be actual income, and `\(s_i\)` could be reported income. 
+
++ Question: Is the OLS estimator an unbiased estimator of the coefficient on `\(x_i\)`?
+
+---
+
+&lt;span style="color:blue"&gt; OLS estimator of `\(\beta_2\)` is unbiased? &lt;/span&gt;
+
+
+```r
+#--- prep ---#
+B &lt;- 1000 # the number of iterations
+N &lt;- 1000 # the number of observations
+beta_store &lt;- rep(0,B) # empty storage
+
+for (i in 1:B){
+  #--- generate data  ---#
+  x &lt;- rnorm(N) # correctly observed x
+  s &lt;- x + rnorm(N) # incorrectly observed x
+  u &lt;- rnorm(N) # error term
+  y &lt;- 1 + 2*x +u # dependent variable
+  #--- define a data set  ---#
+  # you only observe y and s (not x and u)
+  data &lt;- data.frame(y=y,s=s)
+  #--- regression ---#
+  reg_temp &lt;- lm(y~s,data=data)
+  #--- store the coef estimate for i th iteration ---#
+  beta_store[i] &lt;- reg_temp$coef[2]
+}
+
+mean(beta_store)
+```
+
+```
+## [1] 1.004064
+```
+
+---
+
+# Compare with the model using true x value
+
+```r
+#--- preparation ---#
+B &lt;- 1000 # the number of iterations
+N &lt;- 1000 # the number of observations
+beta_store &lt;- matrix(0,B,2) # empty storage 
+
+for (i in 1:B){
+  # ex)i=2
+  #--- generate data  ---#
+  x &lt;- rnorm(N) # correctly observed x
+  s &lt;- x + rnorm(N) # incorrectly observed x
+  u &lt;- rnorm(N) # error term
+  y &lt;- 1 + 2*x +u # dependent variable
+  #--- define a data set  ---#
+  data &lt;- data.frame(y=y,x=x, s=s)
+  #--- regression ---#
+  reg_temp &lt;- feols(y~s,data=data)
+  reg_temp_true &lt;- feols(y~x,data=data)
+  #--- store the coef estimate for i th iteration ---#
+  beta_store[i,1] &lt;- reg_temp$coefficient[2]
+  beta_store[i,2] &lt;- reg_temp_true$coefficient[2]
+}
+```
+
+---
+
+
+```r
+# --- model including measurement error---
+mean(beta_store[,1])
+```
+
+```
+## [1] 0.9995974
+```
+
+```r
+# --- true model---
+mean(beta_store[,2])
+```
+
+```
+## [1] 1.999704
+```
+
+---
+
+# Visually Check the Difference between the Two Results
+
+&lt;img src="Review1_slides_files/figure-html/unnamed-chunk-34-1.png" width="70%" style="display: block; margin: auto;" /&gt;
+
+---
+
+# Attenuation Bias:
++ If the variables of interest include measurement error,  the maginitude of　the coefficients is always towards zero.
++ The degree of the attenuation effect depends on the size of the measurement error. 
++ You'll study about this soon.
+  * For more mathematical explanations, please refer p319 in Wooldridge's textbook (4th edition)
+
+---
+
+# References
++ Wooldridge, Jeffrey M. Introductory Econometrics: A Modern Approach. 4th ed., international student ed. [Mason (OH)]: South-Western, Cengage Learning, 2009.
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
