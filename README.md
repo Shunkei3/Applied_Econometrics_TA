@@ -11,6 +11,7 @@ This is the repository for TA session of AECN896-002. I upload the materials use
 ### R Exercise Problems
 + The best way to learn programming is to expose you to R more often and learn how to code by hand. I prepared some R exercise problems along with the R lab sessions. Let's use your knowledge of R programing from the lab session by  working on these problems. 
 + *NOTE*: This is still incomplete... . I'm going to update this material as we progress through the class.
++ R 
 
-## TA session material
-+ Assignment 1: 
+## TA Session notes
++ Assignment 1: ([Here](https://shunkei3.github.io/Applied_Econometrics_TA/Assignment_1/Review1_slides.html))
