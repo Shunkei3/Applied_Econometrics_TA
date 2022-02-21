@@ -65,10 +65,10 @@ library(gt)
 ```
 
 # Motivation
-+ Through the courses, we will go through many R functions for practical econometric analysis (e.g. R functions for hypothesis testing, cluster-robust standard error estimation, panel data estimation methods, IV estimation method, ...). I thought it would be helpful to put all R functions introduced in this class in the same file so you don't need to search for these functions by yourself every time. This will be helpful especially when you conduct econometric analysis for your final report.
++ Through this course, we will go through many R functions for practical econometric analysis (e.g. R functions for hypothesis testing, cluster-robust standard error estimation, panel data estimation methods, IV estimation method, ...). I thought it would be helpful to put all R functions introduced in this class in the same file so you don't need to search for the functions every time. This will be helpful especially when you conduct econometric analysis for your final report.
 
 + I'm going to update this material as we progress through the class.
-+ Feel free to reach out if you want me to explain how to use a specific function. I will add more explanation accordingly. 
++ Feel free to reach out if you want me to explain how to use a specific function. I will add more explanations accordingly. 
 
 
 # Basic Operations of `feols`
@@ -137,3 +137,6 @@ msummary(
 	gof_omit  =  "IC|Log|Adj|F|Pseudo|Within" 
 	)
 ```
+
+
+# 
