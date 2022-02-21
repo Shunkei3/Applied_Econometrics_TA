@@ -14,8 +14,8 @@ This is the repository for the TA session for AECN896-002. I will always upload 
 <!-- ### Coure Overview ([Here](https://shunkei3.github.io/Applied_Econometrics_TA/Appendix/Overview.html))
 + Sometimes, it is good to look at the big picture--review what we have learned so far. I listed the main topics of each lecture. You can use this to check your understanding of the materials.  -->
 
-### A List of R Functions for Econometric Analysis ([Here](https://shunkei3.github.io/Applied_Econometrics_TA/Appendix/ls_CodesForRegression.html))
-+ You will see various R functions for practical econometric analysis through this course. I thought it would be helpful to put all of these R functions in the same file so you don't need to search for the functions and their usages every time. 
+### A List of R Functions for Econometric Analysis
++ You will see various R functions for practical econometric analysis through this course. I thought it would be helpful to put all of these R functions in the same file so you don't need to search for the functions and their usages every time. ([Here](https://shunkei3.github.io/Applied_Econometrics_TA/Appendix/ls_CodesForRegression.html))
 
 
 ### R Exercise Problems
