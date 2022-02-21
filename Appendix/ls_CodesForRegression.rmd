@@ -4,10 +4,10 @@ author: "Shunkei Kakimoto"
 output:
   html_document:
     number_sections: yes
-    theme: flatly
+    # theme: flatly
     toc_float: yes
     toc: yes
-    toc_depth: 3
+    toc_depth: 2
 geometry: margin=1in
 ---
 
@@ -64,14 +64,14 @@ library(officedown)
 library(gt)
 ```
 
-# Motivation
+# Motivation {- .unlisted}
 + Through this course, we will go through many R functions for practical econometric analysis (e.g. R functions for hypothesis testing, cluster-robust standard error estimation, panel data estimation methods, IV estimation method, ...). I thought it would be helpful to put all R functions introduced in this class in the same file so you don't need to search for the functions every time. This will be helpful especially when you conduct econometric analysis for your final report.
 
 + I'm going to update this material as we progress through the class.
 + Feel free to reach out if you want me to explain how to use a specific function. I will add more explanations accordingly. 
 
 
-# Basic Operations of `feols`
+# Basic Operations with `feols`
 
 ```{r}
 # === Preparation === #
@@ -86,57 +86,94 @@ library(wooldridge)
 data("wage1") 
 ```
 
+## Run simple regression {-}
 ```{r}
-#/*----------------------------------*/
-#' ## Run simple regression
-#/*----------------------------------*/
 log_wage_model <- feols(lwage ~ educ + exper + tenure, data = wage1)
 ```
 
+### Quick Regression Summary {-}
+In order to take a look at the regression results, the simplest way is to just evaluate the estimated regression model (`log_wage_model`)
+
 ```{r}
-#/*----------------------------------*/
-#' ## Results
-#/*----------------------------------*/
 # === Quick summary === #
 log_wage_model
+```
+
+## More on Regression Results {-}
+
++ The estimated regression modes (`log_wage_model`) contains the following information, and you can access them using `$`.
+
+```{r}
+# === The information contained in the "feols" output  === #
+ls(log_wage_model)
+```
+
+```{r}
+# === Coefficient of educ=== #
+log_wage_model$coefficients[["educ"]]
 
 # === Extract fitted values for sample points === #
 # NOTE: show only the first five values
 log_wage_model$fitted.values[1:5]
-
-# === Prediction for new data points === #
-# NOTE: Change only the variable of educ. Fix the other variables using mean values.
-newdata  <-  
-	data.frame(
-		educ = c(5, 10, 15),
-		exper = mean(wage1$exper),
-		tenure = mean(wage1$tenure)
-	)
-
-predict(log_wage_model,  newdata  =  newdata)
-
-# === access the  coefficient values === #
-log_wage_model$coefficients
-
-# NOTE: if you want to access to the specific coefficient, you can do:
-log_wage_model$coefficients[["educ"]]
 ```
 
-## Result Presentation
-+ use `msummary` function from the `modelsummary` package
++ Prediction with the estimated regression model can be done with `predict` function.
 
 ```{r}
+# NOTE: Change only the variable of educ. Fix the other variables using mean values.
+newdata  <-  
+  data.frame(
+    educ = c(5, 10, 15),
+    exper = mean(wage1$exper),
+    tenure = mean(wage1$tenure)
+  )
+
+predict(log_wage_model,  newdata  =  newdata)
+```
+
+
+## Present Regression Results {-}
++ Use `msummary` function from the `modelsummary` package. The basic usage is the following.
+
+```{r, results = "asis"}
 # === Preparation === #
 library(modelsummary) 
 
 # === report the summary=== #
 msummary(
 	log_wage_model, 
-	#  keep  these  options  as  they  are
-	stars  =  TRUE, 
+  title = 'This is the title',
+	stars  =  TRUE,
 	gof_omit  =  "IC|Log|Adj|F|Pseudo|Within" 
 	)
 ```
 
++ You can present multiple regression results in the same table. 
 
-# 
+```{r}
+ls_res <- 
+  list(
+    "OLS 1" = feols(lwage ~ educ + exper + tenure, data = wage1),
+    "OLS 2" = feols(lwage ~ educ + exper + expersq +tenure, data = wage1)
+  )
+
+msummary(
+  ls_res,
+  stars  =  TRUE, 
+  gof_omit  =  "IC|Log|Adj|F|Pseudo|Within" 
+  )
+```
+
+
+# Statistical  Hypothesis  Testing
+
+
+
+
+
+
+
+
+
+
+
