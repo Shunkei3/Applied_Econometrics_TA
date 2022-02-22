@@ -1,3 +1,6 @@
+
+/Data/*
+/Assignments/*
 /Labs/*
 /*/*_cache/*
 /*/cache/*
@@ -16,7 +19,7 @@
 *.synctex
 *.blg
 *.fdb
-.DS_store
+*/*DS_store
 
 /*/*.csv
 /*/*.rds
@@ -28,4 +31,4 @@
 /*/*.out
 /*/*.synctex
 /*/*.blg
-/*/*.fdb.DS_Store
+/*/*.fdb
