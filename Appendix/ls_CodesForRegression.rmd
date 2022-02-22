@@ -71,7 +71,7 @@ library(gt)
 + Feel free to reach out if you want me to explain how to use a specific function. I will add more explanations accordingly. 
 
 
-# Basic Operations with `feols`
+# Basic Regression Analysis: `feols` and `mlsummary`
 
 ```{r}
 # === Preparation === #
@@ -87,8 +87,14 @@ data("wage1")
 ```
 
 ## Run simple regression {-}
++ Use `feols` function from the `fixest` package. 
+
 ```{r}
-log_wage_model <- feols(lwage ~ educ + exper + tenure, data = wage1)
+log_wage_model <- 
+  feols(
+    lwage ~ educ + exper + tenure,
+    data = wage1
+  )
 ```
 
 ### Quick Regression Summary {-}
@@ -135,7 +141,7 @@ predict(log_wage_model,  newdata  =  newdata)
 ## Present Regression Results {-}
 + Use `msummary` function from the `modelsummary` package. The basic usage is the following.
 
-```{r, results = "asis"}
+```{r}
 # === Preparation === #
 library(modelsummary) 
 
@@ -164,16 +170,106 @@ msummary(
   )
 ```
 
+<br>
 
 # Statistical  Hypothesis  Testing
 
+## Get the CI of coefficients {-}
+
++ Below you find 90% CI (i.e., `conf.low` and `conf.high`) of coefficients of an example regression model  `log_wage_model`. 
+
+```{r}
+tidy(log_wage_model,  conf.int  =  TRUE,  conf.level  =  0.9)  %>% 
+  relocate(term,  conf.low,  conf.high) %>%
+  print()
+```
+
+## F-test {-}
++ Use `linearHypothesis` function from the `car` package
+
+```{r, eval=FALSE}
+# === Syntax === #
+linearHypothesis(regression, hypothesis)
+```
+
++ **NOTE**: To use `linearHypothesis()`, you need to use `lm()` to run regression instead to use `feols()`.
 
 
 
+```{r}
+# --- Load Package --- #
+library(car)
 
+# --- Load Data:mlb1 from "wooldridge" package --- #
+data(mlb1)
 
+#--- run a rergession ---#
+mlb_reg <- 
+  lm(
+  log(salary) ~ years + gamesyr + bavg  + hrunsyr + rbisyr, 
+  data = mlb1
+  )
 
+#--- See the regression results ---#
+msummary(
+  mlb_reg,
+  stars  =  TRUE, 
+  gof_omit  =  "IC|Log|Adj|F|Pseudo|Within" 
+  )
+```
 
+Let's see the statistical significance of the joint effect of `bavg`, `hrunsyr`, and `rbisyr` on `salary`.
+
+```{r}
+# --- F-test --- #
+linearHypothesis(mlb_reg, c("bavg=0", "hrunsyr=0", "rbisyr=0"))
+```
+
+<br>
+
+# Standard Error Estimation
+
+## Report Heteroskedasticity-robust SE estimates {-}
++ Add the `vcov` option like below inside `feols()` 
+
+```{r}
+# === Run Regression === #
+reg_mlb <- 
+  feols(
+    log(salary) ~ years + bavg, 
+    # --- assumes that errors are heteroskedastic --- # 
+    vcov = "hetero", 
+    data = mlb1
+  ) 
+
+# === Report the result as usual === #
+msummary(
+  reg_mlb,
+  stars = TRUE,  
+  gof_omit = "IC|Log|Adj|F|Pseudo|Within"
+  )
+```
+
+## Report Cluster-robust SE estimates {-}
++ Cluster-robust variance covariance estimator take care of heteroskedasticity at the same time (so, they really are cluster- and heteroskedasticity-robust standard error estimators)
++ Add the `cluster` option like below inside `feols()` 
+
+```{r}
+# === Run Regression === #
+reg_mlb  <-  
+  feols(log(salary)  ~  years  +  bavg,  
+  # --- assumes that errors are correlated within the cluster groups (nl)--- #
+  cluster  =  ~  nl,  
+  data  =  mlb1
+  ) 
+
+# === Report the result as usual === #
+msummary(
+  reg_mlb,
+  stars = TRUE,  
+  gof_omit = "IC|Log|Adj|F|Pseudo|Within"
+  )
+```
 
 
 

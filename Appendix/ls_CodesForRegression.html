@@ -1743,8 +1743,8 @@ div.tocify {
 <li><p>Feel free to reach out if you want me to explain how to use a specific function. I will add more explanations accordingly.</p></li>
 </ul>
 </div>
-<div id="basic-operations-with-feols" class="section level1" number="1">
-<h1><span class="header-section-number">1</span> Basic Operations with <code>feols</code></h1>
+<div id="basic-regression-analysis-feols-and-mlsummary" class="section level1" number="1">
+<h1><span class="header-section-number">1</span> Basic Regression Analysis: <code>feols</code> and <code>mlsummary</code></h1>
 <pre class="r"><code># === Preparation === #
 library(modelsummary)
 library(fixest)
@@ -1757,7 +1757,14 @@ library(wooldridge)
 data(&quot;wage1&quot;) </code></pre>
 <div id="run-simple-regression" class="section level2 unnumbered">
 <h2 class="unnumbered">Run simple regression</h2>
-<pre class="r"><code>log_wage_model &lt;- feols(lwage ~ educ + exper + tenure, data = wage1)</code></pre>
+<ul>
+<li>Use <code>feols</code> function from the <code>fixest</code> package.</li>
+</ul>
+<pre class="r"><code>log_wage_model &lt;- 
+  feols(
+    lwage ~ educ + exper + tenure,
+    data = wage1
+  )</code></pre>
 <div id="quick-regression-summary" class="section level3 unnumbered">
 <h3 class="unnumbered">Quick Regression Summary</h3>
 <p>In order to take a look at the regression results, the simplest way is to just evaluate the estimated regression model (<code>log_wage_model</code>)</p>
@@ -2106,10 +2113,410 @@ IID
 </tr>
 </tfoot>
 </table>
+<p><br></p>
 </div>
 </div>
 <div id="statistical-hypothesis-testing" class="section level1" number="2">
 <h1><span class="header-section-number">2</span> Statistical Hypothesis Testing</h1>
+<div id="get-the-ci-of-coefficients" class="section level2 unnumbered">
+<h2 class="unnumbered">Get the CI of coefficients</h2>
+<ul>
+<li>Below you find 90% CI (i.e., <code>conf.low</code> and <code>conf.high</code>) of coefficients of an example regression model <code>log_wage_model</code>.</li>
+</ul>
+<pre class="r"><code>tidy(log_wage_model,  conf.int  =  TRUE,  conf.level  =  0.9)  %&gt;% 
+  relocate(term,  conf.low,  conf.high) %&gt;%
+  print()</code></pre>
+<pre><code># A tibble: 4 × 7
+  term        conf.low conf.high estimate std.error statistic  p.value
+  &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
+1 (Intercept)  0.113     0.456    0.284     0.104        2.73 6.56e- 3
+2 educ         0.0800    0.104    0.0920    0.00733     12.6  8.82e-32
+3 exper        0.00128   0.00696  0.00412   0.00172      2.39 1.71e- 2
+4 tenure       0.0170    0.0272   0.0221    0.00309      7.13 3.29e-12</code></pre>
+</div>
+<div id="f-test" class="section level2 unnumbered">
+<h2 class="unnumbered">F-test</h2>
+<ul>
+<li>Use <code>linearHypothesis</code> function from the <code>car</code> package</li>
+</ul>
+<pre class="r"><code># === Syntax === #
+linearHypothesis(regression, hypothesis)</code></pre>
+<ul>
+<li><strong>NOTE</strong>: To use <code>linearHypothesis()</code>, you need to use <code>lm()</code> to run regression instead to use <code>feols()</code>.</li>
+</ul>
+<pre class="r"><code># --- Load Package --- #
+library(car)
+
+# --- Load Data:mlb1 from &quot;wooldridge&quot; package --- #
+data(mlb1)
+
+#--- run a rergession ---#
+mlb_reg &lt;- 
+  lm(
+  log(salary) ~ years + gamesyr + bavg  + hrunsyr + rbisyr, 
+  data = mlb1
+  )
+
+#--- See the regression results ---#
+msummary(
+  mlb_reg,
+  stars  =  TRUE, 
+  gof_omit  =  &quot;IC|Log|Adj|F|Pseudo|Within&quot; 
+  )</code></pre>
+<table style="NAborder-bottom: 0; width: auto !important; margin-left: auto; margin-right: auto;" class="table">
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:center;">
+Model 1
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+(Intercept)
+</td>
+<td style="text-align:center;">
+11.192***
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+(0.289)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+years
+</td>
+<td style="text-align:center;">
+0.069***
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+(0.012)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+gamesyr
+</td>
+<td style="text-align:center;">
+0.013***
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+(0.003)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+bavg
+</td>
+<td style="text-align:center;">
+0.001
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+(0.001)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+hrunsyr
+</td>
+<td style="text-align:center;">
+0.014
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+(0.016)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+rbisyr
+</td>
+<td style="text-align:center;">
+0.011
+</td>
+</tr>
+<tr>
+<td style="text-align:left;box-shadow: 0px 1px">
+</td>
+<td style="text-align:center;box-shadow: 0px 1px">
+(0.007)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Num.Obs.
+</td>
+<td style="text-align:center;">
+353
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+R2
+</td>
+<td style="text-align:center;">
+0.628
+</td>
+</tr>
+</tbody>
+<tfoot>
+<tr>
+<td style="padding: 0; " colspan="100%">
+<sup></sup> + p &lt; 0.1, * p &lt; 0.05, ** p &lt; 0.01, *** p &lt; 0.001
+</td>
+</tr>
+</tfoot>
+</table>
+<p>Let’s see the statistical significance of the joint effect of <code>bavg</code>, <code>hrunsyr</code>, and <code>rbisyr</code> on <code>salary</code>.</p>
+<pre class="r"><code># --- F-test --- #
+linearHypothesis(mlb_reg, c(&quot;bavg=0&quot;, &quot;hrunsyr=0&quot;, &quot;rbisyr=0&quot;))</code></pre>
+<p><br></p>
+</div>
+</div>
+<div id="standard-error-estimation" class="section level1" number="3">
+<h1><span class="header-section-number">3</span> Standard Error Estimation</h1>
+<div id="report-heteroskedasticity-robust-se-estimates" class="section level2 unnumbered">
+<h2 class="unnumbered">Report Heteroskedasticity-robust SE estimates</h2>
+<ul>
+<li>Add the <code>vcov</code> option like below inside <code>feols()</code></li>
+</ul>
+<pre class="r"><code># === Run Regression === #
+reg_mlb &lt;- 
+  feols(
+    log(salary) ~ years + bavg, 
+    # --- assumes that errors are heteroskedastic --- # 
+    vcov = &quot;hetero&quot;, 
+    data = mlb1
+  ) 
+
+# === Report the result as usual === #
+msummary(
+  reg_mlb,
+  stars = TRUE,  
+  gof_omit = &quot;IC|Log|Adj|F|Pseudo|Within&quot;
+  )</code></pre>
+<table style="NAborder-bottom: 0; width: auto !important; margin-left: auto; margin-right: auto;" class="table">
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:center;">
+Model 1
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+(Intercept)
+</td>
+<td style="text-align:center;">
+11.042***
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+(0.704)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+years
+</td>
+<td style="text-align:center;">
+0.166***
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+(0.018)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+bavg
+</td>
+<td style="text-align:center;">
+0.005+
+</td>
+</tr>
+<tr>
+<td style="text-align:left;box-shadow: 0px 1px">
+</td>
+<td style="text-align:center;box-shadow: 0px 1px">
+(0.003)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Num.Obs.
+</td>
+<td style="text-align:center;">
+353
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+R2
+</td>
+<td style="text-align:center;">
+0.367
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Std.Errors
+</td>
+<td style="text-align:center;">
+Heteroskedasticity-robust
+</td>
+</tr>
+</tbody>
+<tfoot>
+<tr>
+<td style="padding: 0; " colspan="100%">
+<sup></sup> + p &lt; 0.1, * p &lt; 0.05, ** p &lt; 0.01, *** p &lt; 0.001
+</td>
+</tr>
+</tfoot>
+</table>
+</div>
+<div id="report-cluster-robust-se-estimates" class="section level2 unnumbered">
+<h2 class="unnumbered">Report Cluster-robust SE estimates</h2>
+<ul>
+<li>Cluster-robust variance covariance estimator take care of heteroskedasticity at the same time (so, they really are cluster- and heteroskedasticity-robust standard error estimators)</li>
+<li>Add the <code>cluster</code> option like below inside <code>feols()</code></li>
+</ul>
+<pre class="r"><code># === Run Regression === #
+reg_mlb  &lt;-  
+  feols(log(salary)  ~  years  +  bavg,  
+  # --- assumes that errors are correlated within the cluster groups (nl)--- #
+  cluster  =  ~  nl,  
+  data  =  mlb1
+  ) 
+
+# === Report the result as usual === #
+msummary(
+  reg_mlb,
+  stars = TRUE,  
+  gof_omit = &quot;IC|Log|Adj|F|Pseudo|Within&quot;
+  )</code></pre>
+<table style="NAborder-bottom: 0; width: auto !important; margin-left: auto; margin-right: auto;" class="table">
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:center;">
+Model 1
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+(Intercept)
+</td>
+<td style="text-align:center;">
+11.042*
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+(0.250)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+years
+</td>
+<td style="text-align:center;">
+0.166*
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+(0.013)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+bavg
+</td>
+<td style="text-align:center;">
+0.005+
+</td>
+</tr>
+<tr>
+<td style="text-align:left;box-shadow: 0px 1px">
+</td>
+<td style="text-align:center;box-shadow: 0px 1px">
+(0.001)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Num.Obs.
+</td>
+<td style="text-align:center;">
+353
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+R2
+</td>
+<td style="text-align:center;">
+0.367
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Std.Errors
+</td>
+<td style="text-align:center;">
+by: nl
+</td>
+</tr>
+</tbody>
+<tfoot>
+<tr>
+<td style="padding: 0; " colspan="100%">
+<sup></sup> + p &lt; 0.1, * p &lt; 0.05, ** p &lt; 0.01, *** p &lt; 0.001
+</td>
+</tr>
+</tfoot>
+</table>
+</div>
 </div>
 
 
