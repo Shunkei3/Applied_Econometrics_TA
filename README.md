@@ -20,5 +20,5 @@ This is the repository for the TA session for AECN896-002. I will always upload 
 
 ### R Exercise Problems
 + The best way to learn R is to expose yourself to R more often and learn how to code by doing it yourself. I prepared some R exercise problems along with the R lab sessions. Let's check your knowledge of R programming from the lab sessions by working on these problems. 
-+ Data Wrangling with the `tidyverse` package ([Here](https://shunkei3.github.io/Applied_Econometrics_TA/R-Exercise/1-DataWrangling.html))
++ Data Wrangling with the `tidyverse` package ([Here](https://shunkei3.github.io/Applied_Econometrics_TA/R-Exercise/1-DataWrangling/data_wrangling_1.html))
 + Data Visualization
