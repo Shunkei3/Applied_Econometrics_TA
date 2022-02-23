@@ -65,13 +65,15 @@ library(gt)
 ```
 
 # Motivation {- .unlisted}
-+ Through this course, we will go through many R functions for practical econometric analysis (e.g. R functions for hypothesis testing, cluster-robust standard error estimation, panel data estimation methods, IV estimation method, ...). I thought it would be helpful to put all R functions introduced in this class in the same file so you don't need to search for the functions every time. This will be helpful especially when you conduct econometric analysis for your final report.
++ Throughout this course, you will be exposed to many R functions for practical econometric analysis (e.g. R functions for hypothesis testing, cluster-robust standard error estimation, panel data estimation methods, IV estimation method, ...). This document lists some of the important R functions introduced in this course in a single place so you do not need to search for these functions across lectures slides. This will be helpful especially when you conduct econometric analysis for your final report.
 
-+ I'm going to update this material as we progress through the class.
-+ Feel free to reach out if you want me to explain how to use a specific function. I will add more explanations accordingly. 
++ This material will be updated as you progress through the class.
++ Feel free to reach out to me if you want me to explain how to use specific functions. I will add more explanations accordingly. 
 
 
-# Basic Regression Analysis: `feols` and `mlsummary`
+# Basic Regression Analysis: `feols()` and `msummary()`
+
+Here is the setup.
 
 ```{r}
 # === Preparation === #
@@ -82,15 +84,16 @@ library(dplyr)
 # === Data === #
 # install.packages("wooldridge") # if you have not installed yet
 library(wooldridge)
+
 # --- data "wage1" is loaded from R package "wooldridge" --- #
-data("wage1") 
+data("wage1")
 ```
 
 ## Run simple regression {-}
-+ Use `feols` function from the `fixest` package. 
++ Use the `feols()` function from the `fixest` package. 
 
 ```{r}
-log_wage_model <- 
+log_wage_model <-
   feols(
     lwage ~ educ + exper + tenure,
     data = wage1
@@ -98,6 +101,7 @@ log_wage_model <-
 ```
 
 ### Quick Regression Summary {-}
+
 In order to take a look at the regression results, the simplest way is to just evaluate the estimated regression model (`log_wage_model`)
 
 ```{r}
@@ -127,47 +131,48 @@ log_wage_model$fitted.values[1:5]
 
 ```{r}
 # NOTE: Change only the variable of educ. Fix the other variables using mean values.
-newdata  <-  
+newdata <-
   data.frame(
     educ = c(5, 10, 15),
     exper = mean(wage1$exper),
     tenure = mean(wage1$tenure)
   )
 
-predict(log_wage_model,  newdata  =  newdata)
+predict(log_wage_model, newdata = newdata)
 ```
 
 
 ## Present Regression Results {-}
-+ Use `msummary` function from the `modelsummary` package. The basic usage is the following.
+
++ Use `msummary()` function from the `modelsummary` package. The basic usage is the following.
 
 ```{r}
 # === Preparation === #
-library(modelsummary) 
+library(modelsummary)
 
 # === report the summary=== #
 msummary(
-	log_wage_model, 
-  title = 'This is the title',
-	stars  =  TRUE,
-	gof_omit  =  "IC|Log|Adj|F|Pseudo|Within" 
-	)
+  log_wage_model,
+  title = "This is the title",
+  stars = TRUE,
+  gof_omit = "IC|Log|Adj|F|Pseudo|Within"
+)
 ```
 
 + You can present multiple regression results in the same table. 
 
 ```{r}
-ls_res <- 
+ls_res <-
   list(
     "OLS 1" = feols(lwage ~ educ + exper + tenure, data = wage1),
-    "OLS 2" = feols(lwage ~ educ + exper + expersq +tenure, data = wage1)
+    "OLS 2" = feols(lwage ~ educ + exper + expersq + tenure, data = wage1)
   )
 
 msummary(
   ls_res,
-  stars  =  TRUE, 
-  gof_omit  =  "IC|Log|Adj|F|Pseudo|Within" 
-  )
+  stars  =  TRUE,
+  gof_omit  =  "IC|Log|Adj|F|Pseudo|Within"
+)
 ```
 
 <br>
@@ -179,21 +184,20 @@ msummary(
 + Below you find 90% CI (i.e., `conf.low` and `conf.high`) of coefficients of an example regression model  `log_wage_model`. 
 
 ```{r}
-tidy(log_wage_model,  conf.int  =  TRUE,  conf.level  =  0.9)  %>% 
-  relocate(term,  conf.low,  conf.high) %>%
+tidy(log_wage_model, conf.int = TRUE, conf.level = 0.9) %>%
+  relocate(term, conf.low, conf.high) %>%
   print()
 ```
 
 ## F-test {-}
-+ Use `linearHypothesis` function from the `car` package
++ Use `linearHypothesis()` function from the `car` package
 
 ```{r, eval=FALSE}
 # === Syntax === #
 linearHypothesis(regression, hypothesis)
 ```
 
-+ **NOTE**: To use `linearHypothesis()`, you need to use `lm()` to run regression instead to use `feols()`.
-
+<!-- + **NOTE**: To use `linearHypothesis()`, you need to use `lm()` to run regression instead to use `feols()`. -->
 
 
 ```{r}
@@ -204,18 +208,18 @@ library(car)
 data(mlb1)
 
 #--- run a rergession ---#
-mlb_reg <- 
-  lm(
-  log(salary) ~ years + gamesyr + bavg  + hrunsyr + rbisyr, 
-  data = mlb1
+mlb_reg <-
+  feols(
+    log(salary) ~ years + gamesyr + bavg + hrunsyr + rbisyr,
+    data = mlb1
   )
 
 #--- See the regression results ---#
 msummary(
   mlb_reg,
-  stars  =  TRUE, 
-  gof_omit  =  "IC|Log|Adj|F|Pseudo|Within" 
-  )
+  stars  =  TRUE,
+  gof_omit  =  "IC|Log|Adj|F|Pseudo|Within"
+)
 ```
 
 Let's see the statistical significance of the joint effect of `bavg`, `hrunsyr`, and `rbisyr` on `salary`.
@@ -234,20 +238,20 @@ linearHypothesis(mlb_reg, c("bavg=0", "hrunsyr=0", "rbisyr=0"))
 
 ```{r}
 # === Run Regression === #
-reg_mlb <- 
+reg_mlb <-
   feols(
-    log(salary) ~ years + bavg, 
-    # --- assumes that errors are heteroskedastic --- # 
-    vcov = "hetero", 
+    log(salary) ~ years + bavg,
+    # --- assumes that errors are heteroskedastic --- #
+    vcov = "hetero",
     data = mlb1
-  ) 
+  )
 
 # === Report the result as usual === #
 msummary(
   reg_mlb,
-  stars = TRUE,  
+  stars = TRUE,
   gof_omit = "IC|Log|Adj|F|Pseudo|Within"
-  )
+)
 ```
 
 ## Report Cluster-robust SE estimates {-}
@@ -256,19 +260,19 @@ msummary(
 
 ```{r}
 # === Run Regression === #
-reg_mlb  <-  
-  feols(log(salary)  ~  years  +  bavg,  
-  # --- assumes that errors are correlated within the cluster groups (nl)--- #
-  cluster  =  ~  nl,  
-  data  =  mlb1
-  ) 
+reg_mlb <-
+  feols(log(salary) ~ years + bavg,
+    # --- assumes that errors are correlated within the cluster groups (nl)--- #
+    cluster = ~nl,
+    data = mlb1
+  )
 
 # === Report the result as usual === #
 msummary(
   reg_mlb,
-  stars = TRUE,  
+  stars = TRUE,
   gof_omit = "IC|Log|Adj|F|Pseudo|Within"
-  )
+)
 ```
 
 
