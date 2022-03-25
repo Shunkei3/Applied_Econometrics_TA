@@ -12,7 +12,7 @@ opts_chunk$set(
   warning = F, 
   message = F,
   #fig.path='Figs/',
-  cache = T,
+  cache = F,
   echo = T, 
   warning = F, 
   message = F

@@ -1,0 +1,1730 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Review Assignment 2</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Shunkei Kakimoto, University of Nebraska Lincoln" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link href="libs/tile-view/tile-view.css" rel="stylesheet" />
+    <script src="libs/tile-view/tile-view.js"></script>
+    <link href="libs/animate.css/animate.xaringan.css" rel="stylesheet" />
+    <link href="libs/tachyons/tachyons.min.css" rel="stylesheet" />
+    <link href="libs/panelset/panelset.css" rel="stylesheet" />
+    <script src="libs/panelset/panelset.js"></script>
+    <script src="libs/clipboard/clipboard.min.js"></script>
+    <link href="libs/xaringanExtra-clipboard/xaringanExtra-clipboard.css" rel="stylesheet" />
+    <script src="libs/xaringanExtra-clipboard/xaringanExtra-clipboard.js"></script>
+    <script>window.xaringanExtraClipboard(null, {"button":"Copy Code","success":"Copied!","error":"Press Ctrl+C to Copy"})</script>
+    <script src="libs/kePrint/kePrint.js"></script>
+    <link href="libs/lightable/lightable.css" rel="stylesheet" />
+    <link rel="stylesheet" href="xaringan-themer_large.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Review Assignment 2
+### Shunkei Kakimoto, University of Nebraska Lincoln
+
+---
+
+class: middle
+
+
+
+
+
+
+
+
+
+
+&lt;style type="text/css"&gt;
+
+.remark-slide-content.hljs-github h1 {
+  margin-top: 5px;  
+  margin-bottom: 25px;  
+}
+
+.remark-slide-content.hljs-github {
+  padding-top: 10px;  
+  padding-left: 30px;  
+  padding-right: 30px;  
+}
+
+.panel-tabs {
+  &lt;!-- color: #062A00; --&gt;
+  color: #841F27;
+  margin-top: 0px;  
+  margin-bottom: 0px;  
+  margin-left: 0px;  
+  padding-bottom: 0px;  
+}
+
+.panel-tab {
+  margin-top: 0px;  
+  margin-bottom: 0px;  
+  margin-left: 3px;  
+  margin-right: 3px;  
+  padding-top: 0px;  
+  padding-bottom: 0px;  
+}
+
+.panelset .panel-tabs .panel-tab {
+  min-height: 40px;
+}
+
+.remark-slide th {
+  border-bottom: 1px solid #ddd;
+}
+
+.remark-slide thead {
+  border-bottom: 0px;
+}
+
+.gt_footnote {
+  padding: 2px;  
+}
+
+.remark-slide table {
+  border-collapse: collapse;
+}
+
+.remark-slide tbody {
+  border-bottom: 2px solid #666;
+}
+
+
+.important {
+  background-color: lightpink;
+  border: 2px solid blue;
+  font-weight: bold;
+} 
+
+.remark-code {
+  display: block;
+  overflow-x: auto;
+  padding: .5em;
+  background: #ffe7e7;
+} 
+
+.hljs-github .hljs {
+  background: #f2f2fd;
+}
+
+.remark-inline-code {
+  padding-top: 0px;
+  padding-bottom: 0px;
+  background-color: #e6e6e6;
+}
+
+.r.hljs.remark-code.remark-inline-code{
+  font-size: 0.9em
+}
+
+.left-full {
+  width: 80%;
+  float: left;
+}
+
+.left-code {
+  width: 38%;
+  height: 92%;
+  float: left;
+}
+
+.right-plot {
+  width: 60%;
+  float: right;
+  padding-left: 1%;
+}
+
+.left6 {
+  width: 60%;
+  height: 92%;
+  float: left;
+}
+
+.left5 {
+  width: 49%;
+  &lt;!-- height: 92%; --&gt;
+  float: left;
+}
+
+.right5 {
+  width: 49%;
+  float: right;
+  padding-left: 1%;
+}
+
+.right4 {
+  width: 39%;
+  float: right;
+  padding-left: 1%;
+}
+
+.left3 {
+  width: 29%;
+  height: 92%;
+  float: left;
+}
+
+.right7 {
+  width: 69%;
+  float: right;
+  padding-left: 1%;
+}
+
+.left4 {
+  width: 38%;
+  float: left;
+}
+
+.right6 {
+  width: 60%;
+  float: right;
+  padding-left: 1%;
+}
+
+ul li{
+  margin: 7px;
+}
+
+ul, li{
+  margin-left: 15px; 
+  padding-left: 0px; 
+}
+
+ol li{
+  margin: 7px;
+}
+
+ol, li{
+  margin-left: 15px; 
+  padding-left: 0px; 
+}
+
+&lt;/style&gt;
+
+&lt;style type="text/css"&gt;
+.content-box { 
+    box-sizing: border-box;
+    background-color: #e2e2e2;
+}
+.content-box-blue,
+.content-box-gray,
+.content-box-grey,
+.content-box-army,
+.content-box-green,
+.content-box-purple,
+.content-box-red,
+.content-box-yellow {
+  box-sizing: border-box;
+  border-radius: 5px;
+  margin: 0 0 10px;
+  overflow: hidden;
+  padding: 0px 5px 0px 5px;
+  width: 100%;
+}
+.content-box-blue { background-color: #F0F8FF; }
+.content-box-gray { background-color: #e2e2e2; }
+.content-box-grey { background-color: #F5F5F5; }
+.content-box-army { background-color: #737a36; }
+.content-box-green { background-color: #d9edc2; }
+.content-box-purple { background-color: #e2e2f9; }
+.content-box-red { background-color: #ffcccc; }
+.content-box-yellow { background-color: #fef5c4; }
+.content-box-blue .remark-inline-code,
+.content-box-blue .remark-inline-code,
+.content-box-gray .remark-inline-code,
+.content-box-grey .remark-inline-code,
+.content-box-army .remark-inline-code,
+.content-box-green .remark-inline-code,
+.content-box-purple .remark-inline-code,
+.content-box-red .remark-inline-code,
+.content-box-yellow .remark-inline-code { 
+  background: none;
+}
+
+.full-width {
+    display: flex;
+    width: 100%;
+    flex: 1 1 auto;
+}
+&lt;/style&gt;
+
+
+&lt;style type="text/css"&gt;
+blockquote, .blockquote {
+  display: block;
+  margin-top: 0.1em;
+  margin-bottom: 0.2em;
+  margin-left: 5px;
+  margin-right: 5px;
+  border-left: solid 10px #0148A4;
+  border-top: solid 2px #0148A4;
+  border-bottom: solid 2px #0148A4;
+  border-right: solid 2px #0148A4;
+  box-shadow: 0 0 6px rgba(0,0,0,0.5);
+  /* background-color: #e64626; */
+  color: #e64626;
+  padding: 0.5em;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+}
+
+.blockquote p {
+  margin-top: 0px;
+  margin-bottom: 5px;
+}
+.blockquote &gt; h1:first-of-type {
+  margin-top: 0px;
+  margin-bottom: 5px;
+}
+.blockquote &gt; h2:first-of-type {
+  margin-top: 0px;
+  margin-bottom: 5px;
+}
+.blockquote &gt; h3:first-of-type {
+  margin-top: 0px;
+  margin-bottom: 5px;
+}
+.blockquote &gt; h4:first-of-type {
+  margin-top: 0px;
+  margin-bottom: 5px;
+}
+
+.text-shadow {
+  text-shadow: 0 0 4px #424242;
+}
+&lt;/style&gt;
+
+&lt;style type="text/css"&gt;
+/******************
+ * Slide scrolling
+ * (non-functional)
+ * not sure if it is a good idea anyway
+slides &gt; slide {
+  overflow: scroll;
+ padding: 5px 40px;
+}
+.scrollable-slide .remark-slide {
+  height: 400px;
+  overflow: scroll !important;
+}
+ ******************/
+
+.scroll-box-8 {
+  height:8em;
+  overflow-y: scroll;
+}
+.scroll-box-10 {
+  height:10em;
+  overflow-y: scroll;
+}
+.scroll-box-12 {
+  height:12em;
+  overflow-y: scroll;
+}
+.scroll-box-14 {
+  height:14em;
+  overflow-y: scroll;
+}
+.scroll-box-16 {
+  height:16em;
+  overflow-y: scroll;
+}
+.scroll-box-18 {
+  height:18em;
+  overflow-y: scroll;
+}
+.scroll-box-20 {
+  height:20em;
+  overflow-y: scroll;
+}
+.scroll-box-24 {
+  height:24em;
+  overflow-y: scroll;
+}
+.scroll-box-30 {
+  height:30em;
+  overflow-y: scroll;
+}
+.scroll-output {
+  height: 90%;
+  overflow-y: scroll;
+}
+
+ 
+&lt;/style&gt;
+
+
+
+
+# Main Topic
+
+## Omitted Variable bias and Multicollinearity
+  * What is the problem?
+  * How do they affect the properties of OLS estimator?
+
+&lt;br&gt;
+
+## Statistical Hypothesis Testing
+  * Why is it necessary?
+  * How does it work? 
+
+## Prblems
++ Problem C6
++ Problem C8 and C9
+
+---
+# Problem C6: Omitted Variable Bias
+
+Suppose that you are interested in estimating the causal impact of education on salary, and suppose that:
+
+.content-box-blue[**True Model**]
+`$$log(wage) = \beta_0 + \beta_1 educ + \beta_2 IQ + u$$`
+
+If you correctly identify this model, then you'll get:
+`$$log(wage) = \hat{\beta_0} + \hat{\beta_1} educ + \hat{\beta_2} IQ$$`
+
+&lt;br&gt;
+
+Now, suppose that you accidentally omitted `\(IQ\)`, and estimated the following model:
+
+.content-box-blue[**Naive Model**]
+`$$log(wage) = \beta_0 + \beta_1 educ + v \quad (v = \beta_2 IQ + u)$$` 
+
+Then you'll get:
+`$$log(wage) = \tilde{\beta_0} + \tilde{\beta_1} educ$$`
+
+Since `\(E[v|educ] = E[\beta_2 IQ + u|educ] \neq 0\)`, `\(\tilde{\beta_1}\)` is biased. 
+
+&lt;br&gt;
+
+.content-box-red[**What is the direction of bias? upward or downward?**]
+
+---
+.content-box-red[**What is the direction of bias? upward or downward?**]
+
+There is a simple relationship between `\(\hat{\beta_1}\)` and `\(\tilde{\beta_1}\)`:
+`$$\tilde{\beta}_1=\hat{\beta}_1 + \hat{\beta}_2\tilde{\sigma}_1$$`
+
+,where `\({\sigma}_1\)` is the slope coefficient from the simple regression `\(IQ = \tilde{\sigma_0} + \tilde{\sigma_1} educ\)`
+
+&lt;br&gt;
+
+In other words, the bias in `\(\tilde{\beta}_1\)` is described as:
+`$$Bias(\tilde{\beta}_1) = E[\tilde{\beta}_1] - \beta_1 = \beta_2 \tilde{\sigma}_1$$`
+
+.content-box-blue[**Implication**]
++ The direction and size of the bias in `\(\tilde{\beta}_1\)` depend on the impact of the omitted variable on the dependent variable `\((\beta_2)\)`, the correlation between the omitted variable and the key variable `\((\tilde{\sigma}_1)\)`
+
+&lt;br&gt;
+
+.content-box-blue[**What do you think about the direction of bias in `\(\tilde{\beta_1}\)` in our example?**]
++ The sign of `\(\beta_2\)`?
+  * It is likely that `\(IQ\)` affects `\(salary\)` &lt;span style="color:red"&gt;positively&lt;/span&gt;
++ The sign of `\(\tilde{\sigma}_1\)`?  
+  * It is likely that `\(IQ\)` and `\(educ\)` are &lt;span style="color:red"&gt;positively&lt;/span&gt; correlated
+
+Hence, `\(\tilde{\beta_1}\)` should have &lt;span style="color:red"&gt;upward bias&lt;/span&gt;: `\(E[\tilde{\beta_1}] &gt; \beta_1\)`.  
++ Actually it is. We confirmed in problem (v)
+
+
+---
+
+
+
+# Problem C8 and C9
+
+## Data
++ Zip code-level data on prices for various items at fast-food restaurant
+
+```r
+library(readstata13)
+# --- Load the Data--- #
+discrim_dt &lt;- 
+  read.dta13("./Data/Assignment_2/discrim.dta") %&gt;%
+  na.omit()
+```
+
+## The research question:
++ To know whether fast-food restaurants charge higher proces in areas with a larger concentration of Black People
++ Specifically, we want to know whether proportion of Black People (`prpblck`) living in ZIP code-level region affects average price soda (`psoda`) in that region, which we call "discrimination effect".
+
+&lt;br&gt;
+
+## Variable
++ `\(prpblck\)`: proportion of Black People
++ `\(income\)`: median income (in $)
++ `\(lincome\)`: logged `\(income\)`
++ `\(psoda\)`: average price of soda (in $)
++ `\(prppov\)`: proportion of people in poverty
++ `\(hseval\)`: median value of owner-occupied housing units (in $)
++ `\(lhseval\)`: logged `\(hseval\)`
+
+---
+
+# Example of a summary statistical table
++ This does not relevant to the problem but for your final paper.
+
+
+```r
+library(modelsummary)
+
+datasummary(
+  psoda + prpblck + income + prppov + hseval ~ Mean + SD + Min + Max,
+  data = discrim_dt
+)
+```
+
+&lt;table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt;   &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Mean &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; SD &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Min &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Max &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; psoda &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.05 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.09 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.73 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.49 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; prpblck &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.12 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.18 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.00 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.96 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; income &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 46833.39 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 13686.86 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 15919.00 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 136529.00 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; prppov &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.07 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.07 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.00 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.42 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; hseval &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 147303.87 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 57876.19 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 33900.00 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 473400.00 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+As another option is
+
+
+```r
+library(stargazer)
+# set {r, results="asis"} for html output
+discrim_dt %&gt;%
+  select(psoda, prpblck, income, prppov, hseval) %&gt;%
+  stargazer(data=., iqr=FALSE, type = 'html')
+```
+
+---
+
+.content-box-green[**NOTE:** I changed the order of problems for to illustrate what your final project looks like.]
+
+&lt;span style="color:blue"&gt; 
+Let's start with simple model. Run a simple regression estimate from `\(psoda\)` on `\(prpblck\)`. (Problem (iii))
+&lt;/span&gt;
+
+
+```r
+# === simple regression === #
+discrim_reg_prob2 &lt;- feols(psoda ~ prpblck, data = discrim_dt)
+msummary(
+  discrim_reg_prob2,
+  stars  =  TRUE, 
+  gof_omit  =  "IC|Log|Adj|F|Pseudo|Within" 
+)
+```
+
+&lt;table style="NAborder-bottom: 0; width: auto !important; margin-left: auto; margin-right: auto;" class="table"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt;   &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; Model 1 &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; (Intercept) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1.036*** &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; (0.006) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; prpblck &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.082** &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;box-shadow: 0px 1px"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;box-shadow: 0px 1px"&gt; (0.027) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Num.Obs. &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 310 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; R2 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.029 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Std.Errors &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; IID &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;tfoot&gt;&lt;tr&gt;&lt;td style="padding: 0; " colspan="100%"&gt;
+&lt;sup&gt;&lt;/sup&gt; + p &amp;lt; 0.1, * p &amp;lt; 0.05, ** p &amp;lt; 0.01, *** p &amp;lt; 0.001&lt;/td&gt;&lt;/tr&gt;&lt;/tfoot&gt;
+&lt;/table&gt;
+
++ Do you think that there is any other variables in the error term that could affect both  `prpblck` and `psoda`?
+  * For example, median income (`income`).
+
+---
+
+&lt;span style="color:blue"&gt; 
+Let's include `income` in the regression model. How does the discrimination effect change? (Problem (ii))
+&lt;/span&gt;
+
+
+
+```r
+discrim_reg1 &lt;- 
+  feols(
+    psoda ~ prpblck + income, 
+    data = discrim_dt)
+```
+
+&lt;table style="NAborder-bottom: 0; width: auto !important; margin-left: auto; margin-right: auto;" class="table"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt;   &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; Model 1 &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; (Intercept) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.941*** &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; (0.021) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; prpblck &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.148*** &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; (0.030) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; income &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.000*** &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;box-shadow: 0px 1px"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;box-shadow: 0px 1px"&gt; (0.000) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Num.Obs. &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 310 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; R2 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.091 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Std.Errors &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; IID &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;tfoot&gt;&lt;tr&gt;&lt;td style="padding: 0; " colspan="100%"&gt;
+&lt;sup&gt;&lt;/sup&gt; + p &amp;lt; 0.1, * p &amp;lt; 0.05, ** p &amp;lt; 0.01, *** p &amp;lt; 0.001&lt;/td&gt;&lt;/tr&gt;&lt;/tfoot&gt;
+&lt;/table&gt;
+
+
+The discrimination effect becomes greater. 
++ .content-box-green[**Why?**] 
+  * Since `income` is omitted in the previous model, the OLS estimates of `prpblck` in the simple regression model might be biased. 
+    - `income` and `prpblck` are likely to be correlated &lt;span style="color:blue"&gt;negatively&lt;/span&gt;, and `income` is likely to affect `psoda` &lt;span style="color:red"&gt;positively&lt;/span&gt;. So if `income` is omitted, the discrimination effect is &lt;span style="color:blue"&gt;underestimated&lt;/span&gt;. 
+
+---
+
+&lt;span style="color:blue"&gt; 
+(iv) A model with a constant price elasticity with respect to income may be more appropriate. Report estimates of the model:
+$$log(psoda)=\beta_0+\beta_1 prpblck + \beta_2 log(income) +u $$
+If `\(prpblck\)` increases by .20 (20 percentage points), what is the estimated percentage change in `\(psoda\)`?
+&lt;/span&gt;
+
+.content-box-green[**Idea**]
++ If the impact of `income` is not captured by correctly, a portion of the effect of `income` is still remaining in the error term. Then, the OLS estimate of the variable `prpblck` is biased (functional form missspecification problem). 
++ We modeled the relationship between price and income as electricity of `psoda` respect to `income`
+
+
+
+```r
+discrim_reg3 &lt;- feols(log(psoda) ~ prpblck + lincome, data = discrim_dt)
+```
+
+
+&lt;table style="NAborder-bottom: 0; width: auto !important; margin-left: auto; margin-right: auto;" class="table"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt;   &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; Model 1 &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; (Intercept) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; −0.960*** &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; (0.204) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; prpblck &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.160*** &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; (0.030) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; lincome &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.092*** &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;box-shadow: 0px 1px"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;box-shadow: 0px 1px"&gt; (0.019) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Num.Obs. &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 310 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; R2 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.099 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Std.Errors &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; IID &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;tfoot&gt;&lt;tr&gt;&lt;td style="padding: 0; " colspan="100%"&gt;
+&lt;sup&gt;&lt;/sup&gt; + p &amp;lt; 0.1, * p &amp;lt; 0.05, ** p &amp;lt; 0.01, *** p &amp;lt; 0.001&lt;/td&gt;&lt;/tr&gt;&lt;/tfoot&gt;
+&lt;/table&gt;
+
+.content-box-green[**Any changes?**]
+  * The coefficient of `income` in the from of log became larger.
+  * Also, the discrimination effect (the coefficient on `\(prpblck\)`) became larger
+
+---
+
+&lt;span style="color:blue"&gt; 
+(v) Now add the variable `\(prppov\)` to the regression in part (iv). What happens to `\(\beta_{prpblck}\)`?
+&lt;/span&gt;
+
+Now, the model is 
+$$log(psoda)=\beta_0+\beta_1 prpblck + \beta_2 log(income) + \beta_3 prppov +u $$
+
+
+```r
+discrim_reg4 &lt;- feols(log(psoda) ~ prpblck+lincome+prppov, data = discrim_dt)
+```
+
+&lt;table style="NAborder-bottom: 0; width: auto !important; margin-left: auto; margin-right: auto;" class="table"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt;   &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; Model 1 &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; (Intercept) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; −1.569*** &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; (0.326) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; prpblck &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.109** &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; (0.037) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; lincome &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.147*** &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; (0.030) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; prppov &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.350* &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;box-shadow: 0px 1px"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;box-shadow: 0px 1px"&gt; (0.147) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Num.Obs. &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 310 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; R2 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.115 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Std.Errors &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; IID &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;tfoot&gt;&lt;tr&gt;&lt;td style="padding: 0; " colspan="100%"&gt;
+&lt;sup&gt;&lt;/sup&gt; + p &amp;lt; 0.1, * p &amp;lt; 0.05, ** p &amp;lt; 0.01, *** p &amp;lt; 0.001&lt;/td&gt;&lt;/tr&gt;&lt;/tfoot&gt;
+&lt;/table&gt;
+
+The discrimination effect now has a smaller impact on the price of soda.
++ .content-box-green[**A possible explanation**] 
+  - proportion of people in poverty `\((prppov)\)` likely has a positive correlation on `\(prpblck\)`, and the impact on `\(psoda\)` is positive.
+  - So, if `\(prppov\)` is omitted, the discrimination effect is likely to be overestimated. 
+
+---
+
+&lt;span style="color:blue"&gt; 
+(vi) Find the correlation between `\(log(income)\)` and `\(prppov\)`. Is it roughly what you expected?
+&lt;/span&gt;
+
+
+```r
+discrim_dt %&gt;%
+  select(prpblck, lincome, prppov) %&gt;%
+  cor()
+```
+
+```
+##            prpblck    lincome     prppov
+## prpblck  1.0000000 -0.5524132  0.7262134
+## lincome -0.5524132  1.0000000 -0.8468178
+## prppov   0.7262134 -0.8468178  1.0000000
+```
+
++ `\(prppov\)` is highly negatively correlated with `\(log(income)\)`, and it is highly correlated with `\(prpblck\)` as well. 
+
+---
+
+&lt;span style="color:blue"&gt; 
+(vii) Evaluate the following statement: "Because `\(log(income)\)` and `\(prppov\)` are so highly correlated, they have no business being in the same regression."
+$$log(psoda)=\beta_0+\beta_1 prpblck + \beta_2 log(income) + \beta_3 prppov +u $$
+
+&lt;/span&gt;
+
+.left5[
++ NO
++ Our interest is to measure the discrimination effect (which is described in the coefficient on `\(prpblck\)`) 
+
++ `\(prppov\)` and `\(prpblck\)` are higly correlated
++ `\(prppov\)` has large impact on `\(psoda\)` 
+
+&lt;br&gt;
+
++ So, if you omitted `\(prppov\)`, the discrimination effect would be biased. 
+
+]
+
+.right5[
+
+&lt;table style="NAborder-bottom: 0; width: auto !important; margin-left: auto; margin-right: auto;" class="table"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt;   &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; Model 1 &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; (Intercept) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; −1.569*** &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; (0.326) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; prpblck &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.109** &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; (0.037) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; lincome &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.147*** &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; (0.030) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; prppov &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.350* &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;box-shadow: 0px 1px"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;box-shadow: 0px 1px"&gt; (0.147) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Num.Obs. &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 310 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; R2 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.115 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Std.Errors &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; IID &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;tfoot&gt;&lt;tr&gt;&lt;td style="padding: 0; " colspan="100%"&gt;
+&lt;sup&gt;&lt;/sup&gt; + p &amp;lt; 0.1, * p &amp;lt; 0.05, ** p &amp;lt; 0.01, *** p &amp;lt; 0.001&lt;/td&gt;&lt;/tr&gt;&lt;/tfoot&gt;
+&lt;/table&gt;
+
+]
+
+---
+
+# Problem C9 (Statistical Hypothesis Testing)
+
+## Quick review of statistical hypothesis testing
+
+`$$y_{i} = \beta_0 + \beta_1 x_{i1} + \beta_2 x_{i2} + ... + \beta_k x_{ik} \mbox{ where  i = 1,2,..,n}$$`
+
+.content-box-green[**t-statstic and t-distribution**]
+`$$\frac{\hat{\beta_j}-\beta_j}{se(\hat{\beta_j})} \mbox{ ~ } t_{n-k-1}$$`
+
++ `\(\beta_j\)` is a true parameter (a specific constant `\(\alpha\)`), and `\(\hat{\beta_j}\)` is an estimate of `\(\beta_j\)`
+
+&lt;br&gt;
+
++ Intuitive understanding: t-statistic measures the difference between `\(\hat{\beta_j}\)` and `\(\beta_j\)` (&lt;span style="color:red"&gt;How far is `\(\hat{\beta_j}\)` from `\(\beta_j\)`?&lt;/span&gt;).
++ First, we assume a specific constant (i.e., `\(\alpha\)`) for `\(\beta\)` ((which is specified in &lt;span style="color:blue"&gt;the null hypothesis&lt;/span&gt;)
+
++ If `\(\hat{\beta_j}\)` is indeed `\(\beta_j\)`, then the difference between `\(\hat{\beta_j}\)` and `\(\beta_j\)` measured by t-statics (i.e. &lt;span style="color:blue"&gt; &lt;/span&gt;) should be small&lt;br /&gt;
+`\(\Leftrightarrow\)` It should be very rare to observe the large absolute value of the t-value (i.e. |t-value|). &lt;br /&gt;
+`\(\Leftrightarrow\)` The probability of observing a large |t-value| is very low. 
+  * The probability to judge whether the |t-value| is large enough to say `\(\hat{\beta_j}\)` and `\(\beta_j\)` are different or not is called &lt;span style="color:blue"&gt;statistical significance level&lt;/span&gt; (e.g, 5%). 
+  * If you set a statistical significance level, &lt;span style="color:blue"&gt;critical value&lt;/span&gt; is also  determined under the null hypothesis.
++ Observing larger |t-value| than |critical value| means that very unlikely thing occurs, so we reject the null. Otherwise, the null cannot be rejected.
+
++ The smallest significance level at which the null would be rejected is called &lt;span style="color:blue"&gt;p-value&lt;/span&gt; 
+
+---
+Since, we mostly interested in whether `\(x_j\)` does have a partial effect on y or not, we use the null hypothesis `\(H_0 \mbox{: } \beta_j=0\)`.
+
+.content-box-green[**For example**]
+`\begin{align}
+H_0: \beta_j&amp;=0 \
+H_1: \beta_j&amp; \neq 0
+\end{align}`
+
+
+&lt;img src="Review2_slides_files/figure-html/unnamed-chunk-15-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+
++ In this case, if the absolute value of the t-value is smaller than 1.96, the null cannot be rejected, meaning that "$\hat{\beta_j}$ is not statistically different from zero at the `\(5\%\)` level"
++ Or,if you get p-value and the p-value is larger than your choice of significance level (here, `\(5\%\)`), then the null cannot be rejected.
+
+---
+
+# Problem C9
+&lt;span style="color:blue"&gt; 
+(i) Use OLS to estimate the model `\(log(psoda)=\beta_0+\beta_1 prpblck + \beta_2 log(income) + \beta_2 prppov + u\)`, and report the results in the usual form. Is `\(\beta_1\)` statistically different from zero at the `\(5\%\)` level against a two-sided alternative? What about at the `\(1\%\)` level?
+&lt;/span&gt;
+
+
+If you want to know p-value, then just evaluate the regression results of `feols`
+
+
+```r
+discrim_reg4
+```
+
+```
+## OLS estimation, Dep. Var.: log(psoda)
+## Observations: 310 
+## Standard-errors: IID 
+##              Estimate Std. Error  t value   Pr(&gt;|t|)    
+## (Intercept) -1.568943   0.326454 -4.80602 2.4168e-06 ***
+## prpblck      0.109287   0.036786  2.97085 3.2051e-03 ** 
+## lincome      0.146678   0.029742  4.93176 1.3392e-06 ***
+## prppov       0.350109   0.147376  2.37562 1.8135e-02 *  
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## RMSE: 0.080371   Adj. R2: 0.106471
+```
+
+If you want to extract a p-value for a specific coefficient, for example
+
+
+```r
+coeftable(discrim_reg4)["prpblck", 4]
+```
+
+```
+## [1] 0.003205051
+```
+
++ Since the `\(p\)`-value is less than `\(0.01\)` and `\(0.05\)`, `\(\hat{\beta}_1\)` is statistically significant at both at the `\(1\%\)` and `\(5\%\)` levels.
+
+
+---
+
+&lt;span style="color:blue"&gt; 
+(ii) What is the correlation between `\(log(income)\)` and `\(prppov\)`? Is each variable statistically significant at the `\(5\%\)` level? Report the two-sided p-values.
+&lt;/span&gt;
+
+
+
+```r
+discrim_dt %&gt;%
+  select(lincome, prppov) %&gt;%
+  cor()
+```
+
+```
+##            lincome     prppov
+## lincome  1.0000000 -0.8468178
+## prppov  -0.8468178  1.0000000
+```
+
++ p-values for `\(log(income)\)` and  `\(prppov\)` are 1.3392379\times 10^{-6} and 1.3392379\times 10^{-6}, respectively. They are statistically significant at the `\(5\%\)` significance. level
+
+&lt;table style="NAborder-bottom: 0; width: auto !important; margin-left: auto; margin-right: auto;" class="table"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt;   &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; Model 1 &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; (Intercept) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; −1.569*** &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; (0.326) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; prpblck &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.109** &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; (0.037) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; lincome &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.147*** &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; (0.030) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; prppov &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.350* &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;box-shadow: 0px 1px"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;box-shadow: 0px 1px"&gt; (0.147) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Num.Obs. &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 310 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; R2 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.115 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Std.Errors &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; IID &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;tfoot&gt;&lt;tr&gt;&lt;td style="padding: 0; " colspan="100%"&gt;
+&lt;sup&gt;&lt;/sup&gt; + p &amp;lt; 0.1, * p &amp;lt; 0.05, ** p &amp;lt; 0.01, *** p &amp;lt; 0.001&lt;/td&gt;&lt;/tr&gt;&lt;/tfoot&gt;
+&lt;/table&gt;
+
+---
+
+&lt;span style="color:blue"&gt; 
+(iii) To the regression in part (i), add the variable log($hseval$) (logged median value of owner-occupied housing units (in $)). Interpret its coefficient and report the two-sided `\(p\)`-value for `\(H_0\)`: `\(\beta_{log(hseval)}=0\)`
+&lt;/span&gt;
+
+Now the model is 
+`$$log(psoda)=\beta_0+\beta_1 prpblck + \beta_2 log(income) + \beta_3 prppov + \beta_4 log(hseval) + u$$`
+
+
+```r
+discrim_reg5 &lt;- feols(log(psoda) ~ prpblck+lincome+prppov+lhseval, data = discrim_dt)
+```
+
+
+&lt;table style="NAborder-bottom: 0; width: auto !important; margin-left: auto; margin-right: auto;" class="table"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt;   &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; Model 1 &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; (Intercept) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; −0.936** &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; (0.319) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; prpblck &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.127*** &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; (0.034) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; lincome &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; −0.055 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; (0.041) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; prppov &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.038 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; (0.145) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; lhseval &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.131*** &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;box-shadow: 0px 1px"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;box-shadow: 0px 1px"&gt; (0.019) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Num.Obs. &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 310 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; R2 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.230 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Std.Errors &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; IID &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;tfoot&gt;&lt;tr&gt;&lt;td style="padding: 0; " colspan="100%"&gt;
+&lt;sup&gt;&lt;/sup&gt; + p &amp;lt; 0.1, * p &amp;lt; 0.05, ** p &amp;lt; 0.01, *** p &amp;lt; 0.001&lt;/td&gt;&lt;/tr&gt;&lt;/tfoot&gt;
+&lt;/table&gt;
+
+.content-box-green[**Any changes?**]
++ the discrimination effect becomes to has more impact 
++ `\(log(hsevalue)\)` is statistically significantly different from `\(0\)` at 0.1%. 
++ Meanwhile, `\(log(income)\)` and `\(prppve\)` turned out to be not statistically significant, individually. 
+  * .content-box-blue[**Why?**]
+
+---
+
+&lt;span style="color:blue"&gt; 
+(iv) In the regression in part (iii), what happens to the individual statistical significance of `\(log(income)\)` and `\(prppov\)`? Are these variables jointly significant? (Compute a p-value.) What do you make of your answers?
+&lt;/span&gt;
+
+The correlation between `\(log(hseval)\)`, `\(log(income)\)`, and `\(prppov\)` is 
+
+
+```r
+discrim_dt %&gt;%
+  select(lincome, prppov, lhseval) %&gt;%
+  cor()
+```
+
+```
+##            lincome     prppov    lhseval
+## lincome  1.0000000 -0.8468178  0.8065332
+## prppov  -0.8468178  1.0000000 -0.5771884
+## lhseval  0.8065332 -0.5771884  1.0000000
+```
+
++ `\(prppov\)` is highly correlated with `\(prpblck\)` and `\(log(income)\)`. Because of the multicollinearity problem, the standard error of `\(prpblck\)` and `\(log(income)\)` increased, resulting in insignificant statistical results for `\(prpblck\)` and `\(log(income)\)`, individually.
+
+
+---
+
+Let's conduct F-test to see whether the impact of `\(log(income)\)` and `\(prppov\)` are jointly significant. 
+
+
+```r
+# === R package for F-test === #
+library(car)
+# === Note: you need to use lm() to use car package === #
+temp &lt;- lm(log(psoda) ~ prpblck+lincome+prppov+lhseval, data = discrim_dt)
+# === F-test === #
+linearHypothesis(temp, c("lincome=0", "prppov=0"))
+```
+
+
+```
+## Linear hypothesis test
+## 
+## Hypothesis:
+## lincome = 0
+## prppov = 0
+## 
+## Model 1: restricted model
+## Model 2: log(psoda) ~ prpblck + lincome + prppov + lhseval
+## 
+##   Res.Df    RSS Df Sum of Sq      F  Pr(&gt;F)  
+## 1    307 1.7721                              
+## 2    305 1.7426  2  0.029525 2.5838 0.07713 .
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+```
+.content-box-green[**Conclusion**]
++ The p-value is 0.0771346. They are jointly significant at the `\(10\%\)` level.
+
+---
+
+&lt;span style="color:blue"&gt; 
+(v) Given the results of the previous regressions, which one would you report as most reliable in determining whether the racial makeup of a zip code influences local fast-food prices? (**bias-variance trade-off**)
+&lt;/span&gt;
+
+`\begin{align}
+\mbox{Model1: } \quad &amp; psoda &amp;&amp; = \hat{\beta_0}+\hat{\beta_1} prpblck \\
+\mbox{Model2: } \quad &amp; psoda &amp;&amp; = \hat{\beta_0}+\hat{\beta_1} prpblck + \hat{\beta_2} income \\
+\mbox{Model3: } \quad &amp; log(psoda) &amp;&amp; = \hat{\beta_0}+\hat{\beta_1} prpblck + \hat{\beta_2} log(income) \\
+\mbox{Model4: } \quad &amp; log(psoda) &amp;&amp; = \hat{\beta_0}+\hat{\beta_1} prpblck + \hat{\beta_2} log(income) + \hat{\beta_3} prppov \\
+\mbox{Model5: } \quad &amp; log(psoda) &amp;&amp; =\hat{\beta_0}+\hat{\beta_1} prpblck + \hat{\beta_2} log(income) + \hat{\beta_3} prppov + \hat{\beta_4} log(hseval)
+\end{align}`
+
++ Our main focus is on the estimation of the discrimination effect `\((\hat{\beta}_{prpblck})\)` correctly. 
+  * In terms of unbiasedness, `\((\hat{\beta}_{prpblck})\)` in Model5 (including log(income), prpblck,and log(hseval)) is less biased compared to those in other models.
+  * In terms of efficiency, it is not certain whether we should include `\(log(income)\)` and `\(prpblck\)` (because it is highly correlated with `\(log(income)\)` and `\(prppov\)`, and they have some explanatory power) due to multicollinearity problem.  
+
+.content-box-green[**In summary**.]
++ I would choose Model 5
+  * (1) Omission of `\(log(income)\)` and `\(prppov\)` cause omitted variable bias to `\((\hat{\beta}_{prpblck})\)` which we want to estimate accurately 
+  * (2) `\(prpblck\)` is statistically significant even after including `\(log(income)\)` and `\(prpblck\)`
+
+
+
+```r
+discrim_dt %&gt;%
+  select(prpblck, lincome, prppov, lhseval) %&gt;%
+  cor()
+```
+
+```
+##            prpblck    lincome     prppov    lhseval
+## prpblck  1.0000000 -0.5524132  0.7262134 -0.3778634
+## lincome -0.5524132  1.0000000 -0.8468178  0.8065332
+## prppov   0.7262134 -0.8468178  1.0000000 -0.5771884
+## lhseval -0.3778634  0.8065332 -0.5771884  1.0000000
+```
+
+
+---
+
+# Problem C5 (Chapter 4)
+
++ `\(salary\)`: annual salary
++ `\(years\)`: number of years in MLB
++ `\(gamesyr\)`: number of games played in a year
++ `\(bavg\)`: batting average
++ `\(hrunsyr\)`: home runs per year
++ `\(rbisyr\)`: runs batted in per year
+
+## Data
+
+
+```r
+mlb_data &lt;- read_csv('./Data/Assignment_2/MLB1.csv')
+```
+
+
+---
+
+&lt;span style="color:blue"&gt; 
+(i) First, estimate the following model:
+$$
+\widehat{log(salary)}=\beta_0+\beta_1 years + \beta_2 gamesyr + \beta_3 bavg+\beta_4 hrunsyr+\beta_5 rbisyr + v
+$$
+Now, drop the variable `\(rbisyr\)` and then estimate. What happens to the statistical significance of `\(hrunsyr\)`? What about the size of the coefficient on `\(hrunsyr\)`? Provide explanations of why these changes in the statistical significance and the size of estimated coefficient on `\(hrunsyr\)` happened?
+&lt;/span&gt;
+
+
+.left5[
++ Include `\(rbisyr\)`
+
+&lt;table style="NAborder-bottom: 0; width: auto !important; margin-left: auto; margin-right: auto;" class="table"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt;   &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; Model 1 &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; (Intercept) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 11.192*** &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; (0.289) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; years &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.069*** &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; (0.012) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; gamesyr &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.013*** &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; (0.003) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; bavg &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.001 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; (0.001) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; hrunsyr &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.014 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; (0.016) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; rbisyr &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.011 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;box-shadow: 0px 1px"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;box-shadow: 0px 1px"&gt; (0.007) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Num.Obs. &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 353 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; R2 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.628 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Std.Errors &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; IID &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;tfoot&gt;&lt;tr&gt;&lt;td style="padding: 0; " colspan="100%"&gt;
+&lt;sup&gt;&lt;/sup&gt; + p &amp;lt; 0.1, * p &amp;lt; 0.05, ** p &amp;lt; 0.01, *** p &amp;lt; 0.001&lt;/td&gt;&lt;/tr&gt;&lt;/tfoot&gt;
+&lt;/table&gt;
+
+]
+
+.right5[
++ Omit `\(rbisyr\)`
+
+&lt;table style="NAborder-bottom: 0; width: auto !important; margin-left: auto; margin-right: auto;" class="table"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt;   &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; Model 1 &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; (Intercept) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 11.021*** &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; (0.266) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; years &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.068*** &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; (0.012) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; gamesyr &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.016*** &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; (0.002) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; bavg &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.001 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; (0.001) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; hrunsyr &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.036*** &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;box-shadow: 0px 1px"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;box-shadow: 0px 1px"&gt; (0.007) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Num.Obs. &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 353 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; R2 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.625 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Std.Errors &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; IID &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;tfoot&gt;&lt;tr&gt;&lt;td style="padding: 0; " colspan="100%"&gt;
+&lt;sup&gt;&lt;/sup&gt; + p &amp;lt; 0.1, * p &amp;lt; 0.05, ** p &amp;lt; 0.01, *** p &amp;lt; 0.001&lt;/td&gt;&lt;/tr&gt;&lt;/tfoot&gt;
+&lt;/table&gt;
+
+]
+
+---
+
+
+```r
+mlb_data %&gt;%
+  select(hrunsyr,rbisyr) %&gt;%
+  cor()
+```
+
+```
+##           hrunsyr    rbisyr
+## hrunsyr 1.0000000 0.8907428
+## rbisyr  0.8907428 1.0000000
+```
+
++ The insignificance of `\(hrunsyr\)` when `\(rbisyr\)` is due to high correlation between the two variables.
+
+---
+
+&lt;span style="color:blue"&gt; 
+(ii) Add the variables `\(runsyr\)` (runs per year), `\(fldperc\)` (fielding percentage), and `\(sbasesyr\)` (stolen bases per year) to the model from part (i). Which of these factors are individually significant?
+&lt;/span&gt;
+
+.left5[
+
++ Of the additional independent variables, only `\(runsyr\)` is statistically significant.
+
++ Correlation?
+
+]
+
+.right5[
+
+&lt;table style="NAborder-bottom: 0; width: auto !important; margin-left: auto; margin-right: auto;" class="table"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt;   &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; Model 1 &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; (Intercept) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 10.493*** &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; (2.015) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; years &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.070*** &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; (0.012) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; gamesyr &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.007* &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; (0.003) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; bavg &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.000 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; (0.001) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; hrunsyr &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.017 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; (0.016) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; rbisyr &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.003 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; (0.008) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; runsyr &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.017** &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; (0.005) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; fldperc &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.001 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; (0.002) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; sbasesyr &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; −0.006 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;box-shadow: 0px 1px"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;box-shadow: 0px 1px"&gt; (0.006) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Num.Obs. &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 353 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; R2 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.639 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Std.Errors &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; IID &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;tfoot&gt;&lt;tr&gt;&lt;td style="padding: 0; " colspan="100%"&gt;
+&lt;sup&gt;&lt;/sup&gt; + p &amp;lt; 0.1, * p &amp;lt; 0.05, ** p &amp;lt; 0.01, *** p &amp;lt; 0.001&lt;/td&gt;&lt;/tr&gt;&lt;/tfoot&gt;
+&lt;/table&gt;
+
+]
+
+
+---
+
+&lt;span style="color:blue"&gt; 
+(iii) In the model from part (ii), test the joint significance of `\(bavg\)`, `\(fldperc\)`, and `\(sbasesyr\)`.
+&lt;/span&gt;
+
+
+```r
+# === Note: you need to use lm() to use car package === #
+temp &lt;- lm(log(salary)~years+gamesyr+bavg+hrunsyr+rbisyr+runsyr+fldperc+sbasesyr,data=mlb_data)
+# === F-test === #
+linearHypothesis(temp, c("bavg=0", "fldperc=0", "sbasesyr=0"))
+```
+
++ They are not statistically significant. Therefore, there would be little harm in dropping those variables. 
+
+---
+
+# References
++ Wooldridge, Jeffrey M. Introductory Econometrics: A Modern Approach. 4th ed., international student ed. [Mason (OH)]: South-Western, Cengage Learning, 2009.
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
