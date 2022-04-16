@@ -790,11 +790,11 @@ $$
 <br>
 
 .content-box-red[**Question:**]
-+ How does the interpretation would be changed if we added a quadratic term of $log(X)$?
++ How the interpretation would be changed if we added a quadratic term of $log(X)$?
 
 ---
 
-## .content-box-green[**How does the interpretation would be changed if we added a quadratic term of $log(X)$?**]
+## .content-box-green[**How the interpretation would be changed if we added a quadratic term of $log(X)$?**]
 
 .content-box-blue[**Model:** ]
 
@@ -808,8 +808,8 @@ $$
 + However, assuming a constant elasticity might not be appropriate for some cases.
   * e.g., the response of Y to 1% change in X might change depending on the level of X. 
 
-+ By using a quadratic along with logarithms, we allow a **nonconsistant** elasticity between Y and X
-  * Remember a quadratic term of X allows decreasing or increasing marginal impact of X on Y
++ By using a quadratic along with logarithms, we allow a **nonconstant** elasticity between Y and X
+  * Remember including a quadratic term of X to a linear relationship allows decreasing or increasing marginal impact of X on Y
 
 
 <br>
