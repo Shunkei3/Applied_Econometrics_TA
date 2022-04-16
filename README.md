@@ -6,7 +6,7 @@ This is the repository for the TA session for AECN896-002. I will always upload 
 ## TA Session Notes
 + Assignment 1: ([Review](https://shunkei3.github.io/Applied_Econometrics_TA/Assignment_1/Review1_slides.html))
 + Assignment 2: ([Review](https://shunkei3.github.io/Applied_Econometrics_TA/Assignment_2/Review2_slides.html))
-+ Assignment 3:
++ Assignment 3: ([Review](https://shunkei3.github.io/Applied_Econometrics_TA/Assignment_3/Review3_slides.html))
 
 
 ## For your learning
