@@ -379,8 +379,7 @@ slides &gt; slide {
 &lt;br&gt;
 
 ## Standard Error Estimation
-+ Heteroskedasticity and Clustered Error
-+ Consequences of heteroskedasticity and cluster error for the property of OLS estimator
++ Consequences of heteroskedasticity and cluster error 
 
 
 ---
@@ -388,7 +387,7 @@ slides &gt; slide {
 ## Problems
 + Problem 3
   * Topics: How to interpret a model including interactions of Dummy variables
-  * Sub-topic: Model using interactions involving dummy variables v.s. Model using separate dummy variables 
+  * Sub-topic: The difference of a model using interactions involving dummy variables and a model using separate dummy variables 
 
 &lt;br&gt;
 
@@ -409,7 +408,7 @@ slides &gt; slide {
 &lt;br&gt;
 
 + 4 Data management
-  * Topics: How to merge two data that have different data format
+  * Topics: How to merge two data sets that have different data formats
 
 
 ---
@@ -437,7 +436,7 @@ $$
 
 &lt;br&gt;
 
-By using these dummy variables, we want to understand **how the SAT scores different among nonblack-male, nonblack-female, black-male, and black-female students, on average**. 
+By using these dummy variables, we want to understand **how the SAT scores differ among non-black male, non-black female, black male, and black female students, on average**. 
 ]
 
 
@@ -539,18 +538,18 @@ $$
 &lt;br&gt;
 
 .content-box-blue[**Step1:**]: What is the base group? 
-+ The base group is the case when `black=0` and `female=0`, which is nonblack-male students. 
-  * So, the interpretation of an individual coefficient on the dummy variable is how much more (less) students belonging to that category are expected to get SAT score compared to nonblack-male students holding everything else fixed. 
++ The base group is  when `black=0` and `female=0`, which is non-black male students. 
+  * The coefficients for the dummy variables indicate how much higher (or lower) students belonging to that category are expected to score on the SAT compared to non-black male students holding everything else fixed. 
 
 &lt;br&gt;
 
-+ For nonblack-male students: `black=0` and `female=0`,
++ For non-black male students: `black=0` and `female=0`,
 
 $$
 \hat{sat} = \hat{\beta}_0 + \hat{\beta}_1 hsize + \hat{\beta}_2 hsize^2
 $$
 
-`\(\hat{\beta}_0\)` indicates the average SAT score of nonblack-male students.
+`\(\hat{\beta}_0\)` indicates the average SAT score of non-black male students.
 
 
 ---
@@ -564,7 +563,7 @@ $$
 &lt;br&gt;
 
 .content-box-green[**Step1: What is the base group? **]: 
-+ The base group is the case when `black=0` and `female=0`, which is nonblack-male students. 
++ The base group is the case when `black=0` and `female=0`, which is non-black male students. 
 
 &lt;br&gt;
 
@@ -572,7 +571,7 @@ $$
 
 + You can simply plug in the correct combination of zeros and ones to `black` and `female` by each category.
 
-**For nonblack-female students: `black=0` and `female=1`, so**
+**For non-black female students: `black=0` and `female=1`, so**
 
 `\begin{align}
 \hat{sat} 
@@ -582,7 +581,7 @@ $$
 \end{align}`
 
 
-**For black-male students: `black=1` and `female=0`, so**
+**For black male students: `black=1` and `female=0`, so**
 
 `\begin{align}
 \hat{sat} &amp;= \hat{\beta}_0 + \hat{\beta}_1 hsize + \hat{\beta}_2 hsize^2 +  \color{blue}{\hat{\beta}_4} \\
@@ -590,7 +589,7 @@ $$
 \end{align}`
 
 
-**For black-female students: `black=1` and `female=1`, so**
+**For black female students: `black=1` and `female=1`, so**
 
 `\begin{align}
 \hat{sat} &amp;= \hat{\beta}_0 + \hat{\beta}_1 hsize + \hat{\beta}_2 hsize^2 + \color{blue}{\hat{\beta}_3 +  \hat{\beta}_4 + \hat{\beta}_5} \\
@@ -599,17 +598,17 @@ $$
 
 &lt;br&gt;
 
-+ As you can see, the coefficients `\(\color{blue}{\hat{\beta}_3}\)`, `\(\color{blue}{\hat{\beta}_4}\)`, `\(\color{blue}{\hat{\beta}_5}\)` are additional information about how much different from `\(\hat{\beta_0}\)` (the average SAT score of nonblack-male students)
++ As you can see, the coefficients `\(\color{blue}{\hat{\beta}_3}\)`, `\(\color{blue}{\hat{\beta}_4}\)`, `\(\color{blue}{\hat{\beta}_5}\)` are additional information about how different from `\(\hat{\beta_0}\)` (the average SAT score of non-black male students)
 
 ---
 
-&lt;span style="color:blue"&gt;(ii) Holding `\(hsize\)` fixed, what is the estimated difference in SAT score between **nonblack-females** and **nonblack-males**? How statistically significant is this estimated difference?&lt;/span&gt;
+&lt;span style="color:blue"&gt;(ii) Holding `\(hsize\)` fixed, what is the estimated difference in SAT score between **non-black females** and **non-black males**? How statistically significant is this estimated difference?&lt;/span&gt;
 
 &lt;br&gt;
 
-**Nonblack-female students: (`black=0` and `female=1`) v.s.  Nonblack-males students: (`black=0` and `female=0`: base group)**
+**Non-black female students: (`black=0` and `female=1`) v.s.  Non-black males students: (`black=0` and `female=0`: base group)**
 
-For Nonblack-female students:
+For Non-black female students:
 
 &lt;br&gt;
 
@@ -621,17 +620,17 @@ $$
 
 + Hence, the estimated difference is `\(\color{blue}{\hat{\beta}_3} = -45.091\)`, which is statistically significant at the 1% level. 
 
-+ This means that nonblack-female students received lower SAT scores by `\(45.091\)` points on average compared to nonblack-male students, ceteris paribus. 
++ This means that non-black female students received lower SAT scores by `\(45.091\)` points on average compared to non-black male students, ceteris paribus. 
 
 ---
 
 &lt;span style="color:blue"&gt;
-(iii) What is the estimated difference in SAT score between **nonblack-males** and **black males**? Test the null hypothesis that there is no difference between their scores, against the alternative that there is a difference.
+(iii) What is the estimated difference in SAT score between **non-black males** and **black males**? Test the null hypothesis that there is no difference between their scores, against the alternative that there is a difference.
 &lt;/span&gt;
 
 &lt;br&gt;
 
-**Black male students: (`black=1` and `female=0`) v.s.  Nonblack-males students: (`black=0` and `female=0`: base group)**
+**Black male students: (`black=1` and `female=0`) v.s.  Non-black males students: (`black=0` and `female=0`: base group)**
 
 &lt;br&gt;
 
@@ -647,23 +646,23 @@ $$
 
 + Hence, the estimated difference is `\(\color{blue}{\hat{\beta}_4} = −169.813\)`, which is statistically significant at the 1% level. 
 
-+ This means that nonblack-female students received lower SAT scores by `\(169.813\)` points on average compared to nonblack-male, ceteris paribus. 
++ This means that non-black female students received lower SAT scores by `\(169.813\)` points on average compared to non-black male, ceteris paribus. 
 
 ---
 
 &lt;span style="color:blue"&gt;
-(iv) What is the estimated difference in SAT score between **black-females** and **nonblack-females**? What would you need to do to test whether the difference is statistically significant?
+(iv) What is the estimated difference in SAT score between **black females** and **non-black females**? What would you need to do to test whether the difference is statistically significant?
 &lt;/span&gt;
 
-**Black-female students: (`black=1` and `female=1`) v.s.  Nonblack-female students: (`black=0` and `female=1`: base group)**
+**Black female students: (`black=1` and `female=1`) v.s.  Non-black female students: (`black=0` and `female=1`: base group)**
 
-For black-female students:
+For black female students:
 
 $$
 \hat{sat} = \hat{\beta}_0 + \hat{\beta}_1 hsize + \hat{\beta}_2 hsize^2 + \color{blue}{\hat{\beta}_3 +  \hat{\beta}_4 + \hat{\beta}_5}
 $$
 
-For nonblack-male students:
+For non-black male students:
 
 $$
 \hat{sat} = \hat{\beta}_0 + \hat{\beta}_1 hsize + \hat{\beta}_2 hsize^2 + \color{blue}{\hat{\beta}_3} 
@@ -673,7 +672,7 @@ $$
 
 + Hence, the estimated difference is `\((\color{blue}{\hat{\beta}_3 +  \hat{\beta}_4 + \hat{\beta}_5}) - \color{blue}{\hat{\beta}_3} = \color{blue}{\hat{\beta}_4 + \hat{\beta}_5} = -169.813 + 62.306 = -107.507\)`. 
 
-+ To test weather the estimated difference between black-female students and nonblack-female students ( `\(\color{blue}{\hat{\beta}_4 + \hat{\beta}_5}\)` ) is statistically significantly different from 0, we need to:
++ To test weather the estimated difference between black female students and non-black female students ( `\(\color{blue}{\hat{\beta}_4 + \hat{\beta}_5}\)` ) is statistically significantly different from 0, we need to:
 
 + .content-box-green[**Approach 1**]: Conduct **t-test** under the following null and alternative hypothesis:
 
@@ -687,16 +686,16 @@ $$
 t = \frac{\beta_4 + \beta_5}{se(\beta_4 + \beta_5)}
 $$
 
-  * .content-box-green[**Approach 2**]: Chose one of black-female students and nonblack-female students to be the base group and re-estimate the new regression model. 
+  * .content-box-green[**Approach 2**]: Chose one of black female students and non-black female students to be the base group and re-estimate the new regression model. 
 
 ---
 
 # Taking this one step further
 
-+ In this example, we categorized four groups (nonblack-male, nonblack-female, black-male, black-female) based on gender (`black`) and race (`female`).
++ In this example, we categorized four groups (non-black male, non-black female, black male, black female) based on gender (`black`) and race (`female`).
 
 + Instead of expressing these four groups with the combinations of `black` and `female`, why don't we use different dummy variables for each category?
-  * For example, keep using nonblack-male students as base group, create new three dummy variables `nonblack_female`, `black_male`, and `black_female`, and use these dummy variables.
+  * For example, keep using non-black male students as base group, create new three dummy variables `nonblack_female`, `black_male`, and `black_female`, and use these dummy variables.
 
 &lt;br&gt;
 
@@ -719,9 +718,9 @@ $$
 .content-box-blue[**Previous Results: Model(1) Use interactions involving dummy variables**]
 
 + Compared to white-male students, on average, SAT scores of :
-  * nonblack-female students were lower by 45.091 points
-  * balck-male students were lower by 169.813 points
-  * black-female students were lower by 152.598 points
+  * non-black female students were lower by 45.091 points
+  * black male students were lower by 169.813 points
+  * black female students were lower by 152.598 points
 
 ]
 
@@ -811,9 +810,9 @@ $$
 .content-box-blue[**Previous Results: Model(1) Use interactions involving dummy variables**]
 
 + Compared to white-male students, on average, SAT scores of :
-  * nonblack-female students were lower by 45.091 points
-  * balck-male students were lower by 169.813 points
-  * black-female students were lower by 152.598 points
+  * non-black female students were lower by 45.091 points
+  * black male students were lower by 169.813 points
+  * black female students were lower by 152.598 points
 
 ]
 
@@ -1218,7 +1217,7 @@ round(cor(select(data_81, dist, intst, area, land, rooms, baths, age)), digits =
 &lt;br&gt;
 
 + In the previous model:
-  *  `log(intst)` alone was not enough to capture the  impact of `intst`　on `price` and the remaining part (`(log(intst))^2`) was left in the error term, which caused endogenous problem for the OLS estimator of `log(intst)` .
+  *  `log(intst)` alone was not enough to capture the  impact of `intst`　on `price` and the remaining part (`(log(intst))^2`) was left in the error term, which caused an endogenous problem for the OLS estimator of `log(intst)` .
   * the coefficient on `log(intst)` is biased -&gt; the coefficient on  `log(dist)` is biased as well. 
 ]
 
@@ -1462,7 +1461,7 @@ log(price) = \beta_0 &amp;+ \beta_1 log(dist) + \beta_2 log(intst) + \beta_3 (lo
 &lt;br&gt;
 
 
-+ **Let's think about the implication about the terms `\(\beta_2 log(intst) + \beta_3 (log(intst))^2\)` a little bit more**
++ **Let's think about the implication of the terms `\(\beta_2 log(intst) + \beta_3 (log(intst))^2\)` a little bit more**
 
 &lt;br&gt;
 
@@ -1484,7 +1483,7 @@ $$
 &lt;br&gt;
 
 .content-box-green[**&lt;span style="color:red"&gt;Log-log functional form: Both X and Y are in log form&lt;/span&gt;**]
-+ it is also called constant elasticity model
++ it is also called a constant elasticity model
 $$
 log(Y) = \beta_0 + \beta_1 log(X) + u
 $$
@@ -1549,8 +1548,8 @@ $$
 + However, assuming a constant elasticity might not be appropriate for some cases.
   * e.g., the response of Y to 1% change in X might change depending on the level of X. 
 
-+ By using a quadratic along with logarithms, we allow a **nonconstant** elasticity between Y and X
-  * Remember including a quadratic term of X to a linear relationship allows decreasing or increasing marginal impact of X on Y
++ By using a quadratic term along with logarithms, we allow a **nonconstant** elasticity between Y and X
+  * Remember, including a quadratic term of X to a linear relationship allows decreasing or increasing marginal impact of X on Y
 
 
 &lt;br&gt;
@@ -1589,11 +1588,11 @@ $$
 
 &lt;br&gt;
 
-+ 1% increase in `\(intst\)` changes `\(house\)` by `\(2.073 − 2 \cdot 0.119 log(intst)\)`%.
++ 1% increase in `\(intst\)` changes `\(house\)` by ($2.073 − 2 \cdot 0.119 log(intst))$%.
 
 &lt;br&gt;
 
-+ For example: Given `\(intst=2000\)`, it is expected that 1% increase in `\(intst\)` changes `\(house\)` by `\(2.073 − 2 \cdot 0.119 log(2000) = 0.2639852\)`% on average, ceteris paribus.
++ e.g., Given `\(intst=2000\)`, it is expected that 1% increase in `\(intst\)` changes `\(house\)` by `\(2.073 − 2 \cdot 0.119 log(2000) = 0.2639852\)`% on average, ceteris paribus.
 
 
 ---
@@ -1792,7 +1791,7 @@ Reshape fake datasets (**corn_price_long.rds** and **corn_prod_wide.rds**) and m
 (1) Convert **corn_prod_wide.rds** into a long format in which each row represents the production level for a specific county-year combination. 
 &lt;/span&gt;
 
-+ Step1: Write down the desirable table you want to get.(Recommend!)
++ Step1: Write down the desirable table you want to get. (Recommended!)
 + Step2: 
 
 
@@ -1809,7 +1808,7 @@ corn_prod_long &lt;-
   )
 ```
 
-Or you can do like this:
+Or you can do it like this:
 
 
 ```r
