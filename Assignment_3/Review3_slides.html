@@ -1,0 +1,2088 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Review Assignment 3</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Shunkei Kakimoto, University of Nebraska Lincoln" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link href="libs/tile-view/tile-view.css" rel="stylesheet" />
+    <script src="libs/tile-view/tile-view.js"></script>
+    <link href="libs/animate.css/animate.xaringan.css" rel="stylesheet" />
+    <link href="libs/tachyons/tachyons.min.css" rel="stylesheet" />
+    <link href="libs/panelset/panelset.css" rel="stylesheet" />
+    <script src="libs/panelset/panelset.js"></script>
+    <script src="libs/clipboard/clipboard.min.js"></script>
+    <link href="libs/xaringanExtra-clipboard/xaringanExtra-clipboard.css" rel="stylesheet" />
+    <script src="libs/xaringanExtra-clipboard/xaringanExtra-clipboard.js"></script>
+    <script>window.xaringanExtraClipboard(null, {"button":"Copy Code","success":"Copied!","error":"Press Ctrl+C to Copy"})</script>
+    <script src="libs/kePrint/kePrint.js"></script>
+    <link href="libs/lightable/lightable.css" rel="stylesheet" />
+    <link rel="stylesheet" href="xaringan-themer_large.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Review Assignment 3
+### Shunkei Kakimoto, University of Nebraska Lincoln
+
+---
+
+class: middle
+
+
+
+
+
+
+
+
+
+
+&lt;style type="text/css"&gt;
+
+.remark-slide-content.hljs-github h1 {
+  margin-top: 5px;  
+  margin-bottom: 25px;  
+}
+
+.remark-slide-content.hljs-github {
+  padding-top: 10px;  
+  padding-left: 30px;  
+  padding-right: 30px;  
+}
+
+.panel-tabs {
+  &lt;!-- color: #062A00; --&gt;
+  color: #841F27;
+  margin-top: 0px;  
+  margin-bottom: 0px;  
+  margin-left: 0px;  
+  padding-bottom: 0px;  
+}
+
+.panel-tab {
+  margin-top: 0px;  
+  margin-bottom: 0px;  
+  margin-left: 3px;  
+  margin-right: 3px;  
+  padding-top: 0px;  
+  padding-bottom: 0px;  
+}
+
+.panelset .panel-tabs .panel-tab {
+  min-height: 40px;
+}
+
+.remark-slide th {
+  border-bottom: 1px solid #ddd;
+}
+
+.remark-slide thead {
+  border-bottom: 0px;
+}
+
+.gt_footnote {
+  padding: 2px;  
+}
+
+.remark-slide table {
+  border-collapse: collapse;
+}
+
+.remark-slide tbody {
+  border-bottom: 2px solid #666;
+}
+
+
+.important {
+  background-color: lightpink;
+  border: 2px solid blue;
+  font-weight: bold;
+} 
+
+.remark-code {
+  display: block;
+  overflow-x: auto;
+  padding: .5em;
+  background: #ffe7e7;
+} 
+
+.hljs-github .hljs {
+  background: #f2f2fd;
+}
+
+.remark-inline-code {
+  padding-top: 0px;
+  padding-bottom: 0px;
+  background-color: #e6e6e6;
+}
+
+.r.hljs.remark-code.remark-inline-code{
+  font-size: 0.9em
+}
+
+.left-full {
+  width: 80%;
+  float: left;
+}
+
+.left-code {
+  width: 38%;
+  height: 92%;
+  float: left;
+}
+
+.right-plot {
+  width: 60%;
+  float: right;
+  padding-left: 1%;
+}
+
+.left6 {
+  width: 60%;
+  height: 92%;
+  float: left;
+}
+
+.left5 {
+  width: 49%;
+  &lt;!-- height: 92%; --&gt;
+  float: left;
+}
+
+.right5 {
+  width: 49%;
+  float: right;
+  padding-left: 1%;
+}
+
+.right4 {
+  width: 39%;
+  float: right;
+  padding-left: 1%;
+}
+
+.left3 {
+  width: 29%;
+  height: 92%;
+  float: left;
+}
+
+.right7 {
+  width: 69%;
+  float: right;
+  padding-left: 1%;
+}
+
+.left4 {
+  width: 38%;
+  float: left;
+}
+
+.right6 {
+  width: 60%;
+  float: right;
+  padding-left: 1%;
+}
+
+ul li{
+  margin: 7px;
+}
+
+ul, li{
+  margin-left: 15px; 
+  padding-left: 0px; 
+}
+
+ol li{
+  margin: 7px;
+}
+
+ol, li{
+  margin-left: 15px; 
+  padding-left: 0px; 
+}
+
+&lt;/style&gt;
+
+&lt;style type="text/css"&gt;
+.content-box { 
+    box-sizing: border-box;
+    background-color: #e2e2e2;
+}
+.content-box-blue,
+.content-box-gray,
+.content-box-grey,
+.content-box-army,
+.content-box-green,
+.content-box-purple,
+.content-box-red,
+.content-box-yellow {
+  box-sizing: border-box;
+  border-radius: 5px;
+  margin: 0 0 10px;
+  overflow: hidden;
+  padding: 0px 5px 0px 5px;
+  width: 100%;
+}
+.content-box-blue { background-color: #F0F8FF; }
+.content-box-gray { background-color: #e2e2e2; }
+.content-box-grey { background-color: #F5F5F5; }
+.content-box-army { background-color: #737a36; }
+.content-box-green { background-color: #d9edc2; }
+.content-box-purple { background-color: #e2e2f9; }
+.content-box-red { background-color: #ffcccc; }
+.content-box-yellow { background-color: #fef5c4; }
+.content-box-blue .remark-inline-code,
+.content-box-blue .remark-inline-code,
+.content-box-gray .remark-inline-code,
+.content-box-grey .remark-inline-code,
+.content-box-army .remark-inline-code,
+.content-box-green .remark-inline-code,
+.content-box-purple .remark-inline-code,
+.content-box-red .remark-inline-code,
+.content-box-yellow .remark-inline-code { 
+  background: none;
+}
+
+.full-width {
+    display: flex;
+    width: 100%;
+    flex: 1 1 auto;
+}
+&lt;/style&gt;
+
+
+&lt;style type="text/css"&gt;
+blockquote, .blockquote {
+  display: block;
+  margin-top: 0.1em;
+  margin-bottom: 0.2em;
+  margin-left: 5px;
+  margin-right: 5px;
+  border-left: solid 10px #0148A4;
+  border-top: solid 2px #0148A4;
+  border-bottom: solid 2px #0148A4;
+  border-right: solid 2px #0148A4;
+  box-shadow: 0 0 6px rgba(0,0,0,0.5);
+  /* background-color: #e64626; */
+  color: #e64626;
+  padding: 0.5em;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+}
+
+.blockquote p {
+  margin-top: 0px;
+  margin-bottom: 5px;
+}
+.blockquote &gt; h1:first-of-type {
+  margin-top: 0px;
+  margin-bottom: 5px;
+}
+.blockquote &gt; h2:first-of-type {
+  margin-top: 0px;
+  margin-bottom: 5px;
+}
+.blockquote &gt; h3:first-of-type {
+  margin-top: 0px;
+  margin-bottom: 5px;
+}
+.blockquote &gt; h4:first-of-type {
+  margin-top: 0px;
+  margin-bottom: 5px;
+}
+
+.text-shadow {
+  text-shadow: 0 0 4px #424242;
+}
+&lt;/style&gt;
+
+&lt;style type="text/css"&gt;
+/******************
+ * Slide scrolling
+ * (non-functional)
+ * not sure if it is a good idea anyway
+slides &gt; slide {
+  overflow: scroll;
+ padding: 5px 40px;
+}
+.scrollable-slide .remark-slide {
+  height: 400px;
+  overflow: scroll !important;
+}
+ ******************/
+
+.scroll-box-8 {
+  height:8em;
+  overflow-y: scroll;
+}
+.scroll-box-10 {
+  height:10em;
+  overflow-y: scroll;
+}
+.scroll-box-12 {
+  height:12em;
+  overflow-y: scroll;
+}
+.scroll-box-14 {
+  height:14em;
+  overflow-y: scroll;
+}
+.scroll-box-16 {
+  height:16em;
+  overflow-y: scroll;
+}
+.scroll-box-18 {
+  height:18em;
+  overflow-y: scroll;
+}
+.scroll-box-20 {
+  height:20em;
+  overflow-y: scroll;
+}
+.scroll-box-24 {
+  height:24em;
+  overflow-y: scroll;
+}
+.scroll-box-30 {
+  height:30em;
+  overflow-y: scroll;
+}
+.scroll-output {
+  height: 90%;
+  overflow-y: scroll;
+}
+
+ 
+&lt;/style&gt;
+
+
+
+
+
+# Today's Main Topics
+
+## Various Econometric Modeling
++ Various functional form
+  * Logarithmic function
+  * Quadratic term
+  * Interaction term
+  * Dummy variables 
+
+&lt;br&gt;
+
++ The consequence of functional form misspecification
+  * Omitted variable bias
+
+&lt;br&gt;
+
+## Standard Error Estimation
++ Heteroskedasticity and Clustered Error
++ Consequences of heteroskedasticity and cluster error for the property of OLS estimator
+
+
+---
+
+## Problems
++ Problem 3
+  * Topics: How to interpret a model including interactions of Dummy variables
+  * Sub-topic: Model using interactions involving dummy variables v.s. Model using separate dummy variables 
+
+&lt;br&gt;
+
++ Problem 6 
+  * Topics: Direction of bias (A quick review)
+
+&lt;br&gt;
+
++ Problem C1 
+  * Topics: The importance of functional forms
+  * Sub-topic: More on logarithmic functional forms
+
+&lt;br&gt;
+
++ Problem C13
+  * Topics: Standard Error Estimation
+  
+&lt;br&gt;
+
++ 4 Data management
+  * Topics: How to merge two data that have different data format
+
+
+---
+
+# 2.1 Problem 3 (Chapter 7) **Two category cases: gender and race**
+
+&lt;span style="color:blue"&gt;Using the data in GPA2.RAW, the following equation was estimated:&lt;/span&gt;
+
+$$
+sat = \beta_0 + \beta_1 hsize + \beta_2 hsize^2 +\beta_3 female +  \beta_4 black + \beta_5 female \times black
+$$
+
+.left5[
+
+&lt;br&gt;
+
++ `sat` : the combined SAT score &lt;br/&gt;
++ `hsize`: size of the student's high school graduating class &lt;br/&gt;
+
+&lt;br&gt;
+
+.content-box-blue[**Dummy variables**]
++ `female` : a gender dummy variable
++ `black` : a race dummy variable
+
+&lt;br&gt;
+
+By using these dummy variables, we want to understand **how the SAT scores different among nonblack-male, nonblack-female, black-male, and black-female students, on average**. 
+]
+
+
+
+.right5[
+
+&lt;br&gt;
+
+&lt;span style="color:blue"&gt;The below is the regression results&lt;/span&gt;
+
+&lt;table style="NAborder-bottom: 0; width: auto !important; margin-left: auto; margin-right: auto;" class="table"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt;   &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; Model 1 &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; (Intercept) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1028.097*** &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; (6.290) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; hsize &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 19.297*** &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; (3.832) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; hsize_2 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; −2.195*** &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; (0.527) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; female &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; −45.091*** &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; (4.291) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; black &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; −169.813*** &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; (12.713) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; I(female * black) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 62.306*** &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;box-shadow: 0px 1px"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;box-shadow: 0px 1px"&gt; (18.154) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Num.Obs. &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 4137 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; R2 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.086 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Std.Errors &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; IID &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;tfoot&gt;&lt;tr&gt;&lt;td style="padding: 0; " colspan="100%"&gt;
+&lt;sup&gt;&lt;/sup&gt; + p &amp;lt; 0.1, * p &amp;lt; 0.05, ** p &amp;lt; 0.01, *** p &amp;lt; 0.001&lt;/td&gt;&lt;/tr&gt;&lt;/tfoot&gt;
+&lt;/table&gt;
+]
+
+---
+
+## Interpretation of the coefficients of dummy variables (1)
+
+$$
+\hat{sat} = \hat{\beta}_0 + \hat{\beta}_1 hsize + \hat{\beta}_2 hsize^2 +\hat{\beta}_3 female +  \hat{\beta}_4 black + \hat{\beta}_5 female \times black 
+$$
+
+&lt;!-- \begin{align}
+\hat{sat} &amp;= \hat{\beta}_0 + \hat{\beta}_1 hsize + \hat{\beta}_2 hsize^2 +\hat{\beta}_3 female +  \hat{\beta}_4 black + \hat{\beta}_5 female \times black 
+\\
+\hat{sat} &amp;= 1028.097 + 19.297 hsize −2.195 hsize^2 −45.091 female −169.813 black + 62.306 female \times black
+\end{align} --&gt;
+
+&lt;br&gt;
+
+.content-box-blue[**Step1:**]: What is the base group? 
++ The base group is the case when `black=0` and `female=0`, which is nonblack-male students. 
+  * So, the interpretation of an individual coefficient on the dummy variable is how much more (less) students belonging to that category are expected to get SAT score compared to nonblack-male students holding everything else fixed. 
+
+&lt;br&gt;
+
++ For nonblack-male students: `black=0` and `female=0`,
+
+$$
+\hat{sat} = \hat{\beta}_0 + \hat{\beta}_1 hsize + \hat{\beta}_2 hsize^2
+$$
+
+`\(\hat{\beta}_0\)` indicates the average SAT score of nonblack-male students.
+
+
+---
+
+## Interpretation of the coefficients of dummy variables (2)
+
+$$
+\hat{sat} = \hat{\beta}_0 + \hat{\beta}_1 hsize + \hat{\beta}_2 hsize^2 +\hat{\beta}_3 female +  \hat{\beta}_4 black + \hat{\beta}_5 female \times black 
+$$
+
+&lt;br&gt;
+
+.content-box-green[**Step1: What is the base group? **]: 
++ The base group is the case when `black=0` and `female=0`, which is nonblack-male students. 
+
+&lt;br&gt;
+
+.content-box-green[**Step2: How do we know the coefficients of the other groups?**]
+
++ You can simply plug in the correct combination of zeros and ones to `black` and `female` by each category.
+
+**For nonblack-female students: `black=0` and `female=1`, so**
+
+`\begin{align}
+\hat{sat} 
+&amp;= \hat{\beta}_0 + \hat{\beta}_1 hsize + \hat{\beta}_2 hsize^2 + \color{blue}{\hat{\beta}_3} 
+\\
+&amp;= \hat{\beta}_0 + \color{blue}{\hat{\beta}_3} + \hat{\beta}_1 hsize + \hat{\beta}_2 hsize^2 
+\end{align}`
+
+
+**For black-male students: `black=1` and `female=0`, so**
+
+`\begin{align}
+\hat{sat} &amp;= \hat{\beta}_0 + \hat{\beta}_1 hsize + \hat{\beta}_2 hsize^2 +  \color{blue}{\hat{\beta}_4} \\
+&amp;= \hat{\beta}_0 + \color{blue}{\hat{\beta}_4}  + \hat{\beta}_1 hsize + \hat{\beta}_2 hsize^2
+\end{align}`
+
+
+**For black-female students: `black=1` and `female=1`, so**
+
+`\begin{align}
+\hat{sat} &amp;= \hat{\beta}_0 + \hat{\beta}_1 hsize + \hat{\beta}_2 hsize^2 + \color{blue}{\hat{\beta}_3 +  \hat{\beta}_4 + \hat{\beta}_5} \\
+&amp;= \hat{\beta}_0 + (\color{blue}{\hat{\beta}_3 +  \hat{\beta}_4 + \hat{\beta}_5}) + \hat{\beta}_1 hsize + \hat{\beta}_2 hsize^2
+\end{align}`
+
+&lt;br&gt;
+
++ As you can see, the coefficients `\(\color{blue}{\hat{\beta}_3}\)`, `\(\color{blue}{\hat{\beta}_4}\)`, `\(\color{blue}{\hat{\beta}_5}\)` are additional information about how much different from `\(\hat{\beta_0}\)` (the average SAT score of nonblack-male students)
+
+---
+
+&lt;span style="color:blue"&gt;(ii) Holding `\(hsize\)` fixed, what is the estimated difference in SAT score between **nonblack-females** and **nonblack-males**? How statistically significant is this estimated difference?&lt;/span&gt;
+
+&lt;br&gt;
+
+**Nonblack-female students: (`black=0` and `female=1`) v.s.  Nonblack-males students: (`black=0` and `female=0`: base group)**
+
+For Nonblack-female students:
+
+&lt;br&gt;
+
+$$
+\hat{sat} = \hat{\beta}_0 + \hat{\beta}_1 hsize + \hat{\beta}_2 hsize^2 + \color{blue}{\hat{\beta}_3} 
+$$
+
+&lt;br&gt;
+
++ Hence, the estimated difference is `\(\color{blue}{\hat{\beta}_3} = -45.091\)`, which is statistically significant at the 1% level. 
+
++ This means that nonblack-female students received lower SAT scores by `\(45.091\)` points on average compared to nonblack-male students, ceteris paribus. 
+
+---
+
+&lt;span style="color:blue"&gt;
+(iii) What is the estimated difference in SAT score between **nonblack-males** and **black males**? Test the null hypothesis that there is no difference between their scores, against the alternative that there is a difference.
+&lt;/span&gt;
+
+&lt;br&gt;
+
+**Black male students: (`black=1` and `female=0`) v.s.  Nonblack-males students: (`black=0` and `female=0`: base group)**
+
+&lt;br&gt;
+
+For black male students:
+
+&lt;br&gt;
+
+$$
+\hat{sat} = \hat{\beta}_0 + \hat{\beta}_1 hsize + \hat{\beta}_2 hsize^2 +  \color{blue}{\hat{\beta}_4}
+$$
+
+&lt;br&gt;
+
++ Hence, the estimated difference is `\(\color{blue}{\hat{\beta}_4} = −169.813\)`, which is statistically significant at the 1% level. 
+
++ This means that nonblack-female students received lower SAT scores by `\(169.813\)` points on average compared to nonblack-male, ceteris paribus. 
+
+---
+
+&lt;span style="color:blue"&gt;
+(iv) What is the estimated difference in SAT score between **black-females** and **nonblack-females**? What would you need to do to test whether the difference is statistically significant?
+&lt;/span&gt;
+
+**Black-female students: (`black=1` and `female=1`) v.s.  Nonblack-female students: (`black=0` and `female=1`: base group)**
+
+For black-female students:
+
+$$
+\hat{sat} = \hat{\beta}_0 + \hat{\beta}_1 hsize + \hat{\beta}_2 hsize^2 + \color{blue}{\hat{\beta}_3 +  \hat{\beta}_4 + \hat{\beta}_5}
+$$
+
+For nonblack-male students:
+
+$$
+\hat{sat} = \hat{\beta}_0 + \hat{\beta}_1 hsize + \hat{\beta}_2 hsize^2 + \color{blue}{\hat{\beta}_3} 
+$$
+
+&lt;br&gt;
+
++ Hence, the estimated difference is `\((\color{blue}{\hat{\beta}_3 +  \hat{\beta}_4 + \hat{\beta}_5}) - \color{blue}{\hat{\beta}_3} = \color{blue}{\hat{\beta}_4 + \hat{\beta}_5} = -169.813 + 62.306 = -107.507\)`. 
+
++ To test weather the estimated difference between black-female students and nonblack-female students ( `\(\color{blue}{\hat{\beta}_4 + \hat{\beta}_5}\)` ) is statistically significantly different from 0, we need to:
+
++ .content-box-green[**Approach 1**]: Conduct **t-test** under the following null and alternative hypothesis:
+
+`\begin{align}
+H_0 &amp;: \beta_4 + \beta_5 = 0 \\
+H_1 &amp;: \beta_4 + \beta_5 \neq 0
+\end{align}`
+
+In this case, t-static would be 
+$$
+t = \frac{\beta_4 + \beta_5}{se(\beta_4 + \beta_5)}
+$$
+
+  * .content-box-green[**Approach 2**]: Chose one of black-female students and nonblack-female students to be the base group and re-estimate the new regression model. 
+
+---
+
+# Taking this one step further
+
++ In this example, we categorized four groups (nonblack-male, nonblack-female, black-male, black-female) based on gender (`black`) and race (`female`).
+
++ Instead of expressing these four groups with the combinations of `black` and `female`, why don't we use different dummy variables for each category?
+  * For example, keep using nonblack-male students as base group, create new three dummy variables `nonblack_female`, `black_male`, and `black_female`, and use these dummy variables.
+
+&lt;br&gt;
+
+.content-box-blue[**Model(1) Use interactions involving dummy variables**]
+
+$$
+sat = \beta_0 + \beta_1 hsize + \beta_2 hsize^2 +\beta_3 female +  \beta_4 black + \beta_5 female \times black
+$$
+
+.content-box-blue[**Modle(2) Use dummy variables for each category**]
+
+$$
+sat = \beta_0 + \beta_1 hsize + \beta_2 hsize^2 +\beta_3 nonblack\\_female +  \beta_4 black\\_male + \beta_5 black\\_female
+$$
+
+---
+
+.left5[
+
+.content-box-blue[**Previous Results: Model(1) Use interactions involving dummy variables**]
+
++ Compared to white-male students, on average, SAT scores of :
+  * nonblack-female students were lower by 45.091 points
+  * balck-male students were lower by 169.813 points
+  * black-female students were lower by 152.598 points
+
+]
+
+.right5[
+
+.content-box-blue[**Results of Modle(2) Use dummy variables for each category**]
+
+
+&lt;table style="NAborder-bottom: 0; width: auto !important; margin-left: auto; margin-right: auto;" class="table"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt;   &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; Model 1 &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; (Intercept) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1028.097*** &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; (6.290) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; hsize &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 19.297*** &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; (3.832) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; hsize_2 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; −2.195*** &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; (0.527) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; nonblack_female &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; −45.091*** &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; (4.291) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; balck_male &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; −169.813*** &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; (12.713) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; black_female &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; −152.598*** &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;box-shadow: 0px 1px"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;box-shadow: 0px 1px"&gt; (12.897) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Num.Obs. &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 4137 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; R2 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.086 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Std.Errors &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; IID &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;tfoot&gt;&lt;tr&gt;&lt;td style="padding: 0; " colspan="100%"&gt;
+&lt;sup&gt;&lt;/sup&gt; + p &amp;lt; 0.1, * p &amp;lt; 0.05, ** p &amp;lt; 0.01, *** p &amp;lt; 0.001&lt;/td&gt;&lt;/tr&gt;&lt;/tfoot&gt;
+&lt;/table&gt;
+]
+
+---
+
+.left5[
+
+.content-box-blue[**Previous Results: Model(1) Use interactions involving dummy variables**]
+
++ Compared to white-male students, on average, SAT scores of :
+  * nonblack-female students were lower by 45.091 points
+  * balck-male students were lower by 169.813 points
+  * black-female students were lower by 152.598 points
+
+]
+
+
+.right5[
+
+.content-box-blue[**Results of Modle(2) Use dummy variables for each category**]
+
+
+&lt;table style="NAborder-bottom: 0; width: auto !important; margin-left: auto; margin-right: auto;" class="table"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt;   &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; Model 1 &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; (Intercept) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1028.097*** &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; (6.290) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; hsize &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 19.297*** &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; (3.832) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; hsize_2 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; −2.195*** &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; (0.527) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; nonblack_female &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; −45.091*** &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; (4.291) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; balck_male &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; −169.813*** &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; (12.713) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; black_female &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; −152.598*** &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;box-shadow: 0px 1px"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;box-shadow: 0px 1px"&gt; (12.897) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Num.Obs. &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 4137 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; R2 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.086 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Std.Errors &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; IID &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;tfoot&gt;&lt;tr&gt;&lt;td style="padding: 0; " colspan="100%"&gt;
+&lt;sup&gt;&lt;/sup&gt; + p &amp;lt; 0.1, * p &amp;lt; 0.05, ** p &amp;lt; 0.01, *** p &amp;lt; 0.001&lt;/td&gt;&lt;/tr&gt;&lt;/tfoot&gt;
+&lt;/table&gt;
+
+&lt;br&gt;
+
+.content-box-red[**The regression results from the Model(1) and Model(2) are the same**]
+]
+
+
+
+---
+
+
+## So what's the difference between Model(1) and Model(2)?
+
+.content-box-blue[**Model(1) Use interactions involving dummy variables**]
+
+$$
+sat = \beta_0 + \beta_1 hsize + \beta_2 hsize^2 +\beta_3 female +  \beta_4 black + \beta_5 female \times black
+$$
+
+.content-box-blue[**Model(2) Use dummy variables for each category**]
+
+$$
+sat = \beta_0 + \beta_1 hsize + \beta_2 hsize^2 +\beta_3 nonblack\\_female +  \beta_4 black\\_male + \beta_5 black\\_female
+$$
+
+&lt;br&gt;
+
++ Both Model(1) and Modle(2) can estimate the average differences in SAT scores across all gender-race combinations 
++ In addition, Model(1) tells whether the impact of gender depends on race
+  *  Recall the role of an interaction term:
+    - By interacting `female` and `black`, we allow the impact of gender depend on race
+    - The coefficient of `female`-`back` interaction term is statistically significant, meaning that **the impact of gender does depend on race**.
+  * The results of Model(2) alone cannot tell this information, and we need to conduct another test separately. (Ex, test to check whether the impact of `nonblack_female` is statistically different from `nonblack_male`)
+
+
+.content-box-greenp[**Conclusion**]
++ In addition to estimating the the average difference in SAT scores across all gender-race combinations, Model (1) tells more information about the interaction effect between gender and race. 
+
+---
+
+# 2.2 Problem 6 :Quick review for the last review session
+
+&lt;span style="color:blue"&gt; 
+To test the effectiveness of a job training program on the subsequent wages of workers, we specify the model
+&lt;/span&gt;
+
+$$
+`\begin{align}
+    log(wage) = \beta_0 + \beta_1 train + \beta_2 educ + \beta_3 exper + u
+\end{align}`
+$$
+
+&lt;span style="color:blue"&gt; 
+where `\(train\)` is a binary variable equal to unity if a worker participated in the program. Think of the error term `\(u\)` as containing unobserved worker ability.** If less able workers have a greater chance of being selected for the program**, and you use an OLS analysis, what can you say about the likely bias in the OLS estimator of `\(\beta_1\)`?
+&lt;/span&gt;
+
+&lt;br&gt;
+
+.content-box-green[**Theme: What is the direction of bias due to the omission of an importatn variable?**]
+
+&lt;br&gt;
+
+.content-box-blue[**Naive Model**]
+
+$$
+log(wage) = \beta_0 + \beta_1 train + \beta_2 educ + \beta_3 exper + u \quad (u = \beta_4 ability + v)
+$$
+
+&lt;br&gt;
+
++ Recall how the direction of bias can be approximated.
+  * `\(ability\)` is &lt;span style="color:blue"&gt;negatively&lt;/span&gt; correlated with `\(train\)` (Cor(train, ability) &lt; 0)
+  * Generally, `\(ability\)` should have a &lt;span style="color:red"&gt; positive &lt;/span&gt;impact on `\(log(wage)\)`
+
++ Hence, `\(\hat{\beta}_1\)` is likely to have a downward bias. (&lt;span style="color:blue"&gt;negative&lt;/span&gt; `\(\times\)` &lt;span style="color:red"&gt; positive &lt;/span&gt; = &lt;span style="color:blue"&gt;negative&lt;/span&gt;)
+
+---
+
+# 3.1 Problem C1 (Chapter 6)
+
+&lt;span style="color:blue"&gt; 
+Use the data in **KIELMC.dta**, only for the year 1981, to answer the following questions. The data are for houses that sold during 1981 in North Andover, Massachusetts; 1981 was the year construction began on a local garbage incinerator.
+&lt;/span&gt;
+
+&lt;br&gt;
+
+.content-box-green[**Main variables**]
++ `price`: housing price in dollars 
++ `dist`: distance from the house to the incinerator measured in feet
+
+&lt;br&gt;
+
+.content-box-green[**Objective**]
++ Estimate the impact of the presence of the incinerator on housing prices
+
+&lt;br&gt;
+
+.content-box-green[**Data**]
+
+```r
+# === Preparation === #
+#--- load the data ---#
+data &lt;- read.dta13("./Data/Assignment_3/KIELMC.dta")
+#--- subset the data to 1981 ---#
+data_81 &lt;- filter(data, year == 1981)
+```
+
+
+
+
+
+---
+
+&lt;span style="color:blue"&gt; 
+(i) Run the following simple regression model:
+&lt;/span&gt;
+$$
+log(price) = \beta_0 + \beta_1 log(dist) + u
+$$
+
+
+The below is the regression result:
+
+&lt;table style="NAborder-bottom: 0; width: auto !important; margin-left: auto; margin-right: auto;" class="table"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt;   &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; Model 1 &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; (Intercept) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 8.047*** &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; (0.646) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; log(dist) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.365*** &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;box-shadow: 0px 1px"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;box-shadow: 0px 1px"&gt; (0.066) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Num.Obs. &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 142 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; R2 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.180 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Std.Errors &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; IID &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;tfoot&gt;&lt;tr&gt;&lt;td style="padding: 0; " colspan="100%"&gt;
+&lt;sup&gt;&lt;/sup&gt; + p &amp;lt; 0.1, * p &amp;lt; 0.05, ** p &amp;lt; 0.01, *** p &amp;lt; 0.001&lt;/td&gt;&lt;/tr&gt;&lt;/tfoot&gt;
+&lt;/table&gt;
+
+&lt;br&gt;
+
+.content-box-green[**Interpretation**]
++ A one percent increase in distance from the incenarator will increase the housing prices by 0.365%, *ceteris paribus*.
+
+
+---
+
+&lt;span style="color:blue"&gt; 
+(ii) Let's add more variables. Now the model is:
+&lt;/span&gt;
+
+$$
+log(price) = \beta_0 + \beta_1 log(dist) + \beta_2 log(intst) + \beta_3 log(area) + \beta_4 log(land) + \beta_5 rooms + \beta_6 baths + \beta_7 age + u
+$$
+
+.right5[
+.content-box-green[**Interpretation**]
++ Now, the incinerator does not have any statistically significant impact on house price.
+
+.content-box-green[**why**]
++ Omitted variable bias:
++ In the previous naive model, the impact of the incinerator might have been overestimated. 
+]
+
+
+.left5[
+&lt;table style="NAborder-bottom: 0; width: auto !important; margin-left: auto; margin-right: auto;" class="table"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt;   &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; Model 1 &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; (Intercept) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 7.592*** &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; (0.642) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; log(dist) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.055 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; (0.058) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; log(intst) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; −0.039 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; (0.052) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; log(area) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.319*** &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; (0.076) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; log(land) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.077+ &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; (0.040) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; rooms &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.043 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; (0.028) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; baths &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.167*** &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; (0.042) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; age &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; −0.004*** &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;box-shadow: 0px 1px"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;box-shadow: 0px 1px"&gt; (0.001) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Num.Obs. &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 142 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; R2 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.748 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Std.Errors &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; IID &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;tfoot&gt;&lt;tr&gt;&lt;td style="padding: 0; " colspan="100%"&gt;
+&lt;sup&gt;&lt;/sup&gt; + p &amp;lt; 0.1, * p &amp;lt; 0.05, ** p &amp;lt; 0.01, *** p &amp;lt; 0.001&lt;/td&gt;&lt;/tr&gt;&lt;/tfoot&gt;
+&lt;/table&gt;
+]
+
+---
+
+# Correlation matrix
+
++ The below shows that correlation between `dist` and newly added variables
+
+
+```r
+round(cor(select(data_81, dist, intst, area, land, rooms, baths, age)), digits = 2)
+```
+
+```
+##        dist intst  area  land rooms baths   age
+## dist   1.00  0.89  0.21  0.53  0.30  0.39 -0.39
+## intst  0.89  1.00  0.31  0.71  0.34  0.44 -0.44
+## area   0.21  0.31  1.00  0.35  0.60  0.68 -0.30
+## land   0.53  0.71  0.35  1.00  0.35  0.42 -0.28
+## rooms  0.30  0.34  0.60  0.35  1.00  0.62 -0.34
+## baths  0.39  0.44  0.68  0.42  0.62  1.00 -0.66
+## age   -0.39 -0.44 -0.30 -0.28 -0.34 -0.66  1.00
+```
+
++ `dist` is highly correlated with `intst` (distance from the home to the interstate)
+
+---
+
+&lt;span style="color:blue"&gt;
+(iii) Add `\([log(intst)]^2\)` to the model from part (ii). Now what happens? 
+&lt;/span&gt;
+
+.right5[
+.content-box-green[**Interpretation**]
++ `\((log(intst))^2\)` is statistically significant
++ The incinerator have statistically significant impact on house price.
+
+.content-box-green[**why?**]
++ We confirmed that `dist` and `intst` are highly correlated (Cor(`dist` and `intst`) = 0.89)
+  * In this case, if OLS estimator of `intst` is biased then the OLS estimator of `dist` would be biased as well.
+
+&lt;br&gt;
+
++ In the previous model:
+  *  `log(intst)` alone was not enough to capture the  impact of `intst`　on `price` and the remaining part (`(log(intst))^2`) was left in the error term, which caused endogenous problem for the OLS estimator of `log(intst)` .
+  * the coefficient on `log(intst)` is biased -&gt; the coefficient on  `log(dist)` is biased as well. 
+]
+
+
+.left5[
+
+&lt;table style="NAborder-bottom: 0; width: auto !important; margin-left: auto; margin-right: auto;" class="table"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt;   &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; Model 1 &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; (Intercept) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; −3.318 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; (2.646) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; log(dist) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.185** &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; (0.062) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; log(intst) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 2.073*** &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; (0.501) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; I(log(intst) * log(intst)) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; −0.119*** &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; (0.028) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; log(area) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.359*** &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; (0.073) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; log(land) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.091* &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; (0.037) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; rooms &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.038 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; (0.027) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; baths &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.150*** &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; (0.040) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; age &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; −0.003** &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;box-shadow: 0px 1px"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;box-shadow: 0px 1px"&gt; (0.001) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Num.Obs. &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 142 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; R2 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.778 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Std.Errors &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; IID &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;tfoot&gt;&lt;tr&gt;&lt;td style="padding: 0; " colspan="100%"&gt;
+&lt;sup&gt;&lt;/sup&gt; + p &amp;lt; 0.1, * p &amp;lt; 0.05, ** p &amp;lt; 0.01, *** p &amp;lt; 0.001&lt;/td&gt;&lt;/tr&gt;&lt;/tfoot&gt;
+&lt;/table&gt;
+]
+
+---
+
+&lt;span style="color:blue"&gt;
+(iv) Is the square of `log(dist)` significant when you add it to the model from part (iii)?
+&lt;/span&gt;
+
+
+.right5[
+&lt;table style="NAborder-bottom: 0; width: auto !important; margin-left: auto; margin-right: auto;" class="table"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt;   &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; Model 1 &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; (Intercept) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; −5.916 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; (8.296) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; log(dist) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.870 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; (2.071) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; I(log(dist) * log(dist)) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; −0.036 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; (0.110) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; log(intst) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1.934** &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; (0.654) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; I(log(intst) * log(intst)) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; −0.111** &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; (0.038) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; log(area) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.355*** &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; (0.074) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; log(land) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.088* &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; (0.039) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; rooms &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.038 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; (0.027) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; baths &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.151*** &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; (0.040) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; age &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; −0.003** &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;box-shadow: 0px 1px"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;box-shadow: 0px 1px"&gt; (0.001) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Num.Obs. &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 142 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; R2 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.778 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Std.Errors &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; IID &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;tfoot&gt;&lt;tr&gt;&lt;td style="padding: 0; " colspan="100%"&gt;
+&lt;sup&gt;&lt;/sup&gt; + p &amp;lt; 0.1, * p &amp;lt; 0.05, ** p &amp;lt; 0.01, *** p &amp;lt; 0.001&lt;/td&gt;&lt;/tr&gt;&lt;/tfoot&gt;
+&lt;/table&gt;
+
+]
+
+
+.left5[
++ No, it is not.
+  *  `log(dist)` is enough to capture all the impact of `dist` after we controlled other factors. 
+]
+
+---
+
+## Taking this one step further
+
+Recall the model in (iii):
+
+`\begin{align}
+log(price) = \beta_0 &amp;+ \beta_1 log(dist) + \beta_2 log(intst) + \beta_3 (log(intst))^2 +  \beta_4 log(area) \\
+&amp;+ \beta_5 log(land) + \beta_6 rooms + \beta_7 baths + \beta_8 age + u
+\end{align}`
+
+
+
++ We saw including `(log(intst))^2` dramatically changed the impact of the incinerator (`dist`)
+
+&lt;br&gt;
+
+
++ **Let's think about the implication about the terms `\(\beta_2 log(intst) + \beta_3 (log(intst))^2\)` a little bit more**
+
+&lt;br&gt;
+
++ How can we interpret this?
+
+
+
+
+---
+
+## A Quick overview of logarithmic functional forms
+
+.content-box-green[**Log-liner functional form: Y in log form**]
+
+$$
+log(Y) = \beta_0 + \beta_1 X + u
+$$
+
+&lt;br&gt;
+
+.content-box-green[**&lt;span style="color:red"&gt;Log-log functional form: Both X and Y are in log form&lt;/span&gt;**]
++ it is also called constant elasticity model
+$$
+log(Y) = \beta_0 + \beta_1 log(X) + u
+$$
+
+&lt;br&gt;
+
+.content-box-green[**Liner-log functional form: X in log form**]
+
+$$
+Y = \beta_0 + \beta_1 log(X) + u
+$$
+
+
+
+---
+
+
+## .content-box-green[**Log-log functional form (aka Constant elasticity model)**]
+
+&lt;br&gt;
+
+.content-box-blue[**Model:** ]
+
+$$
+log(Y) = \beta_0 + \beta_1 log(X) + u \quad \mbox{where, } X, Y &gt; 0
+$$
+
+&lt;br&gt;
+
+.content-box-blue[**Interpretation:** ]
++ `\(\beta_1\)` is the elasticity of Y with respect to X: 
+
+`\begin{align}
+\beta_1 = \frac{dlog(Y)}{dlog(X)} &amp;\approx \frac{\Delta Y/Y}{\Delta X/X} = \frac{\%\Delta Y}{\%\Delta X} \\
+\newline
+\Longrightarrow \%\Delta Y &amp;\approx \beta_1 \%\Delta X
+\end{align}`
+
+
+
++ 1% increase in X increases Y by `\(\beta_1\)`% (constant elasticity)
++ or, Y always responds to 1% change in X by `\(\beta_1\)`%. 
+
+&lt;br&gt;
+
+.content-box-red[**Question:**]
++ How does the interpretation would be changed if we added a quadratic term of `\(log(X)\)`?
+
+---
+
+## .content-box-green[**How does the interpretation would be changed if we added a quadratic term of `\(log(X)\)`?**]
+
+.content-box-blue[**Model:** ]
+
+$$
+log(Y) = \beta_0 + \beta_1 log(X) + \beta_2 (log(X))^2 + u \quad \mbox{where, } X, Y &gt; 0
+$$
+
+&lt;br&gt;
+
++ log-log functional in the previous slide assumes a **constant** elasticity of Y with respect to X
++ However, assuming a constant elasticity might not be appropriate for some cases.
+  * e.g., the response of Y to 1% change in X might change depending on the level of X. 
+
++ By using a quadratic along with logarithms, we allow a **nonconsistant** elasticity between Y and X
+  * Remember a quadratic term of X allows decreasing or increasing marginal impact of X on Y
+
+
+&lt;br&gt;
+
+.content-box-blue[**Interpretation:**]
++ Now the elasticity of Y with respect to X depends on `\(log(X)\)`:
+
+`\begin{align}
+\frac{dlog(Y)}{dlog(X)} &amp;=  \beta_1 + 2\beta_2log(X) \\
+\newline
+\Longrightarrow \frac{\%\Delta Y}{\%\Delta X} &amp;= \beta_1 + 2\beta_2log(X) \\
+\newline
+\Longrightarrow \%\Delta Y &amp;= [\beta_1 + 2\beta_2log(X)]\%\Delta X 
+\end{align}`
+
+
+
+
+
+
+---
+
+## Going back to problem (iii)
+
+The estimated model is:
+
+$$
+log(price) = −3.318 + 0.185 log(dist) + 2.073 log(intst) −0.119 (log(intst))^2 + ... 
+$$ 
+
+&lt;br&gt;
+
+.content-box-blue[**Interpretation of the impact of `intst`:**]
+
++ The coefficient of `\((log(intst))^2\)` is &lt;span style="color:blue"&gt;negative&lt;/span&gt; and it is statistically significant, meaning that the elasticity of `\(price\)` with respect to `\(intst\)` varies depending on `\(log(intst)\)` and &lt;span style="color:blue"&gt;the elasticity diminishes as `\(intst\)` increases&lt;/span&gt;. 
+
+&lt;br&gt;
+
++ 1% increase in `\(intst\)` changes `\(house\)` by `\(2.073 − 2 \cdot 0.119 log(intst)\)`%.
+
+&lt;br&gt;
+
++ For example: Given `\(intst=2000\)`, it is expected that 1% increase in `\(intst\)` changes `\(house\)` by `\(2.073 − 2 \cdot 0.119 log(2000) = 0.2639852\)`% on average, ceteris paribus.
+
+
+---
+
+
+
+# Problem C13 (Chapter 8): Standard Error Estimation
+
+&lt;span style="color:blue"&gt; 
+(i) and (ii) Estimate the model
+$$
+children = \beta_0 + \beta_1 age + \beta_2 age^2 + \beta_3 educ + \beta_4 electric + \beta_5 urban + u
+$$
+and report the usual and heteroskedasticity-robust standard errors. Would you say the heteroskedasticity you found is practically important?
+&lt;/span&gt;
+
+&lt;br&gt;
+
+
+
+
+
+```r
+ls_res &lt;- 
+  list(
+    "Default" = 
+      feols(
+        children ~ age + I(age*age) + educ + electric + urban,
+        data = data_c13_8),
+    "Hetero" = 
+      feols(
+        children ~ age + I(age*age) + educ + electric + urban,
+        vcov = "hetero",
+        data = data_c13_8)
+  )
+
+msummary(
+  ls_res,
+  stars  =  TRUE, 
+  gof_omit  =  "IC|Log|Adj|F|Pseudo|Within" 
+  )
+```
+
+---
+
+## Results
+
+
+
+&lt;table style="NAborder-bottom: 0; width: auto !important; margin-left: auto; margin-right: auto;" class="table"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt;   &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; Default &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; Hetero &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; (Intercept) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; −4.223*** &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; −4.223*** &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; (0.240) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; (0.244) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; age &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.341*** &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.341*** &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; (0.017) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; (0.019) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; I(age * age) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; −0.003*** &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; −0.003*** &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; (0.000) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; (0.000) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; educ &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; −0.075*** &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; −0.075*** &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; (0.006) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; (0.006) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; electric &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; −0.310*** &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; −0.310*** &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; (0.069) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; (0.064) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; urban &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; −0.200*** &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; −0.200*** &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;box-shadow: 0px 1px"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;box-shadow: 0px 1px"&gt; (0.047) &lt;/td&gt;
+   &lt;td style="text-align:center;box-shadow: 0px 1px"&gt; (0.045) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Num.Obs. &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 4358 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 4358 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; R2 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.573 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.573 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Std.Errors &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; IID &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; Heteroskedasticity-robust &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;tfoot&gt;&lt;tr&gt;&lt;td style="padding: 0; " colspan="100%"&gt;
+&lt;sup&gt;&lt;/sup&gt; + p &amp;lt; 0.1, * p &amp;lt; 0.05, ** p &amp;lt; 0.01, *** p &amp;lt; 0.001&lt;/td&gt;&lt;/tr&gt;&lt;/tfoot&gt;
+&lt;/table&gt;
+
+.content-box-green[**Conclusion**]
++ Given how similar usual and robust standard errors are, I would say heteroskedasticity I found is not practically important.
+
+
+
+
+---
+
+# Data management
+
+&lt;span style="color:blue"&gt; 
+Reshape fake datasets (**corn_price_long.rds** and **corn_prod_wide.rds**) and merge them into a single dataset that is ready for statistical analysis.
+&lt;/span&gt;
+
+.content-box-green[**corn_price_long.rds**]
++ Data on corn price by county and month for 2015
+
+
+```
+##       price county_code month
+##       &lt;num&gt;       &lt;int&gt; &lt;int&gt;
+## 1: 4.220489           1     1
+## 2: 2.206121           2     1
+## 3: 3.317242           3     1
+## 4: 4.232555           4     1
+## 5: 5.027020           5     1
+## 6: 2.961252           6     1
+```
+]
+
+
+.content-box-green[**corn_prod_wide.rds**]
++ Data on corn production by county (made-up) and month for 2015
+
+
+```
+##    county_code        1        2        3        4        5        6        7
+##          &lt;int&gt;    &lt;num&gt;    &lt;num&gt;    &lt;num&gt;    &lt;num&gt;    &lt;num&gt;    &lt;num&gt;    &lt;num&gt;
+## 1:           1 5.603684 3.455103 5.064873 4.377333 4.227670 2.434551 4.087645
+## 2:           2 3.109907 4.197244 5.433882 4.125406 4.798526 2.360977 2.223151
+## 3:           3 3.436865 2.045475 5.984617 5.113375 2.713608 4.170065 2.029594
+## 4:           4 3.994556 5.974443 5.798880 5.376652 5.384318 5.305770 4.841967
+## 5:           5 4.979175 3.263295 5.987298 4.697845 2.454501 2.480839 2.157355
+## 6:           6 3.184610 3.975040 3.986924 5.601716 5.360601 5.098186 5.059190
+##           8        9       10       11       12
+##       &lt;num&gt;    &lt;num&gt;    &lt;num&gt;    &lt;num&gt;    &lt;num&gt;
+## 1: 5.071311 3.199495 2.417312 5.625605 5.244051
+## 2: 2.312421 3.121109 3.828375 4.561373 2.147829
+## 3: 5.632646 2.262004 4.494971 5.984935 2.318870
+## 4: 2.763501 5.357226 2.791635 2.551579 4.300947
+## 5: 4.113848 3.354939 5.231654 4.126904 4.478366
+## 6: 5.932479 3.193529 3.179820 3.696567 5.933891
+```
+
+---
+
+&lt;span style="color:blue"&gt; 
+(1) Convert **corn_prod_wide.rds** into a long format in which each row represents the production level for a specific county-year combination. 
+&lt;/span&gt;
+
++ Step1: Write down the desirable table you want to get.(Recommend!)
++ Step2: 
+
+
+```r
+corn_prod_long &lt;-
+  corn_prod_wide %&gt;%
+  pivot_longer(
+    # - the name of the columns to pivot into longer format - #
+    cols = - county_code, #or you can use !county_code
+    # - what the name of cols represents - #
+    names_to = "month", 
+    # - what the values stored in cols represents - #
+    values_to = "production"
+  )
+```
+
+Or you can do like this:
+
+
+```r
+# === Manually select cols === #
+corn_prod_long &lt;-
+  corn_prod_wide %&gt;%
+  pivot_longer(
+    cols = c(as.character(1:12)), 
+    names_to = "month", 
+    values_to = "production"
+  )
+```
+
+The final output is:
+
+```
+## # A tibble: 6 × 3
+##   county_code month production
+##         &lt;int&gt; &lt;chr&gt;      &lt;dbl&gt;
+## 1           1 1           5.60
+## 2           1 2           3.46
+## 3           1 3           5.06
+## 4           1 4           4.38
+## 5           1 5           4.23
+## 6           1 6           2.43
+```
+
+---
+&lt;span style="color:blue"&gt; 
+Merge **corn_prod_long** and **corn_price_long** together. Would the single key `\(couty\_code\)` be sufficient to merge them? Why or why not?
+&lt;/span&gt;
+
+&lt;br&gt;
+
++ The key variable (`couty_code`) alone is not enough, and `month` is also necessary. 
++ The key variable should be the same data type between the two data. So, let's check. 
+
+&lt;br&gt;
+
+.content-box-green[**Check `county_code`**]
+
+
+```r
+class(corn_price_long$county_code)
+```
+
+```
+## [1] "integer"
+```
+
+```r
+class(corn_prod_long$county_code)
+```
+
+```
+## [1] "integer"
+```
+
+&lt;br&gt;
+
+.content-box-green[**Check `month`**]
+
+
+```r
+class(corn_price_long$month)
+```
+
+```
+## [1] "integer"
+```
+
+```r
+class(corn_prod_long$month)
+```
+
+```
+## [1] "character"
+```
+
+---
+
++ We need to fix `month`: either convert `corn_price_long$month`
+
+
+
+```r
+# === Convert data type of month in corn_prod_long to integer=== #
+corn_prod_long$month &lt;- as.integer(corn_prod_long$month)
+
+# === Merge === #
+corn_price_prod &lt;- left_join(corn_prod_long, corn_price_long, by = c("county_code", "month"))
+```
+
+The final output is:
+
+```
+## # A tibble: 6 × 4
+##   county_code month production price
+##         &lt;int&gt; &lt;int&gt;      &lt;dbl&gt; &lt;dbl&gt;
+## 1           1     1       5.60  4.22
+## 2           1     2       3.46  4.23
+## 3           1     3       5.06  3.51
+## 4           1     4       4.38  5.05
+## 5           1     5       4.23  4.24
+## 6           1     6       2.43  3.70
+```
+
+---
+
+## Let's convert long to wide
++ Using Convert **corn_price_long** data to wide format 
+
+&lt;br&gt;
+step1: write down what it looks like
+step2:
+
+
+
+```r
+corn_price_long %&gt;%
+pivot_wider(
+  # - a list of column tha uniquely identifies each observation - #
+  id_cols = county_code, 
+  # - new column names - #
+  names_from = month, 
+  # - values of the new columns -#
+  values_from = price
+)
+```
+
+
+```
+## # A tibble: 50 × 13
+##    county_code   `1`   `2`   `3`   `4`   `5`   `6`   `7`   `8`   `9`  `10`  `11`
+##          &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+##  1           1  4.22  4.23  3.51  5.05  4.24  3.70  3.16  4.10  3.31  5.96  4.61
+##  2           2  2.21  4.38  2.90  5.24  3.36  5.89  3.91  3.20  3.32  3.23  5.63
+##  3           3  3.32  4.61  4.05  4.66  5.96  2.21  2.67  4.40  2.50  5.86  4.35
+##  4           4  4.23  3.30  5.23  4.95  5.02  2.25  2.57  5.76  2.89  3.03  2.31
+##  5           5  5.03  4.99  2.28  4.46  5.95  3.38  5.05  2.27  4.41  4.25  5.56
+##  6           6  2.96  3.01  4.56  3.94  2.72  5.97  5.90  4.35  4.44  3.71  3.15
+##  7           7  5.93  3.62  3.61  3.44  4.01  4.62  3.13  4.15  2.73  5.67  4.35
+##  8           8  5.49  3.30  3.26  3.65  5.59  4.06  4.51  3.41  4.94  3.77  2.90
+##  9           9  2.10  4.66  4.54  4.08  4.34  3.49  4.83  4.25  5.25  5.03  4.84
+## 10          10  3.99  4.67  2.46  2.46  2.37  4.69  3.22  4.88  5.88  5.51  4.50
+## # … with 40 more rows, and 1 more variable: `12` &lt;dbl&gt;
+```
+
+---
+
+# References
++ Wooldridge, Jeffrey M. Introductory Econometrics: A Modern Approach. 4th ed., international student ed. [Mason (OH)]: South-Western, Cengage Learning, 2009.
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
