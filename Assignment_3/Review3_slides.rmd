@@ -863,7 +863,7 @@ $$
 
 <br>
 
-+ 1% increase in $intst$ changes $house$ by ($2.073 − 2 \cdot 0.119 log(intst))$%.
++ 1% increase in $intst$ changes $house$ by $(2.073 − 2 \cdot 0.119 log(intst))$%.
 
 <br>
 
